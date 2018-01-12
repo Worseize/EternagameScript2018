@@ -1,4 +1,4 @@
-let  memory = [], showMenu = true, autoMode = false, memoryPosition = 0 , scaler = 30, a = 0, kof = 0.6 , buttonWidth = 210 , buttonHeight = 70, oligo1 = [], oligo2 = [] , rna1 = [] , rna2 = [], myOligo1, myOligo2, myRna, myRna2, start = false, errors = [] , correction = 30;
+let consoleLog = 0 , memory = [], showMenu = true, autoMode = false, memoryPosition = 0 , scaler = 20, a = 0, kof = 0.6 , buttonWidth = 210 , buttonHeight = 70, oligo1 = [], oligo2 = [] , rna1 = [] , rna2 = [], myOligo1, myOligo2, myRna, myRna2, start = false, errors = [] , correction = 30;
 
 function setup(){
   ol1 = createElement("input","text");
@@ -39,28 +39,30 @@ function setup(){
   myCanvas = createCanvas(innerWidth - correction, innerHeight - 23*4);
   myCanvas.mouseWheel(changeScaler);
   myButton = new Button(width / 2, height - buttonHeight, buttonWidth, buttonHeight);
+  debugMode();
 }
 
 
 function draw(){
-  background(12);
-  myButton.show();
   if(start){
+    background(12);
+    errorsFinder(); //Find and shows basic errors( wrong inputs )
+    myButton.show();
+    calculate();
     if(autoMode === false){
       myOligo1.show();
       myOligo2.show();
       myRna.show(); // RNA variant 1
       myRna2.show(); // if more than 1 variant , that RNA shows up
     }else{
-      console.log("0");
-      ol1Position.value(0);
-      ol2Position.value(0);
-      console.log("1");
+       //autoMode
     }
-  }
-  errorsFinder(); //Find and shows basic errors( wrong inputs )
-  showMemory();
-  if(showMenu){
-    showFunctionality(); // shows all options that exist
+    showMemory();
+    if(showMenu){
+      showFunctionality(); // shows all options that exist
+    }
+    start = false;
+    consoleLog++;
+    console.log("calculated " + consoleLog + " times" )
   }
 }

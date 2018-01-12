@@ -104,6 +104,13 @@ function findRna(){
   ol3.style("width", (temp.length * 10) + "px");
 }
 function calculate(){
+  //CREATE OLIGOS
+  myOligo1 = new Oligo(1, oligo1);
+  myOligo2 = new Oligo(2, oligo2);
+  findRna();
+  start = true;
+}
+function errorsFinder(){
   //CHECKING FOR ERRORS INPUT3 && INPUT4 SHOULD BE A NUMBERS
   if(isNaN(+ol1Position.value()) || isNaN(+ol2Position.value())){
     errors[2] = true;
@@ -111,8 +118,8 @@ function calculate(){
   }else{
     errors[2] = false;
   }
-  //FIND ERRORS 
-  let temp = ol1.value().toUpperCase();
+  let temp;
+  temp = ol1.value().toUpperCase();
   oligo1 = [];
   for(let i = 0; i < ol1.value().length; i ++){
     if(temp[i] == "A" || temp[i] == "U" || temp[i] == "G" || temp[i] == "C"){
@@ -122,9 +129,7 @@ function calculate(){
       return;
     }
     errors[0] = false;
-  }
-
-  //FIND ERRORS 
+  } 
   temp = ol2.value().toUpperCase();
   oligo2 = [];
   for(let i = 0; i < ol2.value().length; i ++){
@@ -136,14 +141,7 @@ function calculate(){
     }
     errors[1] = false;
   }
-
-  //CREATE OLIGOS
-  myOligo1 = new Oligo(1, oligo1);
-  myOligo2 = new Oligo(2, oligo2);
-  findRna();
-  start = true;
-}
-function errorsFinder(){
+  //Show Errors
   for(let i = 0; i < errors.length; i++){
     if(errors[i] == false){
 
@@ -173,15 +171,16 @@ function debugMode(){
   ol2.value("AUACGACUACG");
   ol1Position.value("11");
   ol2Position.value("8");
-}
-function changeScaler(event){
-  if(event.deltaY > 5){
-    scaler += 5;
-  }else if(event.deltaY < 5){
-    scaler -= 5;
-  }else{
-
-  }
+  background(12);
+  errorsFinder();
+  showFunctionality();
+  showMemory();
+  calculate();
+  myButton.show();
+  myOligo1.show();
+  myOligo2.show();
+  myRna.show(); // RNA variant 1
+  myRna2.show(); // if more than 1 variant , that RNA shows up
 }
 function showFunctionality(){
   push();
@@ -192,9 +191,9 @@ function showFunctionality(){
   fill(0);
   text("'ESQ'  => show/hide help menu", 0, height - scaler * 6);
   text("'`'  => load debug mode oligos and calculate RNA once" , 0, height - scaler * 5.5);
-  text("'Q' <= move Oligo_1 => 'E' ", 0, height - scaler * 5);
-  text("'A' <= move Oligo_2 => 'D' ", 0, height - scaler * 4.5);
-  text("'Z' <= move Memory position => 'C' ", 0, height - scaler * 4);
+  text("'R' <= move Oligo_1 => 'Y' ", 0, height - scaler * 5);
+  text("'F' <= move Oligo_2 => 'H' ", 0, height - scaler * 4.5);
+  text("'V' <= move Memory position => 'N' ", 0, height - scaler * 4);
   text("'mouse wheel +' => scale UP" , 0, height - scaler * 3.5);
   text("'mouse wheel -'  => scale DOWN" , 0, height - scaler * 3);
   text("'SPACE'  => change automode state", 0, height - scaler * 2.5); 
