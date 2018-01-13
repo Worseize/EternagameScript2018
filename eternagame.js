@@ -47,23 +47,17 @@ function setup(){
 
 function draw(){
   if(start){
-    background(12);
-    calculate();
-    myButton.show();
     if(autoMode === false){
-      ol1Position.attribute("readOnly", "false");
-      ol2Position.attribute("readOnly", "false");
-      myOligo1.show();
-      myOligo2.show();
-      myRna.show(); // RNA variant 1
-      myRna2.show(); // if more than 1 variant , that RNA shows up
+      ol1Position.removeAttribute("readOnly");
+      ol2Position.removeAttribute("readOnly");
     }else{
-      //autoMode
       ol1Position.attribute("readOnly", "true");
       ol2Position.attribute("readOnly", "true");
+      //Clear calculations
       ol1Position.value(0);
       ol2Position.value(0);
       memory = [];
+      //move second oligo from 0 to oligo1 length on each step calculate RNA and put it into memory array
       for(let i = 0; i < ol1.value().length; i++){
         let newTemp = 0;
         ol2Position.value(i);
@@ -76,6 +70,7 @@ function draw(){
         }
         memory.push(new Memory(newTemp, 0, +ol2Position.value()));
       }
+      //move first oligo from 0 to oligo2 length on each step calculate RNA and put it into memory array
       ol2Position.value(0);
       for(let i = 1 ; i < ol2.value().length; i++){
         let newTemp = 0;
@@ -88,28 +83,32 @@ function draw(){
         }
         memory.push(new Memory(newTemp, +ol1Position.value(), 0));
       }
-
+      //sort memory array by coreLength (more AUGC mean less memory array index)
       memory = sortObjectsArray(memory, 'coreLength');
+      //put memory position pointer to 0 once after calculations
       if(flag === true){
         memoryPosition = 0;
         flag = false;
       }
-
+      //draw best solution
       ol1Position.value(memory[memoryPosition].ol1Position);
       ol2Position.value(memory[memoryPosition].ol2Position);
-      calculate();
-
-      myOligo1.show();
-      myOligo2.show();
-      myRna.show(); // RNA variant 1
-      myRna2.show(); // if more than 1 variant , that RNA shows up
     }
+    background(12);
+    calculate();
+    myButton.show();
+    myOligo1.show();
+    myOligo2.show();
+    myRna.show(); // RNA variant 1
+    myRna2.show(); // if more than 1 variant , that RNA shows up
     showMemory();
     if(showMenu){
       showFunctionality(); // shows all options that exist
     }
+
+    //show in console how many times sequence was calculated
     consoleLog++;
-    console.log("calculated " + consoleLog + " times" )
+    console.log("calculated " + consoleLog + " times" );
     start = false;
   }
 }

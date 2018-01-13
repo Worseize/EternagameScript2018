@@ -15,7 +15,7 @@ class Oligo {
         }else if(this.charArray[i] == "C"){
           fill(0, 255, 0);
         }else if(this.charArray[i] == "E"){
-          fill(0); // missfold rna[i] connect to only oligo1 or oligo2 (not both);
+          fill(0, 0, 0); // missfold rna[i] connect to only oligo1 or oligo2 (not both);
         }else{
           fill(12); // empty rna2[i]
         }
