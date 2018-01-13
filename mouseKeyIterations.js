@@ -96,18 +96,21 @@ keyReleased = function(){
 mouseReleased = function(){
   a = 0;
   myButton.show();
-  if(event.button == 0){ // LeftMouse Click on Oligo => change letter
-    if(mouseY > 50 - scaler / 2 && mouseY < 50 + scaler / 2){
-      let temp = round((mouseX - scaler / 2) / scaler);
-      changeLetter(temp , 1);
-      start = true;
-    }
-    if(mouseY > 100 - scaler / 2 && mouseY < 100 + scaler / 2){
-      let temp = round((mouseX - scaler / 2) / scaler);
-      changeLetter(temp , 2);
-      start = true;
+  if(autoMode === false){
+    if(event.button == 0){ // LeftMouse Click on Oligo => change letter
+      if(mouseY > 50 - scaler / 2 && mouseY < 50 + scaler / 2){
+        let temp = round((mouseX - scaler / 2) / scaler);
+        changeLetter(temp , 1);
+        start = true;
+      }
+      if(mouseY > 100 - scaler / 2 && mouseY < 100 + scaler / 2){
+        let temp = round((mouseX - scaler / 2) / scaler);
+        changeLetter(temp , 2);
+        start = true;
+      }
     }
   }
+
 }
 
 window.onresize = function(){
