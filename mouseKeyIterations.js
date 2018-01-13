@@ -24,51 +24,62 @@ keyPressed = function(){
 keyReleased = function(){
   a = 0;
   myButton.show();
-  start = true;
   if(keyCode === 82){//R
     if(+ol1Position.value() > 0){
       ol1Position.value(+ol1Position.value() - 1);
+      start = true;
     }
   }else if(keyCode === 192){//`
     debugMode();
+    start = true;
   }else if(keyCode === 82){//R
     if(+ol1Position.value() > 0){
       ol1Position.value(+ol1Position.value() - 1);
+      start = true;
     }
   }else if(keyCode === 89){//Y
     ol1Position.value(+ol1Position.value() + 1);
+    start = true;
   }else if(keyCode === 70){//F
     if(+ol2Position.value() > 0){
       ol2Position.value(+ol2Position.value() - 1);
+      start = true;
     }
   }else if(keyCode === 72){//H
     ol2Position.value(+ol2Position.value() + 1);
+    start = true;
   }else if(keyCode === 86){//V
     if(memoryPosition > 0){
       memoryPosition--;
+      start = true;
     }else{
-      memoryPosition = 9;
+      memoryPosition = +ol1.value().length + (+ol2.value().length) - 2;
+      start = true;
     }
   }else if(keyCode === 78){//N
-    if(memoryPosition < 9){
+    if(memoryPosition < +ol1.value().length + (+ol2.value().length) - 2){
       memoryPosition++;
+      start = true;
     }else{
       memoryPosition = 0;
+      start = true;
     }
   }else if(keyCode === 32){//Space
     if(autoMode === true){
       autoMode = false;
+      start = true;
     }else{
       autoMode = true;
+      start = true;
     }
   }else if(keyCode === 27){//ESC
     if(showMenu){
       showMenu = false;
+      start = true;
     }else{
       showMenu = true;
+      start = true;
     }
-  }else{
-    start = false;
   }
 }
 mouseReleased = function() {
@@ -84,6 +95,7 @@ mouseReleased = function() {
       changeLetter(temp , 2);
     }
   }
+  start = true;
 }
 window.onresize = function(){
   myCanvas = createCanvas(innerWidth - correction,innerHeight - 23*3);

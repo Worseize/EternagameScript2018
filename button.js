@@ -24,8 +24,7 @@ class Button {
     pop();
     fill(255);
     if(autoMode){
-      //text("autoMode ON", this.pX - this.w / 4, this.pY - this.h / 1.5);
-      text("autoMode in developing stage", this.pX - this.w / 4, this.pY - this.h / 1.5);
+      text("autoMode ON", this.pX - this.w / 4, this.pY - this.h / 1.5);
     }else{
       text("autoMode OFF", this.pX - this.w / 4, this.pY - this.h / 1.5 );
     }

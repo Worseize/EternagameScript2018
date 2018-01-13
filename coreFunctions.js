@@ -46,6 +46,7 @@ function changeLetter(position, numberOfOligo){
   }
 }
 function findRna(){
+  ol3.value("");
   rna1 = [];
   rna2 = [];
   let shortestBranch, longestWaste;
@@ -104,6 +105,7 @@ function findRna(){
   ol3.style("width", (temp.length * 10) + "px");
 }
 function calculate(){
+  errorsFinder();
   //CREATE OLIGOS
   myOligo1 = new Oligo(1, oligo1);
   myOligo2 = new Oligo(2, oligo2);
@@ -222,4 +224,34 @@ function showMemory(){
   fill(255);
   text("Memory position", width - scaler * 8, height - scaler * 2.5);
   pop();
+}
+
+
+// https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value-in-javascript
+function sortObjectsArray(objectsArray, sortKey){
+  // Quick Sort:
+  let retVal;
+
+  if (1 < objectsArray.length)
+  {
+      let pivotIndex = Math.floor((objectsArray.length - 1) / 2);  // middle index
+      let pivotItem = objectsArray[pivotIndex];                    // value in the middle index
+      let less = [], more = [];
+
+      objectsArray.splice(pivotIndex, 1);                          // remove the item in the pivot position
+      objectsArray.forEach(function(value, index, array)
+      {
+          value[sortKey] <= pivotItem[sortKey] ?                   // compare the 'sortKey' proiperty
+              more.push(value) :
+              less.push(value) ;
+      });
+
+      retVal = sortObjectsArray(less, sortKey).concat([pivotItem], sortObjectsArray(more, sortKey));
+  }
+  else
+  {
+      retVal = objectsArray;
+  }
+
+  return retVal;
 }
