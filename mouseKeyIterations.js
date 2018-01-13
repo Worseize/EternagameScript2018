@@ -67,9 +67,11 @@ keyReleased = function(){
   }else if(keyCode === 32){//Space
     if(autoMode === true){
       autoMode = false;
+      flag = false;
       start = true;
     }else{
       autoMode = true;
+      flag = true;
       start = true;
     }
   }else if(keyCode === 27){//ESC
