@@ -170,8 +170,8 @@ function errorsFinder(){
   }
 }
 function debugMode(){
-  ol1.value("CGACUACG");
-  ol2.value("AUACGACUACG");
+  ol1.value("GUCGGACAAGGACGUAGACA");
+  ol2.value("GGUGGACAGAGAGAUACAUG");
   ol1Position.value("11");
   ol2Position.value("8");
   background(12);
@@ -213,7 +213,39 @@ function showMemory(){
     text("0/0", width - scaler * 5, height - scaler);
   }
 }
+function saveMyMemorys(){
+  if(memory.length > 0){
+    let savedMemory = {}; // new  JSON Object
+    for(let i = 0 ; i < memory.length; i++){
+      savedMemory[i] = (memory[i]);
+    }
+    saveJSON(savedMemory, 'EternaScript.json');
+    calculate();
+  }
+}
 
+function mySelectEvent() {
+  let item1 = sel1.value();
+  if(item1 === "A"){
+    ol1.value("GUCGGACAAGGACGUAGACA");
+  }else if(item1 === "B"){
+    ol1.value("GUUUGGUAGGUAGUGGUACC");
+  }else if(item1 === "C"){
+    ol1.value("GGUGGACAGAGAGAUACAUG");
+  }else if(item1 === "R"){
+    ol1.value("CAGUCUUGAAUCAG");
+  }
+  let item2 = sel2.value();
+  if(item2 === "A"){
+    ol2.value("GUCGGACAAGGACGUAGACA");
+  }else if(item2 === "B"){
+    ol2.value("GUUUGGUAGGUAGUGGUACC");
+  }else if(item2 === "C"){
+    ol2.value("GGUGGACAGAGAGAUACAUG");
+  }else if(item2 === "R"){
+    ol2.value("CAGUCUUGAAUCAG");
+  }
+}
 
 // https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value-in-javascript
 function sortObjectsArray(objectsArray, sortKey){

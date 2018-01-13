@@ -4,14 +4,14 @@ let flag = true, consoleLog = 0 , memory = [], showMenu = true, autoMode = false
 
 function setup(){
   ol1 = createElement("input","text");
-  ol1.style("width", (innerWidth - correction) + "px");
+  ol1.style("width", (innerWidth - correction * 3) + "px");
   ol1.style("background-color","green");
   ol1.value(" USER INPUT (Oligo1) only 'AUGC' characters allowed : ");
   ol1.mouseClicked(clearInput1);
   br = createElement("br");
 
   ol2 = createElement("input","text");
-  ol2.style("width", (innerWidth - correction) + "px");
+  ol2.style("width", (innerWidth - correction * 3) + "px");
   ol2.style("background-color","green");
   ol2.value(" USER INPUT (Oligo2) only 'AUGC' characters allowed : ");
   ol2.mouseClicked(clearInput2);
@@ -42,6 +42,26 @@ function setup(){
   myCanvas.mouseWheel(changeScaler);
   myButton = new Button(width / 2, height - buttonHeight, buttonWidth, buttonHeight);
   debugMode();
+
+  let saveButton = createButton('save');
+  saveButton.position(innerWidth - scaler * 4.5 , innerHeight - scaler * 2);
+  saveButton.mousePressed(saveMyMemorys);
+
+  sel1 = createSelect();
+  sel1.option("A");
+  sel1.option("B");
+  sel1.option("C");
+  sel1.option("R");
+  sel1.changed(mySelectEvent);
+  sel1.position(myCanvas.width - scaler * 2 , 0);
+
+  sel2 = createSelect();
+  sel2.option("A");
+  sel2.option("B");
+  sel2.option("C");
+  sel2.option("R");
+  sel2.changed(mySelectEvent);
+  sel2.position(myCanvas.width - scaler * 2 , scaler * 1.2);
 }
 
 
@@ -68,7 +88,7 @@ function draw(){
           }else{
           }
         }
-        memory.push(new Memory(newTemp, 0, +ol2Position.value()));
+        memory.push(new Memory(newTemp, 0, +ol2Position.value(), ol1.value(), ol2.value(), ol3.value() , i));
       }
       //move first oligo from 0 to oligo2 length on each step calculate RNA and put it into memory array
       ol2Position.value(0);
@@ -81,10 +101,10 @@ function draw(){
             newTemp++;
           }
         }
-        memory.push(new Memory(newTemp, +ol1Position.value(), 0));
+        memory.push(new Memory(newTemp, +ol1Position.value(), 0, ol1.value(), ol2.value(), ol3.value(), i + ol1.value().length - 1));
       }
       //sort memory array by coreLength (more AUGC mean less memory array index)
-      memory = sortObjectsArray(memory, 'coreLength');
+      memory = sortObjectsArray(memory, 'verifiedLetters');
       //put memory position pointer to 0 once after calculations
       if(flag === true){
         memoryPosition = 0;
