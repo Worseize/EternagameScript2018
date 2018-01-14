@@ -44,6 +44,8 @@ function findRna(){
       }else{
         rna1[i] = "E"; 
       }
+    }else if(oligo1[i] == "E"){
+      rna1[i] = "E";
     }
   }
   myRna = new Oligo(5, rna1);
@@ -57,6 +59,7 @@ function findRna(){
   ol3.value(temp);
   ol3.style("width", (temp.length * 10) + "px");
 }
+
 function calculate(){
   errorsFinder();
   //CREATE OLIGOS
@@ -65,6 +68,7 @@ function calculate(){
   findRna();
   start = true;
 }
+
 function errorsFinder(){
   //Show current Errors 
   for(let i = 0; i < errors.length; i++){
@@ -123,6 +127,7 @@ function errorsFinder(){
     errors[1] = false;
   }
 }
+
 function debugMode(){
   ol1.value("GUCGGACAAGGACGUAGACA");
   ol2.value("GGUGGACAGAGAGAUACAUG");
@@ -138,39 +143,7 @@ function debugMode(){
   myRna.show(); // RNA variant 1
   myRna2.show(); // if more than 1 variant , that RNA shows up
 }
-function showFunctionality(){
-  push();
-  translate(scaler / 4, -scaler / 4);
-  textSize(scaler);
-  fill(150, 255, 50);
-  rect(0, height - scaler * 10 , scaler * 33, scaler * 10);
-  fill(0);
-  text(" 'ESQ'  => show/hide help menu", 0, height - scaler * 9);
-  text(" '`'  => load debug mode oligos and calculate RNA once" , 0, height - scaler * 8);
-  text(" 'R' <= move Oligo_1 => 'Y' ", 0, height - scaler * 7);
-  text(" 'F' <= move Oligo_2 => 'H' ", 0, height - scaler * 6);
-  text(" 'V' <= move Memory position => 'N' ", 0, height - scaler * 5);
-  text(" 'mouse wheel -/+' => scale canvas elements DOWN/UP" , 0, height - scaler * 4);
-  text(" DOWN <= 'B'  scale canvas elements 'T' => UP" , 0, height - scaler * 3);
-  text(" 'SPACE'  => change automode state", 0, height - scaler * 2); 
-  text(" leftClick + Shift on letter to change it A => U => G => C => E => A" , 0, height  - scaler );
-  pop();
-}
-function showMemory(){
-  fill(255);
-  text("Memory position", width - scaler * 8, height - scaler * 2.5);
-  if(memory.length > 0){
-    text(memoryPosition + "/" + (memory.length - 1) , width - scaler * 7, height - scaler);
-  }else{
-    text("0/0", width - scaler * 7, height - scaler);
-  }
-  fill(255);
-  if(autoMode){
-    text("Auto", width / 2, height / 2 - scaler * 3);
-  }else{
-    text("Manual", width / 2 - scaler, height / 2 - scaler * 3 );
-  }
-}
+
 function saveMyMemorys(){
   if(memory.length > 0){
     let savedMemory = {}; // new  JSON Object
@@ -181,6 +154,7 @@ function saveMyMemorys(){
     calculate();
   }
 }
+
 // https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value-in-javascript
 function sortObjectsArray(objectsArray, sortKey){
   // Quick Sort:

@@ -1,10 +1,3 @@
-mousePressed = function() {
-  if(mouseX > (width / 2 - buttonWidth / 2) && mouseX < (width / 2 + buttonWidth / 2) && mouseY > (height - buttonHeight / 2 - buttonHeight) && mouseY < (height + buttonHeight / 2 - buttonHeight)){
-    a = 20;
-    calculate();
-  }
-}
-
 keyReleased = function(){
   if(autoMode){
     if(keyCode === 86){//V
@@ -76,9 +69,8 @@ keyReleased = function(){
 }
 
 mouseReleased = function(){
-  a = 0;
-  if(event.button === 0){ // LeftMouse Click on Oligo => change letter
-    if(autoMode === false && keyCode === 16){
+  if(keyIsPressed && event.button === 0){ //LeftMouse Click on Oligo => change letter
+    if(autoMode === false && keyCode === 16){ //Shift
       if(mouseY > 50 - scaler / 2 && mouseY < 50 + scaler / 2){
         let temp = round((mouseX - scaler / 2) / scaler);
         changeLetter(temp , 1);
@@ -89,7 +81,7 @@ mouseReleased = function(){
         changeLetter(temp , 2);
         start = true;
       }
-    }else if(autoMode === false && keyCode === 17){
+    }else if(autoMode === false && keyCode === 17){ //Ctrl
       if(mouseY > 50 - scaler / 2 && mouseY < 50 + scaler / 2){
         let temp = round((mouseX - scaler / 2) / scaler);
         changeLetter(temp , 1);
@@ -106,11 +98,11 @@ mouseReleased = function(){
 
 window.onresize = function(){
   myCanvas = createCanvas(innerWidth - correction, innerHeight - 100);
-  sel1.position(myCanvas.width - scaler * 2 , 0);
-  sel2.position(myCanvas.width - scaler * 2 , scaler * 1.2);
-  saveButton.position(myCanvas.width - scaler * 4.5 , myCanvas.height + scaler * 2.5);
-  ol1.style("width", (myCanvas.width - correction * 3) + "px");
-  ol2.style("width", (myCanvas.width - correction * 3) + "px");
+  sel1.position(myCanvas.width - 30, 0);
+  sel2.position(myCanvas.width - 30, 24);
+  saveButton.position(myCanvas.width - 247, 46);
+  ol1.style("width", (innerWidth - 50) + "px");
+  ol2.style("width", (innerWidth - 50) + "px");
   calculate();
 }
 

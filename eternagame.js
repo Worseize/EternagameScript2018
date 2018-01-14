@@ -1,19 +1,20 @@
-let flag = true, consoleLog = 0 , memory = [], showMenu = true, autoMode = false, memoryPosition = 0 , scaler = 20, a = 0, kof = 0.6 ,
-    buttonWidth = 210 , buttonHeight = 70, oligo1 = [], oligo2 = [] , rna1 = [] , rna2 = [], myOligo1, myOligo2, myRna, myRna2, start = false,
-    errors = [] , correction = 30;
+let flag = true, consoleLog = 0 , memory = [], showMenu = true, autoMode = false, memoryPosition = 0 , scaler = 20, oligo1 = [], oligo2 = [] ,
+    rna1 = [] , rna2 = [], myOligo1, myOligo2, myRna, myRna2, start = false, errors = [];
 
 function setup(){
   ol1 = createElement("input","text");
-  ol1.style("width", (innerWidth - correction * 3) + "px");
+  ol1.style("width", (innerWidth - 50) + "px");
   ol1.style("background-color","green");
+  ol1.style("font-family", "'Courier New', Courier, monospace");
   ol1.value(" USER INPUT (Oligo1) only 'AUGC' characters allowed : ");
   ol1.mouseClicked(clearInput1);
   ol1.input(calculate);
   br = createElement("br");
 
   ol2 = createElement("input","text");
-  ol2.style("width", (innerWidth - correction * 3) + "px");
+  ol2.style("width", (innerWidth - 50) + "px");
   ol2.style("background-color","green");
+  ol2.style("font-family", "'Courier New', Courier, monospace");
   ol2.value(" USER INPUT (Oligo2) only 'AUGC' characters allowed : ");
   ol2.mouseClicked(clearInput2);
   ol2.input(calculate);
@@ -23,6 +24,7 @@ function setup(){
   ol3.value(" OUTPUT (calculated RNA sequence) : ");
   ol3.style("background-color","white");
   ol3.style("color","black");
+  ol3.style("font-family", "'Courier New', Courier, monospace");
   ol3.attribute("readOnly","true");
   br = createElement("br");
 
@@ -42,12 +44,13 @@ function setup(){
 
   br = createElement("br");
 
-  myCanvas = createCanvas(innerWidth - correction, innerHeight - 100);
+  myCanvas = createCanvas(innerWidth - 10, innerHeight - 100);
+  myCanvas.position(10 / 2, 90);
   myCanvas.mouseWheel(changeScaler);
   debugMode();
 
-  saveButton = createButton('save');
-  saveButton.position(myCanvas.width - scaler * 4.5 , myCanvas.height + scaler * 2.5);
+  saveButton = createButton('save memory to local PC (.JSON)');
+  saveButton.position(myCanvas.width - 247, 46);
   saveButton.mousePressed(saveMyMemorys);
 
   sel1 = createSelect();
@@ -56,7 +59,7 @@ function setup(){
   sel1.option("C");
   sel1.option("R");
   sel1.changed(mySelectEvent);
-  sel1.position(myCanvas.width - scaler * 2 , 0);
+  sel1.position(myCanvas.width - 30, 0);
 
   sel2 = createSelect();
   sel2.option("A");
@@ -64,7 +67,7 @@ function setup(){
   sel2.option("C");
   sel2.option("R");
   sel2.changed(mySelectEvent);
-  sel2.position(myCanvas.width - scaler * 2 , scaler * 1.2);
+  sel2.position(myCanvas.width - 30, 24);
 }
 
 
@@ -107,7 +110,7 @@ function draw(){
         memory.push(new Memory(newTemp, +ol1Position.value(), 0, ol1.value(), ol2.value(), ol3.value(), i + ol1.value().length - 1));
       }
       //sort memory array by coreLength (more AUGC mean less memory array index)
-      memory = sortObjectsArray(memory, 'verifiedLetters');
+      memory = sortObjectsArray(memory, 'unitedLetters');
       //put memory position pointer to 0 once after calculations
       if(flag === true){
         memoryPosition = 0;
@@ -131,6 +134,7 @@ function draw(){
     consoleLog++;
     console.log("calculated " + consoleLog + " times" );
     start = false;
+    showUnitedLetters();
     errorsFinder();
   }
 }
