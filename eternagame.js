@@ -8,6 +8,7 @@ function setup(){
   ol1.style("background-color","green");
   ol1.value(" USER INPUT (Oligo1) only 'AUGC' characters allowed : ");
   ol1.mouseClicked(clearInput1);
+  ol1.input(calculate);
   br = createElement("br");
 
   ol2 = createElement("input","text");
@@ -15,6 +16,7 @@ function setup(){
   ol2.style("background-color","green");
   ol2.value(" USER INPUT (Oligo2) only 'AUGC' characters allowed : ");
   ol2.mouseClicked(clearInput2);
+  ol2.input(calculate);
   br = createElement("br");
 
   ol3 = createElement("input","text");
@@ -29,21 +31,23 @@ function setup(){
   ol1Position.style("background-color","green");
   ol1Position.value("Oligo1 position");
   ol1Position.mouseClicked(clearInput3);
+  ol1Position.input(calculate);
 
   ol2Position = createElement("input","text");
   ol2Position.style("width", 100 + "px");
   ol2Position.style("background-color","green");
   ol2Position.value("Oligo2 position");
   ol2Position.mouseClicked(clearInput4);
+  ol2Position.input(calculate);
 
   br = createElement("br");
 
-  myCanvas = createCanvas(innerWidth - correction, innerHeight - 23 * 4);
+  myCanvas = createCanvas(innerWidth - correction, innerHeight - 100);
   myCanvas.mouseWheel(changeScaler);
   debugMode();
 
-  let saveButton = createButton('save');
-  saveButton.position(innerWidth - scaler * 4.5 , innerHeight - scaler * 2);
+  saveButton = createButton('save');
+  saveButton.position(myCanvas.width - scaler * 4.5 , myCanvas.height + scaler * 2.5);
   saveButton.mousePressed(saveMyMemorys);
 
   sel1 = createSelect();
@@ -123,10 +127,10 @@ function draw(){
     if(showMenu){
       showFunctionality(); // shows all options that exist
     }
-
     //show in console how many times sequence was calculated
     consoleLog++;
     console.log("calculated " + consoleLog + " times" );
     start = false;
+    errorsFinder();
   }
 }

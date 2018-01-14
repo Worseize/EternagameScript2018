@@ -1,51 +1,3 @@
-function changeLetter(position, numberOfOligo){
-  let tempor;
-  if(numberOfOligo == 1){
-    if(myOligo1.charArray[position] == "A"){
-      myOligo1.charArray[position] = "U";
-      tempor = ol1.value().replaceAt(position - parseInt(ol1Position.value()),"U");
-      ol1.value(tempor);
-    }else if(myOligo1.charArray[position] == "U"){
-      myOligo1.charArray[position] = "G";
-      tempor = ol1.value().replaceAt(position - parseInt(ol1Position.value()),"G");
-      ol1.value(tempor);
-    }else if(myOligo1.charArray[position] == "G"){
-      myOligo1.charArray[position] = "C";
-      tempor = ol1.value().replaceAt(position - parseInt(ol1Position.value()),"C");
-      ol1.value(tempor);
-    }else if(myOligo1.charArray[position] == "C"){
-      myOligo1.charArray[position] = "E";
-      tempor = ol1.value().replaceAt(position - parseInt(ol1Position.value()),"E");
-      ol1.value(tempor);
-    }else if(myOligo1.charArray[position] == "E"){
-      myOligo1.charArray[position] = "A";
-      tempor = ol1.value().replaceAt(position - parseInt(ol1Position.value()),"A");
-      ol1.value(tempor);
-    }
-  }else if(numberOfOligo == 2){
-    if(myOligo2.charArray[position] == "A"){
-      myOligo2.charArray[position] = "U";
-      tempor = ol2.value().replaceAt(position - parseInt(ol2Position.value()),"U");
-      ol2.value(tempor);
-    }else if(myOligo2.charArray[position] == "U"){
-      myOligo2.charArray[position] = "G";
-      tempor = ol2.value().replaceAt(position - parseInt(ol2Position.value()),"G");
-      ol2.value(tempor);
-    }else if(myOligo2.charArray[position] == "G"){
-      myOligo2.charArray[position] = "C";
-      tempor = ol2.value().replaceAt(position - parseInt(ol2Position.value()),"C");
-      ol2.value(tempor);
-    }else if(myOligo2.charArray[position] == "C"){
-      myOligo2.charArray[position] = "E";
-      tempor = ol2.value().replaceAt(position - parseInt(ol2Position.value()),"E");
-      ol2.value(tempor);
-    }else if(myOligo2.charArray[position] == "E"){
-      myOligo2.charArray[position] = "A";
-      tempor = ol2.value().replaceAt(position - parseInt(ol2Position.value()),"A");
-      ol2.value(tempor);
-    }
-  }
-}
 function findRna(){
   ol3.value("");
   rna1 = [];
@@ -114,37 +66,7 @@ function calculate(){
   start = true;
 }
 function errorsFinder(){
-  //CHECKING FOR ERRORS INPUT3 && INPUT4 SHOULD BE A NUMBERS
-  if(isNaN(+ol1Position.value()) || isNaN(+ol2Position.value())){
-    errors[2] = true;
-    return;
-  }else{
-    errors[2] = false;
-  }
-  let temp;
-  temp = ol1.value().toUpperCase();
-  oligo1 = [];
-  for(let i = 0; i < ol1.value().length; i ++){
-    if(temp[i] == "A" || temp[i] == "U" || temp[i] == "G" || temp[i] == "C" || temp[i] == "E"){
-      oligo1[i + (Number(ol1Position.value()))] = temp[i];
-    }else{
-      errors[0] = true;
-      return;
-    }
-    errors[0] = false;
-  } 
-  temp = ol2.value().toUpperCase();
-  oligo2 = [];
-  for(let i = 0; i < ol2.value().length; i ++){
-    if(temp[i] == "A" || temp[i] == "U" || temp[i] == "G" || temp[i] == "C" || temp[i] == "E"){
-      oligo2[i + (Number(ol2Position.value()))] = temp[i];
-    }else{
-      errors[1] = true;
-      return;
-    }
-    errors[1] = false;
-  }
-  //Show Errors
+  //Show current Errors 
   for(let i = 0; i < errors.length; i++){
     if(errors[i] == false){
 
@@ -168,6 +90,38 @@ function errorsFinder(){
       }
     }
   }
+  //CHECKING FOR NEW ERRORS INPUT3 && INPUT4 SHOULD BE A NUMBERS
+  if(isNaN(+ol1Position.value()) || isNaN(+ol2Position.value())){
+    errors[2] = true;
+    return;
+  }else{
+    errors[2] = false;
+  }
+  //CHECKING FOR NEW ERRORS INPUT1 SHOULD BE A LETTER A or U or G or C or E.
+  let temp;
+  temp = ol1.value().toUpperCase();
+  oligo1 = [];
+  for(let i = 0; i < ol1.value().length; i ++){
+    if(temp[i] == "A" || temp[i] == "U" || temp[i] == "G" || temp[i] == "C" || temp[i] == "E"){
+      oligo1[i + (Number(ol1Position.value()))] = temp[i];
+    }else{
+      errors[0] = true;
+      return;
+    }
+    errors[0] = false;
+  }
+  //CHECKING FOR NEW ERRORS INPUT2 SHOULD BE A LETTER A or U or G or C or E.
+  temp = ol2.value().toUpperCase();
+  oligo2 = [];
+  for(let i = 0; i < ol2.value().length; i ++){
+    if(temp[i] == "A" || temp[i] == "U" || temp[i] == "G" || temp[i] == "C" || temp[i] == "E"){
+      oligo2[i + (Number(ol2Position.value()))] = temp[i];
+    }else{
+      errors[1] = true;
+      return;
+    }
+    errors[1] = false;
+  }
 }
 function debugMode(){
   ol1.value("GUCGGACAAGGACGUAGACA");
@@ -189,7 +143,7 @@ function showFunctionality(){
   translate(scaler / 4, -scaler / 4);
   textSize(scaler);
   fill(150, 255, 50);
-  rect(0, height - scaler * 10 , scaler * 27, scaler * 10);
+  rect(0, height - scaler * 10 , scaler * 33, scaler * 10);
   fill(0);
   text(" 'ESQ'  => show/hide help menu", 0, height - scaler * 9);
   text(" '`'  => load debug mode oligos and calculate RNA once" , 0, height - scaler * 8);
@@ -199,7 +153,7 @@ function showFunctionality(){
   text(" 'mouse wheel -/+' => scale canvas elements DOWN/UP" , 0, height - scaler * 4);
   text(" DOWN <= 'B'  scale canvas elements 'T' => UP" , 0, height - scaler * 3);
   text(" 'SPACE'  => change automode state", 0, height - scaler * 2); 
-  text(" Click on letter to change it A => U => G => C => E => A" , 0, height  - scaler );
+  text(" leftClick + Shift on letter to change it A => U => G => C => E => A" , 0, height  - scaler );
   pop();
 }
 function showMemory(){
@@ -227,30 +181,6 @@ function saveMyMemorys(){
     calculate();
   }
 }
-
-function mySelectEvent() {
-  let item1 = sel1.value();
-  if(item1 === "A"){
-    ol1.value("GUCGGACAAGGACGUAGACA");
-  }else if(item1 === "B"){
-    ol1.value("GUUUGGUAGGUAGUGGUACC");
-  }else if(item1 === "C"){
-    ol1.value("GGUGGACAGAGAGAUACAUG");
-  }else if(item1 === "R"){
-    ol1.value("CAGUCUUGAAUCAG");
-  }
-  let item2 = sel2.value();
-  if(item2 === "A"){
-    ol2.value("GUCGGACAAGGACGUAGACA");
-  }else if(item2 === "B"){
-    ol2.value("GUUUGGUAGGUAGUGGUACC");
-  }else if(item2 === "C"){
-    ol2.value("GGUGGACAGAGAGAUACAUG");
-  }else if(item2 === "R"){
-    ol2.value("CAGUCUUGAAUCAG");
-  }
-}
-
 // https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value-in-javascript
 function sortObjectsArray(objectsArray, sortKey){
   // Quick Sort:
