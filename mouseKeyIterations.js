@@ -84,12 +84,23 @@ mouseReleased = function(){
     }else if(autoMode === false && keyCode === 17){ //Ctrl
       if(mouseY > 50 - scaler / 2 && mouseY < 50 + scaler / 2){
         let temp = round((mouseX - scaler / 2) / scaler);
-        changeLetter(temp , 1);
+        addLetter(temp , 1);
         start = true;
       }
       if(mouseY > 100 - scaler / 2 && mouseY < 100 + scaler / 2){
         let temp = round((mouseX - scaler / 2) / scaler);
-        changeLetter(temp , 2);
+        addLetter(temp , 2);
+        start = true;
+      }
+    }else if(autoMode === false && keyCode === 18){ //Alt
+      if(mouseY > 50 - scaler / 2 && mouseY < 50 + scaler / 2){
+        let temp = round((mouseX - scaler / 2) / scaler);
+        removeLetter(temp , 1);
+        start = true;
+      }
+      if(mouseY > 100 - scaler / 2 && mouseY < 100 + scaler / 2){
+        let temp = round((mouseX - scaler / 2) / scaler);
+        removeLetter(temp , 2);
         start = true;
       }
     }
@@ -97,7 +108,7 @@ mouseReleased = function(){
 }
 
 window.onresize = function(){
-  myCanvas = createCanvas(innerWidth - correction, innerHeight - 100);
+  myCanvas = createCanvas(innerWidth - 10, innerHeight - 100);
   sel1.position(myCanvas.width - 30, 0);
   sel2.position(myCanvas.width - 30, 24);
   saveButton.position(myCanvas.width - 247, 46);
@@ -185,5 +196,27 @@ function changeLetter(position, numberOfOligo){
       tempor = ol2.value().replaceAt(position - parseInt(ol2Position.value()),"A");
       ol2.value(tempor);
     }
+  }
+}
+
+function addLetter(position, numberOfOligo){
+  let tempor;
+  if(numberOfOligo == 1){
+    tempor = ol1.value().addAt(position - parseInt(+ol1Position.value()));
+    ol1.value(tempor);
+  }else if(numberOfOligo == 2){
+    tempor = ol2.value().addAt(position - parseInt(+ol2Position.value()));
+    ol2.value(tempor);
+  }
+}
+
+function removeLetter(position, numberOfOligo){
+  let tempor;
+  if(numberOfOligo == 1){
+    tempor = ol1.value().removeAt(position - parseInt(+ol1Position.value()));
+    ol1.value(tempor);
+  }else if(numberOfOligo == 2){
+    tempor = ol2.value().removeAt(position - parseInt(+ol2Position.value()));
+    ol2.value(tempor);
   }
 }

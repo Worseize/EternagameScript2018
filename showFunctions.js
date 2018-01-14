@@ -3,17 +3,19 @@ function showFunctionality(){
   translate(scaler / 4, -scaler / 4);
   textSize(scaler);
   fill(150, 255, 50);
-  rect(0, height - scaler * 10 , scaler * 33, scaler * 10);
+  rect(0, height - scaler * 11 , scaler * 33, scaler * 11);
   fill(0);
-  text(" 'ESQ'  => show/hide help menu", 0, height - scaler * 9);
-  text(" '`'  => load debug mode oligos and calculate RNA once" , 0, height - scaler * 8);
-  text(" 'R' <= move Oligo_1 => 'Y' ", 0, height - scaler * 7);
-  text(" 'F' <= move Oligo_2 => 'H' ", 0, height - scaler * 6);
-  text(" 'V' <= move Memory position => 'N' ", 0, height - scaler * 5);
-  text(" 'mouse wheel -/+' => scale canvas elements DOWN/UP" , 0, height - scaler * 4);
-  text(" DOWN <= 'B'  scale canvas elements 'T' => UP" , 0, height - scaler * 3);
-  text(" 'SPACE'  => change automode state", 0, height - scaler * 2); 
-  text(" leftClick + Shift on letter to change it A => U => G => C => E => A" , 0, height  - scaler );
+  text(" 'ESQ'  => show/hide help menu", 0, height - scaler * 10);
+  text(" '`'  => load debug mode oligos and calculate RNA once" , 0, height - scaler * 9);
+  text(" 'R' <= move Oligo_1 => 'Y' ", 0, height - scaler * 8);
+  text(" 'F' <= move Oligo_2 => 'H' ", 0, height - scaler * 7);
+  text(" 'V' <= move Memory position => 'N' ", 0, height - scaler * 6);
+  text(" 'mouse wheel -/+' => scale canvas elements DOWN/UP" , 0, height - scaler * 5);
+  text(" DOWN <= 'B'  scale canvas elements 'T' => UP" , 0, height - scaler * 4);
+  text(" 'SPACE'  => change automode state", 0, height - scaler * 3); 
+  text(" leftClick + Shift on letter to change it A => U => G => C => E => A" , 0, height  - scaler * 2);
+  text(" leftClick + Ctrl on letter to add 'E'" , 0, height  - scaler );
+  text(" leftClick + Alt on letter to remove it" , 0, height);
   pop();
 }
 

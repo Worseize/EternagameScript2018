@@ -17,10 +17,14 @@
 - __SPACE__ => change mode auto/manual 
 
 1. __In manual mode__
+- __Shift , Ctrl , Alt __ - have memory once you push that key it will rememver it (push Enter to forget) 
+- __leftMouseClick + on oligo letter + __
+    - __+Shift__ => change oligo letter A => U => G => C => E => A
+    - __+Ctrl__ => add here "E" 
+    - __+Alt__ => remove letter
 
 - __R__ <= move oligo1 => __Y__
 - __F__ <= move oligo2 => __H__
-- __leftMouseClick + Shift +  on oligo letter__ => change oligo letter A => U => G => C => E => A
 
 2. __In auto mode__
 
