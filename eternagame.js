@@ -40,7 +40,6 @@ function setup(){
 
   myCanvas = createCanvas(innerWidth - correction, innerHeight - 23 * 4);
   myCanvas.mouseWheel(changeScaler);
-  myButton = new Button(width / 2, height - buttonHeight, buttonWidth, buttonHeight);
   debugMode();
 
   let saveButton = createButton('save');
@@ -116,7 +115,6 @@ function draw(){
     }
     background(12);
     calculate();
-    myButton.show();
     myOligo1.show();
     myOligo2.show();
     myRna.show(); // RNA variant 1

@@ -1,9 +1,9 @@
 function changeScaler(event){
   if(event.deltaY > 5){
-    scaler += 5;
+    scaler -= 5;
     start = true;
   }else if(event.deltaY < 5){
-    scaler -= 5;
+    scaler += 5;
     start = true;
   }
 }
@@ -12,13 +12,6 @@ mousePressed = function() {
   if(mouseX > (width / 2 - buttonWidth / 2) && mouseX < (width / 2 + buttonWidth / 2) && mouseY > (height - buttonHeight / 2 - buttonHeight) && mouseY < (height + buttonHeight / 2 - buttonHeight)){
     a = 20;
     calculate();
-  }
-}
-
-keyPressed = function(){
-  if(keyCode === 13){//ENTER
-    calculate();
-    a = 20;
   }
 }
 
@@ -90,12 +83,10 @@ keyReleased = function(){
     start = true;
   }
   a = 0;
-  myButton.show();
 }
 
 mouseReleased = function(){
   a = 0;
-  myButton.show();
   if(autoMode === false){
     if(event.button == 0){ // LeftMouse Click on Oligo => change letter
       if(mouseY > 50 - scaler / 2 && mouseY < 50 + scaler / 2){
@@ -115,5 +106,5 @@ mouseReleased = function(){
 
 window.onresize = function(){
   myCanvas = createCanvas(innerWidth - correction,innerHeight - 23 * 3);
-  myButton = new Button(width / 2, height - buttonHeight, buttonWidth, buttonHeight);
+  calculate();
 }
