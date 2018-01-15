@@ -15,6 +15,7 @@ function showFunctionality(){
   text(" leftClick + Shift on letter to change it A => U => G => C => E => A" , 0, height  - scaler * 3);
   text(" leftClick + Ctrl on letter to add 'E'" , 0, height  - scaler * 2);
   text(" leftClick + Alt on letter to remove it" , 0, height - scaler);
+  text(" 'Q' <= UP move oligo location ( Y - axis ) DOWN => 'W' " , 0, height);
   pop();
 }
 
@@ -24,9 +25,9 @@ function showMemory(){
   textSize(scaler);
   fill(0);
   if(memory.length > 0){
-    text("Memory position : " + memoryPosition + "/" + (memory.length - 1) , scaler / 2, height - scaler/2);
+    text("Memory position : " + (memoryPosition + 1) + "/" + memory.length  , scaler / 2, height - scaler/2);
   }else{
-    text("Memory position : 0/0", scaler / 2 , height - scaler/2);
+    text("Memory position : 1/1", scaler / 2 , height - scaler/2);
   }
   if(autoMode){
     text("United letters : " + memory[memoryPosition].unitedLetters , scaler / 2, height - scaler * 1.5);

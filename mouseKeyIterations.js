@@ -62,27 +62,25 @@ keyReleased = function(){
     scaler-=5;
     start = true;
   }else if(keyCode === 81){//Q
-    if(qwSelector === 0){
-    }else if(qwSelector === 1){
-      oligo1PY *=1.1;
+    if(qwSelector === 1){
+      oligo1PY -= 0.1;
     }else if(qwSelector === 2){
-      oligo2PY *=1.1;
+      oligo2PY -= 0.1;
     }else if(qwSelector === 3){
-      oligo3PY *=1.1;
+      oligo3PY -= 0.1;
     }else if(qwSelector === 4){
-      oligo4PY *=1.1;
+      oligo4PY -= 0.1;
     }
     start = true;
   }else if(keyCode === 87){//W
-    if(qwSelector === 0){
-    }else if(qwSelector === 1){
-      oligo1PY /=1.1;
+    if(qwSelector === 1){
+      oligo1PY += 0.1;
     }else if(qwSelector === 2){
-      oligo2PY /=1.1;
+      oligo2PY += 0.1;
     }else if(qwSelector === 3){
-      oligo3PY /=1.1;
+      oligo3PY += 0.1;
     }else if(qwSelector === 4){
-      oligo4PY /=1.1;
+      oligo4PY += 0.1;
     }
     start = true;
   }

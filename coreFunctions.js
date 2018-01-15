@@ -154,6 +154,10 @@ function debugMode(){
 function saveMyMemorys(){
   if(memory.length > 0){
     let savedMemory = {}; // new  JSON Object
+    memory[0].oligo1PY = oligo1PY;
+    memory[0].oligo2PY = oligo2PY;
+    memory[0].oligo3PY = oligo3PY;
+    memory[0].oligo4PY = oligo4PY;
     savedMemory[0] = memory[memoryPosition];
     saveJSON(savedMemory, 'EternaScript.json');
     calculate();
@@ -168,6 +172,10 @@ function handleFile(file){
   ol3.value(memory[0].rna);
   ol1Position.value(memory[0].ol1Position);
   ol2Position.value(memory[0].ol2Position);
+  oligo1PY = memory[0].oligo1PY;
+  oligo2PY = memory[0].oligo2PY;
+  oligo3PY = memory[0].oligo3PY;
+  oligo4PY = memory[0].oligo4PY;
   calculate();
 }
 

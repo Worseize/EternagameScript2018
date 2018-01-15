@@ -17,6 +17,9 @@
 - __SPACE__ => change mode auto/manual 
 - __Save .json File__ => (save into .json , only current state from memory at memoryPosition) __ONLY ONE STATE__ => ( memoryPosition / max ).  
 - __Load .json File__ => __ONLY ONE STATE__ (First object from .json file).
+- __Q__ <=  __UP__ move oligo location ( Y - axis ) __DOWN__ => __W__
+  - Choose oligo that you are trying to move in oligo select box before you apply "Q" or "W".
+  - You could save that options for future and load saved file later it will open your saved memory that stores oligo location on canvas and ofcource data.
  
 1. __In manual mode__
      - __leftMouseClick__ + on oligo letter +

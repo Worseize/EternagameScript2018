@@ -1,4 +1,4 @@
-let qwSelector = 0, oligo1PY = 1, oligo2PY = 2, oligo3PY = 3, oligo4PY = 4 , qwScaler = 1, flag = true, consoleLog = 0 , memory = [], showMenu = true, autoMode = false, memoryPosition = 0 , scaler = 20, oligo1 = [], oligo2 = [] ,
+let qwSelector = 1, oligo1PY = 1, oligo2PY = 2, oligo3PY = 3, oligo4PY = 4 , qwScaler = 1, flag = true, consoleLog = 0 , memory = [], showMenu = true, autoMode = false, memoryPosition = 0 , scaler = 20, oligo1 = [], oligo2 = [] ,
     rna1 = [] , rna2 = [], myOligo1, myOligo2, myRna, myRna2, start = false, errors = [];
     
 
