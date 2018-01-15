@@ -48,8 +48,8 @@ function findRna(){
       rna1[i] = "E";
     }
   }
-  myRna = new Oligo(5, rna1);
-  myRna2 = new Oligo(6, rna2);
+  myRna = new Oligo(oligo3PY * qwScaler, rna1);
+  myRna2 = new Oligo(oligo4PY * qwScaler, rna2);
   let temp = "";
   for(let i = 0; i < rna1.length; i++){
     if(rna1[i] != undefined){
@@ -57,18 +57,18 @@ function findRna(){
     }
   }
   ol3.value(temp);
-  if(temp.length < ((innerWidth - 10) / 8)){
+  if(temp.length < ((innerWidth - 150) / 8)){
     ol3.style("width", (temp.length * 8) + "px");
   }else{
-    console.log("ol3.value().length >= (innerWidth - 10) / 8);//see 'findRna'  function");
+    console.log("ol3.value().length >= (innerWidth - 150) / 8);//see 'findRna'  function");
   }
 }
 
 function calculate(){
   errorsFinder();
   //CREATE OLIGOS
-  myOligo1 = new Oligo(1, oligo1);
-  myOligo2 = new Oligo(2, oligo2);
+  myOligo1 = new Oligo(oligo1PY * qwScaler, oligo1);
+  myOligo2 = new Oligo(oligo2PY * qwScaler, oligo2);
   findRna();
   start = true;
   //show in console how many times sequence was calculated

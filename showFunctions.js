@@ -20,17 +20,16 @@ function showFunctionality(){
 
 function showMemory(){
   fill(150, 255, 50);
-  rect(scaler/4, height - scaler * 6 , scaler * 9, scaler * 5.75);
+  rect(scaler/4, height - scaler * 3.5 , scaler * 12, scaler * 3.25);
   textSize(scaler);
   fill(0);
-  text("Memory position", scaler / 2, height - scaler * 2.5);
   if(memory.length > 0){
-    text(memoryPosition + "/" + (memory.length - 1) , 3 * scaler, height - scaler);
+    text("Memory position : " + memoryPosition + "/" + (memory.length - 1) , scaler / 2, height - scaler/2);
   }else{
-    text("0/0", 3 * scaler , height - scaler);
+    text("Memory position : 0/0", scaler / 2 , height - scaler/2);
   }
   if(autoMode){
-    text("United letters : " + memory[memoryPosition].unitedLetters , scaler / 2, height - scaler * 4.5);
+    text("United letters : " + memory[memoryPosition].unitedLetters , scaler / 2, height - scaler * 1.5);
   }else{
     let myNewTemp = 0;
     for(let j = 0; j < ol3.value().length; j++){
@@ -38,12 +37,11 @@ function showMemory(){
         myNewTemp++;
       }
     }
-    text("United letters : " + myNewTemp , scaler / 2, height - scaler * 4.5);
+    text("United letters : " + myNewTemp , scaler / 2, height - scaler * 1.5);
   }
-  fill(255);
   if(autoMode){
-    text("Auto", width / 2, height / 2 - scaler * 3);
+    text("Mode : auto", scaler / 2, height - scaler * 2.5);
   }else{
-    text("Manual", width / 2 - scaler, height / 2 - scaler * 3 );
+    text("Mode : manual", scaler / 2, height - scaler * 2.5);
   }
 }

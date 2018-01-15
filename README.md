@@ -33,7 +33,11 @@
      - __V__ <= change memory position => __N__
 
 ## Add oligo1 , oligo2 and calculate rna. Because it does not count energy between oligos and rna it probably not predict rna folding.
-- Made to solve hard tasks eternagame.com
+   - Made to solve hard tasks eternagame.com
+
+## Have an idea to make it better ? 
+   - create issue : https://github.com/Worseize/EternagameScript2018/issues/new 
+   - or create .js file and Pull Request
 
 ## Author : 
 - Nikita Bogdanov

@@ -18,10 +18,7 @@ keyReleased = function(){
       }
     }
   }else{
-    if(keyCode === 192){//`
-      debugMode();
-      start = true;
-    }else if(keyCode === 82){//R
+    if(keyCode === 82){//R
       if(+ol1Position.value() > 0){
         ol1Position.value(+ol1Position.value() - 1);
         start = true;
@@ -64,6 +61,30 @@ keyReleased = function(){
   }else if(keyCode === 66){//B
     scaler-=5;
     start = true;
+  }else if(keyCode === 81){//Q
+    if(qwSelector === 0){
+    }else if(qwSelector === 1){
+      oligo1PY *=1.1;
+    }else if(qwSelector === 2){
+      oligo2PY *=1.1;
+    }else if(qwSelector === 3){
+      oligo3PY *=1.1;
+    }else if(qwSelector === 4){
+      oligo4PY *=1.1;
+    }
+    start = true;
+  }else if(keyCode === 87){//W
+    if(qwSelector === 0){
+    }else if(qwSelector === 1){
+      oligo1PY /=1.1;
+    }else if(qwSelector === 2){
+      oligo2PY /=1.1;
+    }else if(qwSelector === 3){
+      oligo3PY /=1.1;
+    }else if(qwSelector === 4){
+      oligo4PY /=1.1;
+    }
+    start = true;
   }
   a = 0;
 }
@@ -71,34 +92,34 @@ keyReleased = function(){
 mouseReleased = function(){
   if(keyIsPressed && event.button === 0){ //LeftMouse Click on Oligo => change letter
     if(autoMode === false && keyCode === 16){ //Shift
-      if(mouseY > 50 - scaler / 2 && mouseY < 50 + scaler / 2){
+      if(mouseY > 50 * qwScaler * oligo1PY - scaler / 2 && mouseY < 50 * qwScaler * oligo1PY + scaler / 2){
         let temp = round((mouseX - scaler / 2) / scaler);
         changeLetter(temp , 1);
         start = true;
       }
-      if(mouseY > 100 - scaler / 2 && mouseY < 100 + scaler / 2){
+      if(mouseY > 50 * qwScaler * oligo2PY - scaler / 2 && mouseY < 50 * qwScaler * oligo2PY + scaler / 2){
         let temp = round((mouseX - scaler / 2) / scaler);
         changeLetter(temp , 2);
         start = true;
       }
     }else if(autoMode === false && keyCode === 17){ //Ctrl
-      if(mouseY > 50 - scaler / 2 && mouseY < 50 + scaler / 2){
+      if(mouseY > 50 * qwScaler * oligo1PY - scaler / 2 && mouseY < 50 * qwScaler * oligo1PY + scaler / 2){
         let temp = round((mouseX - scaler / 2) / scaler);
         addLetter(temp , 1);
         start = true;
       }
-      if(mouseY > 100 - scaler / 2 && mouseY < 100 + scaler / 2){
+      if(mouseY > 50 * qwScaler * oligo2PY - scaler / 2 && mouseY < 50 * qwScaler * oligo2PY + scaler / 2){
         let temp = round((mouseX - scaler / 2) / scaler);
         addLetter(temp , 2);
         start = true;
       }
     }else if(autoMode === false && keyCode === 18){ //Alt
-      if(mouseY > 50 - scaler / 2 && mouseY < 50 + scaler / 2){
+      if(mouseY > 50 * qwScaler * oligo1PY - scaler / 2 && mouseY < 50 * qwScaler * oligo1PY + scaler / 2){
         let temp = round((mouseX - scaler / 2) / scaler);
         removeLetter(temp , 1);
         start = true;
       }
-      if(mouseY > 100 - scaler / 2 && mouseY < 100 + scaler / 2){
+      if(mouseY > 50 * qwScaler * oligo2PY - scaler / 2 && mouseY < 50 * qwScaler * oligo2PY + scaler / 2){
         let temp = round((mouseX - scaler / 2) / scaler);
         removeLetter(temp , 2);
         start = true;
@@ -109,18 +130,18 @@ mouseReleased = function(){
 
 window.onresize = function(){
   myCanvas = createCanvas(innerWidth - 10, innerHeight - 120);
-  ol1.style("width", (innerWidth - 50) + "px");
+  ol1.style("width", (innerWidth - 150) + "px");
   sel1.style("position","relative");
   sel1.style("margin-top","5px");
-  ol2.style("width", (innerWidth - 50) + "px");
+  ol2.style("width", (innerWidth - 150) + "px");
   sel2.style("position","relative");
   sel2.style("margin-top","5px");
 
-  if(ol3.value().length < ((innerWidth - 10) / 8)){
+  if(ol3.value().length < ((innerWidth - 150) / 8)){
     ol3.style("width", (ol3.value().length * 8) + "px");
   }else{
-    ol3.style("width", (innerWidth - 10) + "px");
-    console.log("ol3.value().length >= (innerWidth - 10) / 8);//see 'window.onresize'  function");
+    ol3.style("width", (innerWidth - 150) + "px");
+    console.log("ol3.value().length >= (innerWidth - 150) / 8);//see 'window.onresize'  function");
   }
 
   calculate();
@@ -132,20 +153,54 @@ function mySelectEvent() {
     ol1.value("GUCGGACAAGGACGUAGACA");
   }else if(item1 === "B"){
     ol1.value("GUUUGGUAGGUAGUGGUACC");
-  }else if(item1 === "C"){
-    ol1.value("GGUGGACAGAGAGAUACAUG");
   }else if(item1 === "R"){
     ol1.value("CAGUCUUGAAUCAG");
+  }else if(item1 === "A + E + B"){
+    ol1.value("GUCGGACAAGGACGUAGACAEGUUUGGUAGGUAGUGGUACC");
+  }else if(item1 === "B + E + A"){
+    ol1.value("GUUUGGUAGGUAGUGGUACCEGUCGGACAAGGACGUAGACA");
+  }else if(item1 === "R + E + A + E + B"){
+    ol1.value("CAGUCUUGAAUCAGEGUCGGACAAGGACGUAGACAEGUUUGGUAGGUAGUGGUACC");
+  }else if(item1 === "A + E + R + E + B"){
+    ol1.value("GUCGGACAAGGACGUAGACAECAGUCUUGAAUCAGEGUUUGGUAGGUAGUGGUACC");
+  }else if(item1 === "A + E + B + E + R"){
+    ol1.value("GUCGGACAAGGACGUAGACAEGUUUGGUAGGUAGUGGUACCECAGUCUUGAAUCAG");
+  }else if(item1 === "B + E + A + E + R"){
+    ol1.value("GUUUGGUAGGUAGUGGUACCEGUCGGACAAGGACGUAGACAECAGUCUUGAAUCAG");
+  }else if(item1 === "B + E + R + E + A"){
+    ol1.value("GUUUGGUAGGUAGUGGUACCECAGUCUUGAAUCAGEGUCGGACAAGGACGUAGACA");
+  }else if(item1 === "R + E + B + E + A"){
+    ol1.value("CAGUCUUGAAUCAGEGUUUGGUAGGUAGUGGUACCEGUCGGACAAGGACGUAGACA");
   }
+
   let item2 = sel2.value();
-  if(item2 === "A"){
-    ol2.value("GUCGGACAAGGACGUAGACA");
-  }else if(item2 === "B"){
-    ol2.value("GUUUGGUAGGUAGUGGUACC");
-  }else if(item2 === "C"){
+  if(item2 === "C"){
     ol2.value("GGUGGACAGAGAGAUACAUG");
   }else if(item2 === "R"){
     ol2.value("CAGUCUUGAAUCAG");
+  }else if(item2 === "C + E + C"){
+    ol2.value("GGUGGACAGAGAGAUACAUGEGGUGGACAGAGAGAUACAUG");
+  }else if(item2 === "R + E + C"){
+    ol2.value("CAGUCUUGAAUCAGEGGUGGACAGAGAGAUACAUG");
+  }else if(item2 === "C + E + R"){
+    ol2.value("GGUGGACAGAGAGAUACAUGECAGUCUUGAAUCAG");
+  }else if(item2 === "C + E + C + E + R"){
+    ol2.value("GGUGGACAGAGAGAUACAUGEGGUGGACAGAGAGAUACAUGECAGUCUUGAAUCAG");
+  }else if(item2 === "C + E + R + E + C"){
+    ol2.value("GGUGGACAGAGAGAUACAUGECAGUCUUGAAUCAGEGGUGGACAGAGAGAUACAUG");
+  }else if(item2 === "R + E + C + E + C"){
+    ol2.value("CAGUCUUGAAUCAGEGGUGGACAGAGAGAUACAUGEGGUGGACAGAGAGAUACAUG");
+  }
+
+  let item3 = sel3.value();
+  if(item3 === "moveOligo1"){
+    qwSelector = 1;
+  }else if(item3 === "moveOligo2"){
+    qwSelector = 2;
+  }else if(item3 === "moveOligo3"){
+    qwSelector = 3;
+  }else if(item3 === "moveOligo4"){
+    qwSelector = 4;
   }
   calculate();
 }

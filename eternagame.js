@@ -1,10 +1,10 @@
-let flag = true, consoleLog = 0 , memory = [], showMenu = true, autoMode = false, memoryPosition = 0 , scaler = 20, oligo1 = [], oligo2 = [] ,
+let qwSelector = 0, oligo1PY = 1, oligo2PY = 2, oligo3PY = 3, oligo4PY = 4 , qwScaler = 1, flag = true, consoleLog = 0 , memory = [], showMenu = true, autoMode = false, memoryPosition = 0 , scaler = 20, oligo1 = [], oligo2 = [] ,
     rna1 = [] , rna2 = [], myOligo1, myOligo2, myRna, myRna2, start = false, errors = [];
     
 
 function setup(){
   ol1 = createElement("input","text");
-  ol1.style("width", (innerWidth - 50) + "px");
+  ol1.style("width", (innerWidth - 150) + "px");
   ol1.style("background-color","green");
   ol1.style("font-family", "'Courier New', Courier, monospace");
   ol1.style("margin-top","5px");
@@ -19,12 +19,20 @@ function setup(){
   sel1.option("B");
   sel1.option("C");
   sel1.option("R");
+  sel1.option("A + E + B");
+  sel1.option("B + E + A");
+  sel1.option("R + E + A + E + B");
+  sel1.option("A + E + R + E + B");
+  sel1.option("A + E + B + E + R");
+  sel1.option("B + E + A + E + R");
+  sel1.option("B + E + R + E + A");
+  sel1.option("R + E + B + E + A");
   sel1.changed(mySelectEvent);
 
   br = createElement("br");
 
   ol2 = createElement("input","text");
-  ol2.style("width", (innerWidth - 50) + "px");
+  ol2.style("width", (innerWidth - 150) + "px");
   ol2.style("background-color","green");
   ol2.style("font-family", "'Courier New', Courier, monospace");
   ol2.style("margin-top","5px");
@@ -39,6 +47,12 @@ function setup(){
   sel2.option("B");
   sel2.option("C");
   sel2.option("R");
+  sel2.option("C + E + C");
+  sel2.option("R + E + C");
+  sel2.option("C + E + R");
+  sel2.option("C + E + C + E + R");
+  sel2.option("C + E + R + E + C");
+  sel2.option("R + E + C + E + C");
   sel2.changed(mySelectEvent);
 
   br = createElement("br");
@@ -50,6 +64,16 @@ function setup(){
   ol3.style("font-family", "'Courier New', Courier, monospace");
   ol3.style("margin-top","5px");
   ol3.attribute("readOnly","true");
+
+  sel3 = createSelect();
+  sel3.style("margin-top","5px");
+  sel3.style("margin-left","5px");
+  sel3.option("moveOligo1");
+  sel3.option("moveOligo2");
+  sel3.option("moveOligo3");
+  sel3.option("moveOligo4");
+  sel3.changed(mySelectEvent);
+
   br = createElement("br");
 
   ol1Position = createElement("input","text");
