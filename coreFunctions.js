@@ -57,7 +57,11 @@ function findRna(){
     }
   }
   ol3.value(temp);
-  ol3.style("width", (temp.length * 10) + "px");
+  if(temp.length < ((innerWidth - 10) / 8)){
+    ol3.style("width", (temp.length * 8) + "px");
+  }else{
+    console.log("ol3.value().length >= (innerWidth - 10) / 8);//see 'findRna'  function");
+  }
 }
 
 function calculate(){
@@ -147,12 +151,21 @@ function debugMode(){
 function saveMyMemorys(){
   if(memory.length > 0){
     let savedMemory = {}; // new  JSON Object
-    for(let i = 0 ; i < memory.length; i++){
-      savedMemory[i] = (memory[i]);
-    }
+    savedMemory[0] = memory[memoryPosition];
     saveJSON(savedMemory, 'EternaScript.json');
     calculate();
   }
+}
+
+function handleFile(file){
+  autoMode = false;
+  memory = JSON.parse(atob(file.data.substr(13)));
+  ol1.value(memory[0].oligo1);
+  ol2.value(memory[0].oligo2);
+  ol3.value(memory[0].rna);
+  ol1Position.value(memory[0].ol1Position);
+  ol2Position.value(memory[0].ol2Position);
+  calculate();
 }
 
 // https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value-in-javascript

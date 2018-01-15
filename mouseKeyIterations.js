@@ -108,12 +108,21 @@ mouseReleased = function(){
 }
 
 window.onresize = function(){
-  myCanvas = createCanvas(innerWidth - 10, innerHeight - 100);
-  sel1.position(myCanvas.width - 30, 0);
-  sel2.position(myCanvas.width - 30, 24);
-  saveButton.position(myCanvas.width - 247, 46);
+  myCanvas = createCanvas(innerWidth - 10, innerHeight - 120);
   ol1.style("width", (innerWidth - 50) + "px");
+  sel1.style("position","relative");
+  sel1.style("margin-top","5px");
   ol2.style("width", (innerWidth - 50) + "px");
+  sel2.style("position","relative");
+  sel2.style("margin-top","5px");
+
+  if(ol3.value().length < ((innerWidth - 10) / 8)){
+    ol3.style("width", (ol3.value().length * 8) + "px");
+  }else{
+    ol3.style("width", (innerWidth - 10) + "px");
+    console.log("ol3.value().length >= (innerWidth - 10) / 8);//see 'window.onresize'  function");
+  }
+
   calculate();
 }
 
@@ -142,10 +151,10 @@ function mySelectEvent() {
 
 function changeScaler(event){
   if(event.deltaY > 5){
-    scaler -= 5;
+    scaler -= 1;
     start = true;
   }else if(event.deltaY < 5){
-    scaler += 5;
+    scaler += 1;
     start = true;
   }
 }

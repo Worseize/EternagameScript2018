@@ -1,23 +1,46 @@
 let flag = true, consoleLog = 0 , memory = [], showMenu = true, autoMode = false, memoryPosition = 0 , scaler = 20, oligo1 = [], oligo2 = [] ,
     rna1 = [] , rna2 = [], myOligo1, myOligo2, myRna, myRna2, start = false, errors = [];
+    
 
 function setup(){
   ol1 = createElement("input","text");
   ol1.style("width", (innerWidth - 50) + "px");
   ol1.style("background-color","green");
   ol1.style("font-family", "'Courier New', Courier, monospace");
+  ol1.style("margin-top","5px");
   ol1.value(" USER INPUT (Oligo1) only 'AUGC' characters allowed : ");
   ol1.mouseClicked(clearInput1);
   ol1.input(calculate);
+
+  sel1 = createSelect();
+  sel1.style("margin-top","5px");
+  sel1.style("margin-left","5px");
+  sel1.option("A");
+  sel1.option("B");
+  sel1.option("C");
+  sel1.option("R");
+  sel1.changed(mySelectEvent);
+
   br = createElement("br");
 
   ol2 = createElement("input","text");
   ol2.style("width", (innerWidth - 50) + "px");
   ol2.style("background-color","green");
   ol2.style("font-family", "'Courier New', Courier, monospace");
+  ol2.style("margin-top","5px");
   ol2.value(" USER INPUT (Oligo2) only 'AUGC' characters allowed : ");
   ol2.mouseClicked(clearInput2);
   ol2.input(calculate);
+
+  sel2 = createSelect();
+  sel2.style("margin-top","5px");
+  sel2.style("margin-left","5px");
+  sel2.option("A");
+  sel2.option("B");
+  sel2.option("C");
+  sel2.option("R");
+  sel2.changed(mySelectEvent);
+
   br = createElement("br");
 
   ol3 = createElement("input","text");
@@ -25,49 +48,53 @@ function setup(){
   ol3.style("background-color","white");
   ol3.style("color","black");
   ol3.style("font-family", "'Courier New', Courier, monospace");
+  ol3.style("margin-top","5px");
   ol3.attribute("readOnly","true");
   br = createElement("br");
 
   ol1Position = createElement("input","text");
-  ol1Position.style("width", 100 + "px");
+  ol1Position.style("width", 30 + "px");
   ol1Position.style("background-color","green");
+  ol1Position.style("text-align","center");
+  ol1Position.style("margin-top","5px");
   ol1Position.value("Oligo1 position");
   ol1Position.mouseClicked(clearInput3);
   ol1Position.input(calculate);
 
   ol2Position = createElement("input","text");
-  ol2Position.style("width", 100 + "px");
+  ol2Position.style("width", 30 + "px");
   ol2Position.style("background-color","green");
+  ol2Position.style("text-align","center");
+  ol2Position.style("margin-left","5px");
+  ol2Position.style("margin-top","5px");
   ol2Position.value("Oligo2 position");
   ol2Position.mouseClicked(clearInput4);
   ol2Position.input(calculate);
 
+  saveButton = createButton('save memory to local PC (.JSON)');
+  saveButton.mousePressed(saveMyMemorys);
+  saveButton.style("margin-right","5px");
+  saveButton.style("margin-top","3px");
+  saveButton.style("float","right");
+
+  mySpan = createSpan("load local (.JSON) file");
+  mySpan.style("margin-left","5px");
+
+  loadButton = createFileInput(handleFile);
+  loadButton.style("id","files");
+  loadButton.style("name","files[]");
+  loadButton.style("multiple");
+  loadButton.style("margin-left","5px");
+  loadButton.style("margin-top","3px");
+  loadButton.style("float","center");
+
   br = createElement("br");
 
-  myCanvas = createCanvas(innerWidth - 10, innerHeight - 100);
-  myCanvas.position(10 / 2, 90);
+  myCanvas = createCanvas(innerWidth - 10, innerHeight - 120);
   myCanvas.mouseWheel(changeScaler);
+  myCanvas.style("margin-top","5px");
+  myCanvas.style("id","unFocusMe");
   debugMode();
-
-  saveButton = createButton('save memory to local PC (.JSON)');
-  saveButton.position(myCanvas.width - 247, 46);
-  saveButton.mousePressed(saveMyMemorys);
-
-  sel1 = createSelect();
-  sel1.option("A");
-  sel1.option("B");
-  sel1.option("C");
-  sel1.option("R");
-  sel1.changed(mySelectEvent);
-  sel1.position(myCanvas.width - 30, 0);
-
-  sel2 = createSelect();
-  sel2.option("A");
-  sel2.option("B");
-  sel2.option("C");
-  sel2.option("R");
-  sel2.changed(mySelectEvent);
-  sel2.position(myCanvas.width - 30, 24);
 }
 
 
