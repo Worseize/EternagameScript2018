@@ -157,11 +157,7 @@ function draw(){
     if(showMenu){
       showFunctionality(); // shows all options that exist
     }
-    //show in console how many times sequence was calculated
-    consoleLog++;
-    console.log("calculated " + consoleLog + " times" );
     start = false;
-    showUnitedLetters();
     errorsFinder();
   }
 }

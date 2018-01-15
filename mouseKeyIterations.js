@@ -147,6 +147,7 @@ function mySelectEvent() {
   }else if(item2 === "R"){
     ol2.value("CAGUCUUGAAUCAG");
   }
+  calculate();
 }
 
 function changeScaler(event){

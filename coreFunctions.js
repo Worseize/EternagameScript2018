@@ -71,6 +71,9 @@ function calculate(){
   myOligo2 = new Oligo(2, oligo2);
   findRna();
   start = true;
+  //show in console how many times sequence was calculated
+  consoleLog++;
+  console.log("calculated " + consoleLog + " times" );
 }
 
 function errorsFinder(){
@@ -134,9 +137,9 @@ function errorsFinder(){
 
 function debugMode(){
   ol1.value("GUCGGACAAGGACGUAGACA");
-  ol2.value("GGUGGACAGAGAGAUACAUG");
-  ol1Position.value("11");
-  ol2Position.value("8");
+  ol2.value("GUCGGACAAGGACGUAGACA");
+  ol1Position.value("0");
+  ol2Position.value("2");
   background(12);
   errorsFinder();
   showFunctionality();
