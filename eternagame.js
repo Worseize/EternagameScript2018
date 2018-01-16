@@ -27,7 +27,7 @@ function setup(){
   sel1.option("B + E + A + E + R");
   sel1.option("B + E + R + E + A");
   sel1.option("R + E + B + E + A");
-  sel1.changed(mySelectEvent);
+  sel1.changed(mySelect1Event);
 
   br = createElement("br");
 
@@ -53,7 +53,7 @@ function setup(){
   sel2.option("C + E + C + E + R");
   sel2.option("C + E + R + E + C");
   sel2.option("R + E + C + E + C");
-  sel2.changed(mySelectEvent);
+  sel2.changed(mySelect2Event);
 
   br = createElement("br");
 
@@ -72,7 +72,7 @@ function setup(){
   sel3.option("moveOligo2");
   sel3.option("moveOligo3");
   sel3.option("moveOligo4");
-  sel3.changed(mySelectEvent);
+  sel3.changed(mySelect3Event);
 
   br = createElement("br");
 

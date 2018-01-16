@@ -56,10 +56,10 @@ keyReleased = function(){
       start = true;
     }
   }else if(keyCode === 84){//T
-    scaler+=5;
+    scaler+=1;
     start = true;
   }else if(keyCode === 66){//B
-    scaler-=5;
+    scaler-=1;
     start = true;
   }else if(keyCode === 81){//Q
     if(qwSelector === 1){
@@ -145,10 +145,11 @@ window.onresize = function(){
   calculate();
 }
 
-function mySelectEvent() {
+function mySelect1Event() {
   let item1 = sel1.value();
   if(item1 === "A"){
     ol1.value("GUCGGACAAGGACGUAGACA");
+    console.log("error")
   }else if(item1 === "B"){
     ol1.value("GUUUGGUAGGUAGUGGUACC");
   }else if(item1 === "R"){
@@ -171,6 +172,9 @@ function mySelectEvent() {
     ol1.value("CAGUCUUGAAUCAGEGUUUGGUAGGUAGUGGUACCEGUCGGACAAGGACGUAGACA");
   }
 
+  calculate();
+}
+function mySelect2Event(){
   let item2 = sel2.value();
   if(item2 === "C"){
     ol2.value("GGUGGACAGAGAGAUACAUG");
@@ -189,7 +193,9 @@ function mySelectEvent() {
   }else if(item2 === "R + E + C + E + C"){
     ol2.value("CAGUCUUGAAUCAGEGGUGGACAGAGAGAUACAUGEGGUGGACAGAGAGAUACAUG");
   }
-
+  calculate();
+}
+function mySelect3Event(){
   let item3 = sel3.value();
   if(item3 === "moveOligo1"){
     qwSelector = 1;

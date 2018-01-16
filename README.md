@@ -13,7 +13,7 @@
 
 - __ESQ__ - show/hide menu
 - __T__ <= scale canvas elements => __B__
-- __mouseWheel-__  <= scale canvas elements => __mouseWheel+__
+- __mouseWheel+Backward__  <= __DOWN__ scale canvas elements __UP__ => __mouseWheel+Forward__
 - __SPACE__ => change mode auto/manual 
 - __Save .json File__ => (save into .json , only current state from memory at memoryPosition) __ONLY ONE STATE__ => ( memoryPosition / max ).  
 - __Load .json File__ => __ONLY ONE STATE__ (First object from .json file).
@@ -28,12 +28,12 @@
          - __+Ctrl__ => add here "E" 
          - __+Alt__ => remove letter
 
-     - __R__ <= move oligo1 => __Y__
-     - __F__ <= move oligo2 => __H__
+     - __R__ <= __LEFT__ [move oligo1 to] __RIGHT__ => __Y__
+     - __F__ <= __LEFT__ [move oligo2 to] __RIGHT__ => __H__
 
 2. __In auto mode__
 
-     - __V__ <= change memory position => __N__
+     - __V__ <= __Decrement__ [change memory position] __Increment__ => __N__
 
 ## Add oligo1 , oligo2 and calculate rna. Because it does not count energy between oligos and rna it probably not predict rna folding.
    - Made to solve hard tasks eternagame.com
