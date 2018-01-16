@@ -71,9 +71,6 @@ function calculate(){
   myOligo2 = new Oligo(oligo2PY * qwScaler, oligo2);
   findRna();
   start = true;
-  //show in console how many times sequence was calculated
-  consoleLog++;
-  console.log("calculated " + consoleLog + " times" );
 }
 
 function errorsFinder(){
@@ -135,7 +132,7 @@ function errorsFinder(){
   }
 }
 
-function debugMode(){
+function setupMode(){
   ol1.value("GUCGGACAAGGACGUAGACA");
   ol2.value("GUCGGACAAGGACGUAGACA");
   ol1Position.value("0");
@@ -178,7 +175,9 @@ function handleFile(file){
   oligo4PY = memory[0].oligo4PY;
   calculate();
 }
-
+function clearFileName(){
+  loadButton.value("");
+}
 // https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value-in-javascript
 function sortObjectsArray(objectsArray, sortKey){
   // Quick Sort:
@@ -206,4 +205,14 @@ function sortObjectsArray(objectsArray, sortKey){
   }
 
   return retVal;
+}
+
+function findUnitedLetters(){
+  let tempMem = 0;
+  for(let j = 0; j < ol3.value().length; j++){
+    if(ol3.value().charAt(j) === "A" || ol3.value().charAt(j) === "U" || ol3.value().charAt(j) === "C" || ol3.value().charAt(j) === "G"){
+      tempMem++;
+    }
+  }
+  return tempMem;
 }
