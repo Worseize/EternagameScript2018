@@ -139,13 +139,13 @@ function setupMode(){
   ol2Position.value("2");
   background(12);
   errorsFinder();
-  showFunctionality();
   showMemory();
   calculate();
   myOligo1.show();
   myOligo2.show();
   myRna.show(); // RNA variant 1
   myRna2.show(); // if more than 1 variant , that RNA shows up
+  //textStyle(MONOSPACE); return later
 }
 
 function saveMyMemorys(){
@@ -175,9 +175,11 @@ function handleFile(file){
   oligo4PY = memory[0].oligo4PY;
   calculate();
 }
+
 function clearFileName(){
   loadButton.value("");
 }
+
 // https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value-in-javascript
 function sortObjectsArray(objectsArray, sortKey){
   // Quick Sort:

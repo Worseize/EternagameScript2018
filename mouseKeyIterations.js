@@ -1,126 +1,129 @@
 keyReleased = function(){
-  if(autoMode){
-    if(keyCode === 86){//V
-      if(memoryPosition > 0){
-        memoryPosition--;
-        start = true;
-      }else{
-        memoryPosition = +ol1.value().length + (+ol2.value().length) - 2;
-        start = true;
+  //IF PAGE === STATE ALL
+  if(page === 1){
+    if(autoMode){
+      if(keyCode === 86){//V
+        if(memoryPosition > 0){
+          memoryPosition--;
+        }else{
+          memoryPosition = +ol1.value().length + (+ol2.value().length) - 2;
+        }
+      }else if(keyCode === 78){//N
+        if(memoryPosition < +ol1.value().length + (+ol2.value().length) - 2){
+          memoryPosition++;
+        }else{
+          memoryPosition = 0;
+        }
       }
-    }else if(keyCode === 78){//N
-      if(memoryPosition < +ol1.value().length + (+ol2.value().length) - 2){
-        memoryPosition++;
-        start = true;
-      }else{
-        memoryPosition = 0;
-        start = true;
+    }else{
+      if(keyCode === 82){//R
+        if(+ol1Position.value() > 0){
+          ol1Position.value(+ol1Position.value() - 1);
+        }
+      }else if(keyCode === 89){//Y
+        ol1Position.value(+ol1Position.value() + 1);
+      }else if(keyCode === 70){//F
+        if(+ol2Position.value() > 0){
+          ol2Position.value(+ol2Position.value() - 1);
+        }
+      }else if(keyCode === 72){//H
+        ol2Position.value(+ol2Position.value() + 1);
       }
     }
-  }else{
-    if(keyCode === 82){//R
-      if(+ol1Position.value() > 0){
-        ol1Position.value(+ol1Position.value() - 1);
-        start = true;
+
+    if(keyCode === 32){//Space
+      if(autoMode === true){
+        autoMode = false;
+        flag = false;
+      }else{
+        autoMode = true;
+        flag = true;
       }
-    }else if(keyCode === 89){//Y
-      ol1Position.value(+ol1Position.value() + 1);
-      start = true;
-    }else if(keyCode === 70){//F
-      if(+ol2Position.value() > 0){
-        ol2Position.value(+ol2Position.value() - 1);
-        start = true;
+    }else if(keyCode === 81){//Q
+      if(qwSelector === 1){
+        oligo1PY -= 0.1;
+      }else if(qwSelector === 2){
+        oligo2PY -= 0.1;
+      }else if(qwSelector === 3){
+        oligo3PY -= 0.1;
+      }else if(qwSelector === 4){
+        oligo4PY -= 0.1;
       }
-    }else if(keyCode === 72){//H
-      ol2Position.value(+ol2Position.value() + 1);
-      start = true;
+    }else if(keyCode === 87){//W
+      if(qwSelector === 1){
+        oligo1PY += 0.1;
+      }else if(qwSelector === 2){
+        oligo2PY += 0.1;
+      }else if(qwSelector === 3){
+        oligo3PY += 0.1;
+      }else if(qwSelector === 4){
+        oligo4PY += 0.1;
+      }
     }
   }
-
-  if(keyCode === 32){//Space
-    if(autoMode === true){
-      autoMode = false;
-      flag = false;
-      start = true;
+  //ALWAYS
+  if(keyCode === 90){//Z
+    if(page > 0){
+      page--;
     }else{
-      autoMode = true;
-      flag = true;
-      start = true;
+      page = 3;
+    }
+  }else if(keyCode === 88){//X
+    if(page < 3){
+      page++;
+    }else{
+      page = 0;
     }
   }else if(keyCode === 27){//ESC
-    if(showMenu){
-      showMenu = false;
-      start = true;
+    if(page != 0){
+      page = 0;
     }else{
-      showMenu = true;
-      start = true;
+      page = 1;
     }
   }else if(keyCode === 84){//T
     scaler+=1;
-    start = true;
   }else if(keyCode === 66){//B
     scaler-=1;
-    start = true;
-  }else if(keyCode === 81){//Q
-    if(qwSelector === 1){
-      oligo1PY -= 0.1;
-    }else if(qwSelector === 2){
-      oligo2PY -= 0.1;
-    }else if(qwSelector === 3){
-      oligo3PY -= 0.1;
-    }else if(qwSelector === 4){
-      oligo4PY -= 0.1;
-    }
-    start = true;
-  }else if(keyCode === 87){//W
-    if(qwSelector === 1){
-      oligo1PY += 0.1;
-    }else if(qwSelector === 2){
-      oligo2PY += 0.1;
-    }else if(qwSelector === 3){
-      oligo3PY += 0.1;
-    }else if(qwSelector === 4){
-      oligo4PY += 0.1;
-    }
-    start = true;
   }
-  a = 0;
+  start = true;
 }
 
 mouseReleased = function(){
-  if(keyIsPressed && event.button === 0){ //LeftMouse Click on Oligo => change letter
-    if(autoMode === false && keyCode === 16){ //Shift
-      if(mouseY > 50 * qwScaler * oligo1PY - scaler / 2 && mouseY < 50 * qwScaler * oligo1PY + scaler / 2){
-        let temp = round((mouseX - scaler / 2) / scaler);
-        changeLetter(temp , 1);
-        start = true;
-      }
-      if(mouseY > 50 * qwScaler * oligo2PY - scaler / 2 && mouseY < 50 * qwScaler * oligo2PY + scaler / 2){
-        let temp = round((mouseX - scaler / 2) / scaler);
-        changeLetter(temp , 2);
-        start = true;
-      }
-    }else if(autoMode === false && keyCode === 17){ //Ctrl
-      if(mouseY > 50 * qwScaler * oligo1PY - scaler / 2 && mouseY < 50 * qwScaler * oligo1PY + scaler / 2){
-        let temp = round((mouseX - scaler / 2) / scaler);
-        addLetter(temp , 1);
-        start = true;
-      }
-      if(mouseY > 50 * qwScaler * oligo2PY - scaler / 2 && mouseY < 50 * qwScaler * oligo2PY + scaler / 2){
-        let temp = round((mouseX - scaler / 2) / scaler);
-        addLetter(temp , 2);
-        start = true;
-      }
-    }else if(autoMode === false && keyCode === 18){ //Alt
-      if(mouseY > 50 * qwScaler * oligo1PY - scaler / 2 && mouseY < 50 * qwScaler * oligo1PY + scaler / 2){
-        let temp = round((mouseX - scaler / 2) / scaler);
-        removeLetter(temp , 1);
-        start = true;
-      }
-      if(mouseY > 50 * qwScaler * oligo2PY - scaler / 2 && mouseY < 50 * qwScaler * oligo2PY + scaler / 2){
-        let temp = round((mouseX - scaler / 2) / scaler);
-        removeLetter(temp , 2);
-        start = true;
+  if(page === 1){
+    if(keyIsPressed && event.button === 0){ //LeftMouse Click on Oligo => change letter
+      if(autoMode === false && keyCode === 16){ //Shift
+        if(mouseY > 50 * qwScaler * oligo1PY - scaler / 2 && mouseY < 50 * qwScaler * oligo1PY + scaler / 2){
+          let temp = round((mouseX - scaler / 2) / scaler);
+          changeLetter(temp , 1);
+          start = true;
+        }
+        if(mouseY > 50 * qwScaler * oligo2PY - scaler / 2 && mouseY < 50 * qwScaler * oligo2PY + scaler / 2){
+          let temp = round((mouseX - scaler / 2) / scaler);
+          changeLetter(temp , 2);
+          start = true;
+        }
+      }else if(autoMode === false && keyCode === 17){ //Ctrl
+        if(mouseY > 50 * qwScaler * oligo1PY - scaler / 2 && mouseY < 50 * qwScaler * oligo1PY + scaler / 2){
+          let temp = round((mouseX - scaler / 2) / scaler);
+          addLetter(temp , 1);
+          start = true;
+        }
+        if(mouseY > 50 * qwScaler * oligo2PY - scaler / 2 && mouseY < 50 * qwScaler * oligo2PY + scaler / 2){
+          let temp = round((mouseX - scaler / 2) / scaler);
+          addLetter(temp , 2);
+          start = true;
+        }
+      }else if(autoMode === false && keyCode === 18){ //Alt
+        if(mouseY > 50 * qwScaler * oligo1PY - scaler / 2 && mouseY < 50 * qwScaler * oligo1PY + scaler / 2){
+          let temp = round((mouseX - scaler / 2) / scaler);
+          removeLetter(temp , 1);
+          start = true;
+        }
+        if(mouseY > 50 * qwScaler * oligo2PY - scaler / 2 && mouseY < 50 * qwScaler * oligo2PY + scaler / 2){
+          let temp = round((mouseX - scaler / 2) / scaler);
+          removeLetter(temp , 2);
+          start = true;
+        }
       }
     }
   }

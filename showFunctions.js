@@ -1,28 +1,31 @@
-function showFunctionality(){
+function showHelpMenu(){
+  background(12); 
+  fill(255);
+  text(" Z | X => change page : BACKWARD | FORWARD", 0, scaler * 1.25);
+  text(" Q | W => move oligo location ( Y - axis ) : UP | DOWN" , 0, scaler * 2.25);
+  text(" mouse wheel -/+' => scale canvas elements : DOWN | UP" , 0, scaler * 3.25);
+  text(" B | T => scale canvas elements : DOWN | UP" , 0, scaler * 4.25);
+  text(" SPACE => change mode : AUTO | MANUAL", 0, scaler * 5.25);
   push();
-  translate(width - scaler * 33, -scaler / 4);
-  textSize(scaler);
-  fill(150, 255, 50);
-  rect(0, height - scaler * 11 , scaler * 32.75, scaler * 11);
-  fill(0);
-  text(" 'ESQ'  => show/hide help menu", 0, height - scaler * 10);
-  text(" 'R' <= move Oligo_1 => 'Y' ", 0, height - scaler * 9);
-  text(" 'F' <= move Oligo_2 => 'H' ", 0, height - scaler * 8);
-  text(" 'V' <= move Memory position => 'N' ", 0, height - scaler * 7);
-  text(" 'mouse wheel -/+' => scale canvas elements DOWN/UP" , 0, height - scaler * 6);
-  text(" DOWN <= 'B'  scale canvas elements 'T' => UP" , 0, height - scaler * 5);
-  text(" 'SPACE'  => change automode state", 0, height - scaler * 4); 
-  text(" leftClick + Shift on letter to change it A => U => G => C => E => A" , 0, height  - scaler * 3);
-  text(" leftClick + Ctrl on letter to add 'E'" , 0, height  - scaler * 2);
-  text(" leftClick + Alt on letter to remove it" , 0, height - scaler);
-  text(" 'Q' <= UP move oligo location ( Y - axis ) DOWN => 'W' " , 0, height);
+  translate(0,scaler);
+  text(" In manual mode: ", 0, scaler * 6.25);
+  text(" leftClick + Shift on letter to change it A => U => G => C => E => A" , scaler, scaler * 7.25);
+  text(" leftClick + Ctrl on letter to add 'E'" , scaler, scaler * 8.25);
+  text(" leftClick + Alt on letter to remove it" , scaler, scaler * 9.25);
+  text(" R | Y => move Oligo_1 : LEFT | RIGHT", scaler, scaler * 10.25);
+  text(" F | H => move Oligo_2 : LEFT | RIGHT", scaler, scaler * 11.25);
+  for(let i = 0; i < 5; i++){
+    text("*", scaler / 2, scaler / 4 + 7.25 * scaler + (scaler * i));
+  }
+  text(" In auto mode: ", 0, scaler * 13.25);
+  text("*", scaler / 2, scaler / 4 + 14.25 * scaler);
+  text(" V | N => change Memory position HiGHER | LOWER", scaler, scaler * 14.25);
   pop();
 }
 
 function showMemory(){
   fill(150, 255, 50);
-  rect(scaler/4, height - scaler * 3.5 , scaler * 12, scaler * 3.25);
-  textSize(scaler);
+  rect(scaler/4, height - scaler * 3.5 , scaler * 10 + 4 * log(memory.length), scaler * 3.25);
   fill(0);
   if(memory.length > 0){
     text("Memory position : " + (memoryPosition + 1) + "/" + memory.length  , scaler / 2, height - scaler/2);
@@ -44,5 +47,34 @@ function showMemory(){
     text("Mode : auto", scaler / 2, height - scaler * 2.5);
   }else{
     text("Mode : manual", scaler / 2, height - scaler * 2.5);
+  }
+}
+
+function showPage(){
+  fill(150, 255, 50);
+  if(page === 0){
+    rect(width / 2, height - scaler * 1.5 , scaler * 5.25, scaler * 1.25);
+    rect(width * 0.75, height - scaler * 1.5 , scaler * 16, scaler * 1.25);
+    fill(0);
+    text(" Help Menu", width / 2, height - scaler * 0.5);
+    text(" 'ESQ' => go to State all showPage", width * 0.75, height - scaler * 0.5);
+  }else if(page === 1){
+    rect(width / 2, height - scaler * 1.5 , scaler * 4.5, scaler * 1.25);
+    fill(0);
+    text(" State All ", width / 2, height - scaler * 0.5);
+  }else if(page === 2){
+    rect(width / 2, height - scaler * 1.5 , scaler * 4, scaler * 1.25);
+    fill(0);
+    text(" State 1", width / 2, height - scaler * 0.5);
+  }else if(page === 3){
+    rect(width / 2, height - scaler * 1.5 , scaler * 4, scaler * 1.25);
+    fill(0);
+    text(" State 2", width / 2, height - scaler * 0.5);
+  }
+  if(page !== 0){
+    fill(150, 255, 50);
+    rect(width * 0.75, height - scaler * 1.5 , scaler * 15, scaler * 1.25);
+    fill(0);
+    text(" 'ESQ' => go to help menu page", width * 0.75, height - scaler * 0.5);
   }
 }
