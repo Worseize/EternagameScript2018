@@ -34,7 +34,7 @@
 
 ### That means adenine , uracil , guanine , cytosine , empty.
 
-## Add oligo1 , oligo2 and calculate rna. Because it does not count energy between oligos and rna it probably not predict rna folding.
+### Add oligo1 , oligo2 and calculate rna. Because it does not count energy between oligos and rna it probably not predict rna folding.
    - Made to solve hard tasks eternagame.com
 
 ## Currently working on:
