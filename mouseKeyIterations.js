@@ -34,9 +34,13 @@ keyReleased = function(){
     if(keyCode === 32){//Space
       if(autoMode === true){
         autoMode = false;
+        ol1Position.style("background-color","green");
+        ol2Position.style("background-color","green");
         flag = false;
       }else{
         autoMode = true;
+        ol1Position.style("background-color","white");
+        ol2Position.style("background-color","white");
         flag = true;
       }
     }else if(keyCode === 81){//Q
@@ -130,20 +134,23 @@ mouseReleased = function(){
 }
 
 window.onresize = function(){
-  myCanvas = createCanvas(innerWidth - 10, innerHeight - 120);
+  myCanvas = createCanvas(innerWidth - 10, innerHeight - domYLength);
   ol1.style("width", (innerWidth - 150) + "px");
   sel1.style("position","relative");
   sel1.style("margin-top","5px");
+  sel1.style("float","left");
   ol2.style("width", (innerWidth - 150) + "px");
   sel2.style("position","relative");
   sel2.style("margin-top","5px");
-
+  sel2.style("float","left");
   if(ol3.value().length < ((innerWidth - 150) / 8)){
     ol3.style("width", (ol3.value().length * 8) + "px");
   }else{
     ol3.style("width", (innerWidth - 150) + "px");
-    console.log("ol3.value().length >= (innerWidth - 150) / 8);//see 'window.onresize'  function");
   }
+
+  ol4.style("width", (innerWidth / 2 - 20) + "px");
+  ol5.style("width", (innerWidth / 2 - 20) + "px");
 
   calculate();
 }
@@ -152,7 +159,6 @@ function mySelect1Event() {
   let item1 = sel1.value();
   if(item1 === "A"){
     ol1.value("GUCGGACAAGGACGUAGACA");
-    console.log("error")
   }else if(item1 === "B"){
     ol1.value("GUUUGGUAGGUAGUGGUACC");
   }else if(item1 === "R"){

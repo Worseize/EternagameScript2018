@@ -1,6 +1,6 @@
 function showHelpMenu(){
   background(12); 
-  fill(255);
+  fill(155, 155, 0);
   text(" Z | X => change page : BACKWARD | FORWARD", 0, scaler * 1.25);
   text(" Q | W => move oligo location ( Y - axis ) : UP | DOWN" , 0, scaler * 2.25);
   text(" mouse wheel -/+' => scale canvas elements : DOWN | UP" , 0, scaler * 3.25);
@@ -8,6 +8,7 @@ function showHelpMenu(){
   text(" SPACE => change mode : AUTO | MANUAL", 0, scaler * 5.25);
   push();
   translate(0,scaler);
+  fill(155, 155, 255);
   text(" In manual mode: ", 0, scaler * 6.25);
   text(" leftClick + Shift on letter to change it A => U => G => C => E => A" , scaler, scaler * 7.25);
   text(" leftClick + Ctrl on letter to add 'E'" , scaler, scaler * 8.25);
@@ -17,9 +18,14 @@ function showHelpMenu(){
   for(let i = 0; i < 5; i++){
     text("*", scaler / 2, scaler / 4 + 7.25 * scaler + (scaler * i));
   }
+  fill(0, 155, 255);
   text(" In auto mode: ", 0, scaler * 13.25);
   text("*", scaler / 2, scaler / 4 + 14.25 * scaler);
   text(" V | N => change Memory position HiGHER | LOWER", scaler, scaler * 14.25);
+  fill(0, 255, 0);
+  text("greenArea ==> INPUT", scaler, scaler * 16.25);
+  fill(255, 255, 255);
+  text("whiteArea ==> OUTPUT", scaler, scaler * 17.25);
   pop();
 }
 
@@ -54,10 +60,10 @@ function showPage(){
   fill(150, 255, 50);
   if(page === 0){
     rect(width / 2, height - scaler * 1.5 , scaler * 5.25, scaler * 1.25);
-    rect(width * 0.75, height - scaler * 1.5 , scaler * 16, scaler * 1.25);
+    rect(width * 0.7, height - scaler * 1.5 , scaler * 16, scaler * 1.25);
     fill(0);
     text(" Help Menu", width / 2, height - scaler * 0.5);
-    text(" 'ESQ' => go to State all showPage", width * 0.75, height - scaler * 0.5);
+    text(" 'ESQ' => go to State all showPage", width * 0.7, height - scaler * 0.5);
   }else if(page === 1){
     rect(width / 2, height - scaler * 1.5 , scaler * 4.5, scaler * 1.25);
     fill(0);
@@ -73,8 +79,9 @@ function showPage(){
   }
   if(page !== 0){
     fill(150, 255, 50);
-    rect(width * 0.75, height - scaler * 1.5 , scaler * 15, scaler * 1.25);
+    rect(width * 0.7, height - scaler * 1.5 , scaler * 15, scaler * 1.25);
     fill(0);
-    text(" 'ESQ' => go to help menu page", width * 0.75, height - scaler * 0.5);
+    text(" 'ESQ' => go to help menu page", width * 0.7, height - scaler * 0.5);
   }
 }
+

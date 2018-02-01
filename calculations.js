@@ -59,8 +59,6 @@ function findRna(){
   ol3.value(temp);
   if(temp.length < ((innerWidth - 150) / 8)){
     ol3.style("width", (temp.length * 8) + "px");
-  }else{
-    console.log("ol3.value().length >= (innerWidth - 150) / 8);//see 'findRna'  function");
   }
 }
 
@@ -70,6 +68,8 @@ function calculate(){
   myOligo1 = new Oligo(oligo1PY * qwScaler, oligo1);
   myOligo2 = new Oligo(oligo2PY * qwScaler, oligo2);
   findRna();
+  ol4.value(reverseString(ol1.value()));
+  ol5.value(reverseString(ol2.value()));
   start = true;
 }
 
@@ -135,17 +135,16 @@ function errorsFinder(){
 function setupMode(){
   ol1.value("GUCGGACAAGGACGUAGACA");
   ol2.value("GUCGGACAAGGACGUAGACA");
-  ol1Position.value("0");
-  ol2Position.value("2");
+  ol1Position.value("5");
+  ol2Position.value("3");
   background(12);
   errorsFinder();
   showMemory();
   calculate();
   myOligo1.show();
   myOligo2.show();
-  myRna.show(); // RNA variant 1
-  myRna2.show(); // if more than 1 variant , that RNA shows up
-  //textStyle(MONOSPACE); return later
+  myRna.show();
+  myRna2.show();
 }
 
 function saveMyMemorys(){
@@ -217,4 +216,11 @@ function findUnitedLetters(){
     }
   }
   return tempMem;
+}
+
+function reverseString(str) {
+  if (str === "")
+    return "";
+  else
+    return reverseString(str.substr(1)) + str.charAt(0);
 }
