@@ -68,8 +68,17 @@ function calculate(){
   myOligo1 = new Oligo(oligo1PY * qwScaler, oligo1);
   myOligo2 = new Oligo(oligo2PY * qwScaler, oligo2);
   findRna();
+  //REVERSE ORDER
   ol4.value(reverseString(ol1.value()));
   ol5.value(reverseString(ol2.value()));
+  //RNA FOLD 2nd PAGE
+  let temp = [];
+  for(let i = 0; i < ol6.value().length; i++){
+    temp[i] = ol6.value().charAt(i);
+  }
+  console.log(temp);
+  rnaScene2 = new Rna(3, temp, 15, 25, 0);
+  rnaScene2.calculateGivenStructure();
   start = true;
 }
 
@@ -135,6 +144,7 @@ function errorsFinder(){
 function setupMode(){
   ol1.value("GUCGGACAAGGACGUAGACA");
   ol2.value("GUCGGACAAGGACGUAGACA");
+  ol6.value("GUCGGACAAGGACGUAGACA");
   ol1Position.value("5");
   ol2Position.value("3");
   background(12);
@@ -145,6 +155,7 @@ function setupMode(){
   myOligo2.show();
   myRna.show();
   myRna2.show();
+  rnaScene2.showGivenStructure();
 }
 
 function saveMyMemorys(){

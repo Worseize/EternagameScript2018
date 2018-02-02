@@ -43,26 +43,6 @@ keyReleased = function(){
         ol2Position.style("background-color","white");
         flag = true;
       }
-    }else if(keyCode === 81){//Q
-      if(qwSelector === 1){
-        oligo1PY -= 0.1;
-      }else if(qwSelector === 2){
-        oligo2PY -= 0.1;
-      }else if(qwSelector === 3){
-        oligo3PY -= 0.1;
-      }else if(qwSelector === 4){
-        oligo4PY -= 0.1;
-      }
-    }else if(keyCode === 87){//W
-      if(qwSelector === 1){
-        oligo1PY += 0.1;
-      }else if(qwSelector === 2){
-        oligo2PY += 0.1;
-      }else if(qwSelector === 3){
-        oligo3PY += 0.1;
-      }else if(qwSelector === 4){
-        oligo4PY += 0.1;
-      }
     }
   }
   //ALWAYS
@@ -88,6 +68,27 @@ keyReleased = function(){
     scaler+=1;
   }else if(keyCode === 66){//B
     scaler-=1;
+  }
+  if(keyCode === 81){//Q
+    if(qwSelector === 1){
+      oligo1PY -= 0.1;
+    }else if(qwSelector === 2){
+      oligo2PY -= 0.1;
+    }else if(qwSelector === 3){
+      oligo3PY -= 0.1;
+    }else if(qwSelector === 4){
+      oligo4PY -= 0.1;
+    }
+  }else if(keyCode === 87){//W
+    if(qwSelector === 1){
+      oligo1PY += 0.1;
+    }else if(qwSelector === 2){
+      oligo2PY += 0.1;
+    }else if(qwSelector === 3){
+      oligo3PY += 0.1;
+    }else if(qwSelector === 4){
+      oligo4PY += 0.1;
+    }
   }
   start = true;
 }
@@ -152,6 +153,10 @@ window.onresize = function(){
   ol4.style("width", (innerWidth / 2 - 20) + "px");
   ol5.style("width", (innerWidth / 2 - 20) + "px");
 
+  ol6.style("width", (innerWidth - 150) + "px");
+  ol6.style("background-color","green");
+  ol6.style("margin-top","5px");
+
   calculate();
 }
 
@@ -206,15 +211,59 @@ function mySelect2Event(){
 }
 function mySelect3Event(){
   let item3 = sel3.value();
-  if(item3 === "moveOligo1"){
+  if(item3 === "moveOligo1 Y - axis"){
     qwSelector = 1;
-  }else if(item3 === "moveOligo2"){
+  }else if(item3 === "moveOligo2 Y - axis"){
     qwSelector = 2;
-  }else if(item3 === "moveOligo3"){
+  }else if(item3 === "moveOligo3 Y - axis"){
     qwSelector = 3;
-  }else if(item3 === "moveOligo4"){
+  }else if(item3 === "moveOligo4 Y - axis"){
     qwSelector = 4;
   }
+  calculate();
+}
+function mySelect4Event(){
+  let item4 = sel4.value();
+  if(item4 === "C"){
+    ol6.value("GGUGGACAGAGAGAUACAUG");
+  }else if(item4 === "R"){
+    ol6.value("CAGUCUUGAAUCAG");
+  }else if(item4 === "C + E + C"){
+    ol6.value("GGUGGACAGAGAGAUACAUGEGGUGGACAGAGAGAUACAUG");
+  }else if(item4 === "R + E + C"){
+    ol6.value("CAGUCUUGAAUCAGEGGUGGACAGAGAGAUACAUG");
+  }else if(item4 === "C + E + R"){
+    ol6.value("GGUGGACAGAGAGAUACAUGECAGUCUUGAAUCAG");
+  }else if(item4 === "C + E + C + E + R"){
+    ol6.value("GGUGGACAGAGAGAUACAUGEGGUGGACAGAGAGAUACAUGECAGUCUUGAAUCAG");
+  }else if(item4 === "C + E + R + E + C"){
+    ol6.value("GGUGGACAGAGAGAUACAUGECAGUCUUGAAUCAGEGGUGGACAGAGAGAUACAUG");
+  }else if(item4 === "R + E + C + E + C"){
+    ol6.value("CAGUCUUGAAUCAGEGGUGGACAGAGAGAUACAUGEGGUGGACAGAGAGAUACAUG");
+  }else if(item4 === "A"){
+    ol6.value("GUCGGACAAGGACGUAGACA");
+  }else if(item4 === "B"){
+    ol6.value("GUUUGGUAGGUAGUGGUACC");
+  }else if(item4 === "R"){
+    ol6.value("CAGUCUUGAAUCAG");
+  }else if(item4 === "A + E + B"){
+    ol6.value("GUCGGACAAGGACGUAGACAEGUUUGGUAGGUAGUGGUACC");
+  }else if(item4 === "B + E + A"){
+    ol6.value("GUUUGGUAGGUAGUGGUACCEGUCGGACAAGGACGUAGACA");
+  }else if(item4 === "R + E + A + E + B"){
+    ol6.value("CAGUCUUGAAUCAGEGUCGGACAAGGACGUAGACAEGUUUGGUAGGUAGUGGUACC");
+  }else if(item4 === "A + E + R + E + B"){
+    ol6.value("GUCGGACAAGGACGUAGACAECAGUCUUGAAUCAGEGUUUGGUAGGUAGUGGUACC");
+  }else if(item4 === "A + E + B + E + R"){
+    ol6.value("GUCGGACAAGGACGUAGACAEGUUUGGUAGGUAGUGGUACCECAGUCUUGAAUCAG");
+  }else if(item4 === "B + E + A + E + R"){
+    ol6.value("GUUUGGUAGGUAGUGGUACCEGUCGGACAAGGACGUAGACAECAGUCUUGAAUCAG");
+  }else if(item4 === "B + E + R + E + A"){
+    ol6.value("GUUUGGUAGGUAGUGGUACCECAGUCUUGAAUCAGEGUCGGACAAGGACGUAGACA");
+  }else if(item4 === "R + E + B + E + A"){
+    ol6.value("CAGUCUUGAAUCAGEGUUUGGUAGGUAGUGGUACCEGUCGGACAAGGACGUAGACA");
+  }
+  start = true;
   calculate();
 }
 

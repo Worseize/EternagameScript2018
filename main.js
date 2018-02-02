@@ -3,14 +3,14 @@ new p5();
 
 
 //VARIABLES
-let page = 1, qwSelector = 1, oligo1PY = 1, oligo2PY = 2, oligo3PY = 3, oligo4PY = 4, qwScaler = 1, consoleLog = 0, memoryPosition = 0,
-    scaler = 20, domYLength = 160;
+let page = 2, qwSelector = 1, oligo1PY = 1, oligo2PY = 2, oligo3PY = 3, oligo4PY = 4, qwScaler = 1, memoryPosition = 0, scaler = 20,
+    domYLength = 200;
 //BOOLEANS
 let start = false, autoMode = false, flag = true;
 //ARRAYS
 let memory = [], oligo1 = [], oligo2 = [], rna1 = [], rna2 = [], errors = [];
 //Undefined
-let myOligo1, myOligo2, myRna, myRna2;
+let myOligo1, myOligo2, myRna, myRna2, rnaScene2;
 
 function preload(){
 
@@ -84,9 +84,14 @@ function draw(){
       start = false;
     }else if(page === 2){
       background(12);
+      rnaScene2.calculateGivenStructure();
+      rnaScene2.showGivenStructure();
+      start = false;
     }else if(page === 3){
       background(12);
+      start = false;
     }
     showPage();
+    //console.log("bad if looping");
   }
 }
