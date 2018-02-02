@@ -157,7 +157,7 @@ window.onresize = function(){
   ol6.style("background-color","green");
   ol6.style("margin-top","5px");
 
-  calculate();
+  createAllObjects();
 }
 
 function mySelect1Event() {
@@ -186,7 +186,7 @@ function mySelect1Event() {
     ol1.value("CAGUCUUGAAUCAGEGUUUGGUAGGUAGUGGUACCEGUCGGACAAGGACGUAGACA");
   }
 
-  calculate();
+  createAllObjects();
 }
 function mySelect2Event(){
   let item2 = sel2.value();
@@ -207,7 +207,7 @@ function mySelect2Event(){
   }else if(item2 === "R + E + C + E + C"){
     ol2.value("CAGUCUUGAAUCAGEGGUGGACAGAGAGAUACAUGEGGUGGACAGAGAGAUACAUG");
   }
-  calculate();
+  createAllObjects();
 }
 function mySelect3Event(){
   let item3 = sel3.value();
@@ -220,7 +220,7 @@ function mySelect3Event(){
   }else if(item3 === "moveOligo4 Y - axis"){
     qwSelector = 4;
   }
-  calculate();
+  createAllObjects();
 }
 function mySelect4Event(){
   let item4 = sel4.value();
@@ -264,7 +264,7 @@ function mySelect4Event(){
     ol6.value("CAGUCUUGAAUCAGEGUUUGGUAGGUAGUGGUACCEGUCGGACAAGGACGUAGACA");
   }
   start = true;
-  calculate();
+  createAllObjects();
 }
 
 function changeScaler(event){

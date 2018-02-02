@@ -62,25 +62,7 @@ function findRna(){
   }
 }
 
-function calculate(){
-  errorsFinder();
-  //CREATE OLIGOS
-  myOligo1 = new Oligo(oligo1PY * qwScaler, oligo1);
-  myOligo2 = new Oligo(oligo2PY * qwScaler, oligo2);
-  findRna();
-  //REVERSE ORDER
-  ol4.value(reverseString(ol1.value()));
-  ol5.value(reverseString(ol2.value()));
-  //RNA FOLD 2nd PAGE
-  let temp = [];
-  for(let i = 0; i < ol6.value().length; i++){
-    temp[i] = ol6.value().charAt(i);
-  }
-  console.log(temp);
-  rnaScene2 = new Rna(3, temp, 15, 25, 0);
-  rnaScene2.calculateGivenStructure();
-  start = true;
-}
+
 
 function errorsFinder(){
   //Show current Errors 
@@ -150,7 +132,7 @@ function setupMode(){
   background(12);
   errorsFinder();
   showMemory();
-  calculate();
+  createAllObjects();
   myOligo1.show();
   myOligo2.show();
   myRna.show();
@@ -167,7 +149,7 @@ function saveMyMemorys(){
     memory[0].oligo4PY = oligo4PY;
     savedMemory[0] = memory[memoryPosition];
     saveJSON(savedMemory, 'EternaScript.json');
-    calculate();
+    createAllObjects();
   }
 }
 
@@ -183,7 +165,7 @@ function handleFile(file){
   oligo2PY = memory[0].oligo2PY;
   oligo3PY = memory[0].oligo3PY;
   oligo4PY = memory[0].oligo4PY;
-  calculate();
+  createAllObjects();
 }
 
 function clearFileName(){

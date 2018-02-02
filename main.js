@@ -13,7 +13,7 @@ let memory = [], oligo1 = [], oligo2 = [], rna1 = [], rna2 = [], errors = [];
 let myOligo1, myOligo2, myRna, myRna2, rnaScene2;
 
 function preload(){
-
+  
 }
 
 function setup(){
@@ -30,12 +30,13 @@ function draw(){
   if(start){
     textSize(scaler);
     if(page === 0){
+      document.getElementById('engineImg').style.visibility = 'none';
       showHelpMenu();
     }else if(page === 1){
       if(autoMode === false){
         ol1Position.removeAttribute("readOnly");
         ol2Position.removeAttribute("readOnly");
-        calculate();
+        createAllObjects();
         memory = [];
         let newTemp = findUnitedLetters();
         memory[0] = new Memory(newTemp, +ol1Position.value(), +ol2Position.value(), ol1.value(), ol2.value(), ol3.value(), 0);
@@ -50,7 +51,7 @@ function draw(){
         //move second oligo from 0 to oligo1 length on each step calculate RNA and put it into memory array
         for(let i = 0; i < ol1.value().length; i++){
           ol2Position.value(i);
-          calculate();
+          createAllObjects();
           let newTemp = findUnitedLetters();
           memory.push(new Memory(newTemp, 0, +ol2Position.value(), ol1.value(), ol2.value(), ol3.value() , i));
         }
@@ -58,7 +59,7 @@ function draw(){
         ol2Position.value(0);
         for(let i = 1 ; i < ol2.value().length; i++){
           ol1Position.value(i);
-          calculate();
+          createAllObjects();
           let newTemp = findUnitedLetters();
           memory.push(new Memory(newTemp, +ol1Position.value(), 0, ol1.value(), ol2.value(), ol3.value(), i + ol1.value().length - 1));
         }
@@ -74,21 +75,24 @@ function draw(){
         ol2Position.value(memory[memoryPosition].ol2Position);
       }
       background(12);
-      calculate();
+      createAllObjects();
       myOligo1.show();
       myOligo2.show();
       myRna.show(); // RNA variant 1
       myRna2.show(); // if more than 1 variant , that RNA shows up
       showMemory();
       errorsFinder();
+      document.getElementById('engineImg').style.visibility = 'none';
       start = false;
     }else if(page === 2){
       background(12);
       rnaScene2.calculateGivenStructure();
       rnaScene2.showGivenStructure();
+      document.getElementById('engineImg').style.visibility = 'visible';
       start = false;
     }else if(page === 3){
       background(12);
+      document.getElementById('engineImg').style.visibility = 'none';
       start = false;
     }
     showPage();

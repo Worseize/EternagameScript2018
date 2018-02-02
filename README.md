@@ -1,4 +1,6 @@
 # EternagameScript2018
+## Video manual (playlist) :
+   - https://www.youtube.com/watch?v=dYDxDWK1A4U&list=PL7CHTefBrBuj3EMghG_MJ-AuV1Hwmrab6
 
 ## Options:
 1. __On all pages__
@@ -38,12 +40,10 @@
    - Made to solve hard tasks eternagame.com
 
 ## Currently working on:
-   - posibility to add into select users data 
+   - seft folding Engine
 
 ### Last update:
-  - added inverse functionality 
-  - example: 
-    - (INPUT 1).inverse ==> OUTPUT 2 
+  -start to build seft folding Engine
 
 ## Have an idea to make it better ? 
    - create issue : https://github.com/Worseize/EternagameScript2018/issues/new 
@@ -51,5 +51,5 @@
 
 ## Author : 
    - Nikita Bogdanov
-   - January 2018 
+   - January 2018 --> February 2018 
    - Estonia , Tallinn.

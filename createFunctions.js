@@ -5,9 +5,10 @@ function createDomElements(){
   ol1.style("background-color","green");
   ol1.style("font-family", "'Courier New', Courier, monospace");
   ol1.style("margin-top","5px");
-  ol1.input(calculate);
+  ol1.input(createAllObjects);
   //SELECT1
   sel1 = createSelect();
+  sel1.style("background-color","green");
   sel1.style("margin-top","5px");
   sel1.style("margin-left","5px");
   sel1.option("A");
@@ -30,9 +31,10 @@ function createDomElements(){
   ol2.style("background-color","green");
   ol2.style("font-family", "'Courier New', Courier, monospace");
   ol2.style("margin-top","5px");
-  ol2.input(calculate);
+  ol2.input(createAllObjects);
   //SELECT2
   sel2 = createSelect();
+  sel2.style("background-color","green");
   sel2.style("margin-top","5px");
   sel2.style("margin-left","5px");
   sel2.option("C");
@@ -77,7 +79,7 @@ function createDomElements(){
   ol1Position.style("background-color","green");
   ol1Position.style("text-align","center");
   ol1Position.style("margin-top","5px");
-  ol1Position.input(calculate);
+  ol1Position.input(createAllObjects);
   //OLIGO 2 POSITION INPUT
   ol2Position = createElement("input","text");
   ol2Position.style("width", 30 + "px");
@@ -85,9 +87,10 @@ function createDomElements(){
   ol2Position.style("text-align","center");
   ol2Position.style("margin-left","5px");
   ol2Position.style("margin-top","5px");
-  ol2Position.input(calculate);
+  ol2Position.input(createAllObjects);
   //SELECT 3
   sel3 = createSelect();
+  sel3.style("background-color","green");
   sel3.style("margin-top","5px");
   sel3.style("margin-left","5px");
   sel3.option("moveOligo1 Y - axis");
@@ -109,7 +112,7 @@ function createDomElements(){
   loadButton.style("id","files");
   loadButton.style("name","files[]");
   loadButton.style("multiple");
-  loadButton.style("margin-left","5px");
+  loadButton.style("margin-right","5px");
   loadButton.style("margin-top","5px");
   loadButton.style("float","right");
   //TEXT
@@ -117,6 +120,36 @@ function createDomElements(){
   mySpan.style("margin-top","5px");
   mySpan.style("float","right");
 
+  //INPUT3 END POSITION
+  ol6End = createElement("input","text");
+  ol6End.style("width", 30 + "px");
+  ol6End.style("background-color","green");
+  ol6End.style("text-align","center");
+  ol6End.style("margin-right","5px");
+  ol6End.style("margin-top","5px");
+  ol6End.value(10);
+  ol6End.style("float","right");
+  ol6End.input(createAllObjects);
+  //INPUT3 AMOUNT OF BASES IN LOOP
+  ol6Loop = createElement("input","text");
+  ol6Loop.style("width", 30 + "px");
+  ol6Loop.style("background-color","green");
+  ol6Loop.style("text-align","center");
+  ol6Loop.style("margin-top","5px");
+  ol6Loop.style("margin-right","5px");
+  ol6Loop.value(3);
+  ol6Loop.style("float","right");
+  ol6Loop.input(createAllObjects);
+  //INPUT3 START POSITION
+  ol6Start = createElement("input","text");
+  ol6Start.style("width", 30 + "px");
+  ol6Start.style("background-color","green");
+  ol6Start.style("text-align","center");
+  ol6Start.style("margin-top","5px");
+  ol6Start.style("margin-right","5px");
+  ol6Start.value(3);
+  ol6Start.style("float","right");
+  ol6Start.input(createAllObjects);
   //NEW LINE
   br = createElement("br");
   //OLIGO3 INPUT
@@ -125,9 +158,10 @@ function createDomElements(){
   ol6.style("background-color","green");
   ol6.style("font-family", "'Courier New', Courier, monospace");
   ol6.style("margin-top","5px");
-  ol6.input(calculate);
+  ol6.input(createAllObjects);
   //SELECT4
   sel4 = createSelect();
+  sel4.style("background-color","green");
   sel4.style("margin-top","5px");
   sel4.style("margin-left","5px");
   sel4.option("A");
@@ -149,5 +183,33 @@ function createDomElements(){
   sel4.option("R + E + B + E + A");
   sel4.option("R + E + C + E + C");
   sel4.changed(mySelect4Event);
+
+  engineImg = createImg("img/hairpin.jpg");
+  engineImg.style("width" ,"500px");
+  engineImg.style("height" ,"300px");
+  engineImg.style("position" ,"absolute");
+  engineImg.style("bottom", "100px");
+  engineImg.style("right", "100px");
+  engineImg.style("z-index", "1");
+  engineImg.id("engineImg");
+  document.getElementById('engineImg').style.visibility = 'none';
 }
 
+function createAllObjects(){
+  errorsFinder();
+  //CREATE OLIGOS
+  myOligo1 = new Oligo(oligo1PY * qwScaler, oligo1);
+  myOligo2 = new Oligo(oligo2PY * qwScaler, oligo2);
+  //REVERSE ORDER
+  ol4.value(reverseString(ol1.value()));
+  ol5.value(reverseString(ol2.value()));
+  //RNA FOLD 2nd PAGE
+  let temp = [];
+  for(let i = 0; i < ol6.value().length; i++){
+    temp[i] = ol6.value().charAt(i);
+  }
+  rnaScene2 = new Rna(+ol6Loop.value(), temp, +ol6Start.value(), +ol6End.value(), 0, 1.5);
+  rnaScene2.calculateGivenStructure();
+  findRna();
+  start = true;
+}
