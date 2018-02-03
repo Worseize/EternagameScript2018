@@ -30,7 +30,6 @@ function draw(){
   if(start){
     textSize(scaler);
     if(page === 0){
-      document.getElementById('engineImg').style.visibility = 'none';
       showHelpMenu();
     }else if(page === 1){
       if(autoMode === false){
@@ -82,17 +81,15 @@ function draw(){
       myRna2.show(); // if more than 1 variant , that RNA shows up
       showMemory();
       errorsFinder();
-      document.getElementById('engineImg').style.visibility = 'none';
       start = false;
     }else if(page === 2){
       background(12);
       rnaScene2.calculateGivenStructure();
       rnaScene2.showGivenStructure();
-      document.getElementById('engineImg').style.visibility = 'visible';
       start = false;
     }else if(page === 3){
       background(12);
-      document.getElementById('engineImg').style.visibility = 'none';
+
       start = false;
     }
     showPage();
