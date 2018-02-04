@@ -26,7 +26,8 @@
          - __F | H__ => move oligo2 to __LEFT | RIGHT__
      - __In auto mode__
          - __V | N__ => change memory position __LOWER | HIGHER__
-
+  3. __On page 2 (Page 1)__
+      ![engine image 1D --> 2D](https://github.com/Worseize/EternagameScript2018/tree/master/img/Engine.jpg)
 ## input letters that allowed : 
 - A
 - U
@@ -41,6 +42,7 @@
 
 ## Currently working on:
    - seft folding Engine
+   - optimization for Engine speed
 
 ### Last update:
   -start to build seft folding Engine

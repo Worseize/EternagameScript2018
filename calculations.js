@@ -125,8 +125,8 @@ function errorsFinder(){
 
 function setupMode(){
   ol1.value("GUCGGACAAGGACGUAGACA");
-  ol2.value("GUCGGACAAGGACGUAGACA");
-  ol6.value("GUCGGACAAGGACGUAGACA");
+  ol2.value("GGUGGACAGAGAGAUACAUG");
+  ol6.value("GUCGGACAAGGACGUAGACAECAGUCUUGAAUCAGEGUUUGGUAGGUAGUGGUACC");
   ol1Position.value("5");
   ol2Position.value("3");
   background(12);
