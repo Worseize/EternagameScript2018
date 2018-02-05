@@ -127,7 +127,7 @@ function createDomElements(){
   ol6End.style("text-align","center");
   ol6End.style("margin-right","5px");
   ol6End.style("margin-top","5px");
-  ol6End.value(15);
+  ol6End.value(12);
   ol6End.style("float","right");
   ol6End.input(createAllObjects);
   //INPUT3 AMOUNT OF BASES IN LOOP
@@ -137,7 +137,7 @@ function createDomElements(){
   ol6Loop.style("text-align","center");
   ol6Loop.style("margin-top","5px");
   ol6Loop.style("margin-right","5px");
-  ol6Loop.value(5);
+  ol6Loop.value(4);
   ol6Loop.style("float","right");
   ol6Loop.input(createAllObjects);
   //INPUT3 START POSITION
@@ -147,7 +147,7 @@ function createDomElements(){
   ol6Start.style("text-align","center");
   ol6Start.style("margin-top","5px");
   ol6Start.style("margin-right","5px");
-  ol6Start.value(3);
+  ol6Start.value(0);
   ol6Start.style("float","right");
   ol6Start.input(createAllObjects);
   //NEW LINE
@@ -184,12 +184,12 @@ function createDomElements(){
   sel4.option("R + E + C + E + C");
   sel4.changed(mySelect4Event);
 
-  engineImg = createImg("img/hairpin.jpg");
-  engineImg.style("width" ,"300px");
-  engineImg.style("height" ,"200px");
+  engineImg = createImg("img/Engine.jpg");
+  engineImg.style("width" ,"500px");
+  engineImg.style("height" ,"250px");
   engineImg.style("position" ,"absolute");
-  engineImg.style("bottom", "100px");
-  engineImg.style("right", "100px");
+  engineImg.style("bottom", "75px");
+  engineImg.style("right", "10px");
   engineImg.style("z-index", "1");
   engineImg.id("engineImg");
   document.getElementById('engineImg').style.visibility = 'none';
@@ -208,7 +208,7 @@ function createAllObjects(){
   for(let i = 0; i < ol6.value().length; i++){
     temp[i] = ol6.value().charAt(i);
   }
-  rnaScene2 = new Rna(temp, +ol6Start.value(),+ol6Loop.value(), +ol6End.value(), 0, 1.2);
+  rnaScene2 = new Rna(temp, +ol6Start.value(),+ol6Loop.value(), +ol6End.value(), 0, 1.2 , 0 , 0);
   rnaScene2.calculateGivenStructure();
   findRna();
   start = true;

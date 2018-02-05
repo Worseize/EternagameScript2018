@@ -1,7 +1,7 @@
 # EternagameScript2018
 ## Video manual (playlist) :
    - https://www.youtube.com/watch?v=dYDxDWK1A4U&list=PL7CHTefBrBuj3EMghG_MJ-AuV1Hwmrab6
-
+   ![engine image 1D --> 2D](https://github.com/Worseize/EternagameScript2018/tree/master/img/Engine.jpg)
 ## Options:
 1. __On all pages__
      - __Save .json File__ => (save into .json , only current state from memory at memoryPosition) __ONLY ONE STATE__ => ( memoryPosition / max ).  
@@ -26,8 +26,11 @@
          - __F | H__ => move oligo2 to __LEFT | RIGHT__
      - __In auto mode__
          - __V | N__ => change memory position __LOWER | HIGHER__
-  3. __On page 2 (Page 1)__
-      ![engine image 1D --> 2D](https://github.com/Worseize/EternagameScript2018/tree/master/img/Engine.jpg)
+3. __On page 2 (State 1)__
+     - __R | Y__ => move loop to  __LEFT | RIGHT__
+     - __F | H__ => move left tail __IN | OUT__  (H - make more static steam pairs and less tail that will connect to Oligo)
+     - __V | N__ => move right tail __IN | OUT__ (V - make more static steam pairs and less tail that will connect to Oligo)
+
 ## input letters that allowed : 
 - A
 - U
@@ -41,11 +44,10 @@
    - Made to solve hard tasks eternagame.com
 
 ## Currently working on:
-   - seft folding Engine
-   - optimization for Engine speed
+   - code optimization (too many operations are called everytime user change any value) (prediction could be 2-3 times faster)
 
 ### Last update:
-  -start to build seft folding Engine
+  -manual mode is done.
 
 ## Have an idea to make it better ? 
    - create issue : https://github.com/Worseize/EternagameScript2018/issues/new 

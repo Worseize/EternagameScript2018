@@ -10,7 +10,7 @@ let start = false, autoMode = false, flag = true;
 //ARRAYS
 let memory = [], oligo1 = [], oligo2 = [], rna1 = [], rna2 = [], errors = [];
 //Undefined
-let myOligo1, myOligo2, myRna, myRna2, rnaScene2;
+let myOligo1, myOligo2, myRna, myRna2, rnaScene2, oldMouseX, oldMouseY;
 
 function preload(){
   

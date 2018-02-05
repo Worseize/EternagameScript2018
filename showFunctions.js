@@ -69,11 +69,11 @@ function showPage(){
     fill(0);
     text(" State All ", width / 2, height - scaler * 0.5);
   }else if(page === 2){
-    document.getElementById('engineImg').style.visibility = 'visible';
     rect(width / 2, height - scaler * 1.5 , scaler * 4, scaler * 1.25);
     fill(0);
     text(" State 1", width / 2, height - scaler * 0.5);
   }else if(page === 3){
+    document.getElementById('engineImg').style.visibility = 'visible';
     rect(width / 2, height - scaler * 1.5 , scaler * 4, scaler * 1.25);
     fill(0);
     text(" State 2", width / 2, height - scaler * 0.5);
@@ -84,7 +84,7 @@ function showPage(){
     fill(0);
     text(" 'ESQ' => go to help menu page", width * 0.7, height - scaler * 0.5);
   }
-  if(page !== 2){
+  if(page !== 3){
     document.getElementById('engineImg').style.visibility = 'hidden';
   }
 }

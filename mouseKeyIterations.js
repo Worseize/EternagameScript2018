@@ -1,5 +1,5 @@
 keyReleased = function(){
-  //IF PAGE === STATE ALL
+  //  ----------------------------------------------- PAGE 1 (STATE ALL) -----------------------------------------
   if(page === 1){
     if(autoMode){
       if(keyCode === 86){//V
@@ -44,8 +44,55 @@ keyReleased = function(){
         flag = true;
       }
     }
+//  ----------------------------------------------- PAGE 2 (STATE 1) -----------------------------------------
+  }else if(page === 2){ 
+    if(keyCode === 89){//R
+      if(rnaScene2.ArrayOfNucleos.length > +ol6End.value()){
+        rnaScene2.startIndex++;
+        rnaScene2.endIndex++;
+        ol6Start.value(+ol6Start.value() + 1);
+        ol6End.value(+ol6End.value() + 1);
+      }
+    }else if(keyCode === 82){//Y
+      if(+ol6Start.value() > 0){
+        rnaScene2.startIndex--;
+        rnaScene2.endIndex--;
+        ol6Start.value(+ol6Start.value() - 1);
+        ol6End.value(+ol6End.value() - 1);
+      }
+    }else if(keyCode === 72){//H
+      const pairs = (rnaScene2.ArrayOfNucleos.length - (rnaScene2.ArrayOfNucleos.length - rnaScene2.endIndex) - rnaScene2.loopBases - rnaScene2.startIndex) / 2;
+      if(pairs > 1){
+        rnaScene2.startIndex++;
+        rnaScene2.loopBases++;
+        ol6Start.value(+ol6Start.value() + 1);
+        ol6Loop.value(+ol6Loop.value() + 1);
+      }
+    }else if(keyCode === 70){//F
+      if(+ol6Loop.value() > 3 && +ol6Start.value() > 0){
+        rnaScene2.startIndex--;
+        rnaScene2.loopBases--;
+        ol6Start.value(+ol6Start.value() - 1);
+        ol6Loop.value(+ol6Loop.value() - 1);
+      }
+    }else if(keyCode === 86){//V
+      const pairs = (rnaScene2.ArrayOfNucleos.length - (rnaScene2.ArrayOfNucleos.length - rnaScene2.endIndex) - rnaScene2.loopBases - rnaScene2.startIndex) / 2;
+      if(pairs > 1){
+        rnaScene2.endIndex++;
+        rnaScene2.loopBases++;
+        ol6End.value(+ol6End.value() + 1);
+        ol6Loop.value(+ol6Loop.value() + 1);
+      }
+    }else if(keyCode === 78){//N
+      if(+ol6Loop.value() > 3 && +ol6Start.value() > 0){
+        rnaScene2.endIndex--;
+        rnaScene2.loopBases--;
+        ol6End.value(+ol6End.value() - 1);
+        ol6Loop.value(+ol6Loop.value() - 1);
+      }
+    }
   }
-  //ALWAYS
+//  ----------------------------------------------- ALWAYS -----------------------------------------
   if(keyCode === 90){//Z
     if(page > 0){
       page--;
@@ -133,7 +180,19 @@ mouseReleased = function(){
     }
   }
 }
+function mousePressed(){
+  oldMouseX = mouseX;
+  oldMouseY = mouseY;
+}
+function mouseDragged(){
+  if(page === 2){
+    rnaScene2.translateX += (mouseX - oldMouseX) / 25;
+    rnaScene2.translateY += (mouseY - oldMouseY) / 25;
 
+    
+    start = 1;
+  }
+}
 window.onresize = function(){
   myCanvas = createCanvas(innerWidth - 10, innerHeight - domYLength);
   ol1.style("width", (innerWidth - 150) + "px");
