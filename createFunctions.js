@@ -100,7 +100,7 @@ function createDomElements(){
   sel3.option("moveOligo3 Y - axis");
   sel3.option("moveOligo4 Y - axis");
   sel3.changed(mySelect3Event);
-  tutorialLink = createA('https://www.youtube.com/watch?v=dYDxDWK1A4U&list=PL7CHTefBrBuj3EMghG_MJ-AuV1Hwmrab6', 'Video tutorials last update 2nd Feb', '[_parent]');
+  tutorialLink = createA('https://www.youtube.com/watch?v=dYDxDWK1A4U&list=PL7CHTefBrBuj3EMghG_MJ-AuV1Hwmrab6', 'Video tutorials last update 5nd Feb', '[_parent]');
   tutorialLink.style("position", "relative");
   tutorialLink.style("margin-top", "5px");
   //INPUT3 END POSITION

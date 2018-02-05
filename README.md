@@ -1,7 +1,9 @@
 # EternagameScript2018
 ## Video manual (playlist) :
    - https://www.youtube.com/watch?v=dYDxDWK1A4U&list=PL7CHTefBrBuj3EMghG_MJ-AuV1Hwmrab6
-   ![engine image 1D --> 2D](https://github.com/Worseize/EternagameScript2018/tree/master/img/Engine.jpg)
+
+![engine image 1D --> 2D](https://github.com/Worseize/EternagameScript2018/tree/master/img/Engine.jpg)
+
 ## Options:
 1. __On all pages__
      - __Save .json File__ => (save into .json , only current state from memory at memoryPosition) __ONLY ONE STATE__ => ( memoryPosition / max ).  
@@ -34,22 +36,29 @@
      - __SHIFT + A | D__ => move whole RNA __LEFT | RIGHT__
 
 ## input letters that allowed : 
-- A
-- U
-- G
-- C
-- E
+- A (Adenine)
+- U (Uracil)
+- G (Guanine)
+- C (Cytosine)
+- E (Empty)
 
-### That means adenine , uracil , guanine , cytosine , empty.
-
-### Add oligo1 , oligo2 and calculate rna. Because it does not count energy between oligos and rna it probably not predict rna folding.
+### __STATE ALL PAGE 1D ENGINE__  Add oligos into first box , oligos into second box and it calculates rna in state All. Because it does not count energy between oligos and rna it probably not predict rna folding.
    - Made to solve hard tasks eternagame.com
 
 ## Currently working on:
    - code optimization (too many operations are called everytime user change any value) (prediction could be 2-3 times faster)
 
 ### Last update:
-  -manual mode is done.
+  - controls are changed to Shift + key (WASD control position of rna)
+  - 2D Engine changed tail behavior + stops moving when user change left tail length
+  - State 1 controls added to readme
+
+### CODE STRUCTURE:
+  - Pages
+    - page0 manual page ('Help Menu')
+    - page1 1D engine page ('State All')
+    - page2 2D engine page ('State 1')
+    - page3 pictures ('State 2')
 
 ## Have an idea to make it better ? 
    - create issue : https://github.com/Worseize/EternagameScript2018/issues/new 
