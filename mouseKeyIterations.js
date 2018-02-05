@@ -16,21 +16,45 @@ keyReleased = function(){
         }
       }
     }else{
-      if(keyCode === 82){//R
-        if(+ol1Position.value() > 0){
-          ol1Position.value(+ol1Position.value() - 1);
+      if(keyIsDown(16)){//Shift
+        if(keyCode === 81){//Q
+          if(+ol1Position.value() > 0){
+            ol1Position.value(+ol1Position.value() - 1);
+          }
+        }else if(keyCode === 69){//E
+          ol1Position.value(+ol1Position.value() + 1);
+        }else if(keyCode === 65){//A
+          if(+ol2Position.value() > 0){
+            ol2Position.value(+ol2Position.value() - 1);
+          }
+        }else if(keyCode === 68){//D
+          ol2Position.value(+ol2Position.value() + 1);
         }
-      }else if(keyCode === 89){//Y
-        ol1Position.value(+ol1Position.value() + 1);
-      }else if(keyCode === 70){//F
-        if(+ol2Position.value() > 0){
-          ol2Position.value(+ol2Position.value() - 1);
-        }
-      }else if(keyCode === 72){//H
-        ol2Position.value(+ol2Position.value() + 1);
       }
     }
-
+    if(keyIsDown(16)){//Shift
+      if(keyCode === 87){//W
+        if(qwSelector === 1){
+          oligo1PY -= 0.1;
+        }else if(qwSelector === 2){
+          oligo2PY -= 0.1;
+        }else if(qwSelector === 3){
+          oligo3PY -= 0.1;
+        }else if(qwSelector === 4){
+          oligo4PY -= 0.1;
+        }
+      }else if(keyCode === 83){//S
+        if(qwSelector === 1){
+          oligo1PY += 0.1;
+        }else if(qwSelector === 2){
+          oligo2PY += 0.1;
+        }else if(qwSelector === 3){
+          oligo3PY += 0.1;
+        }else if(qwSelector === 4){
+          oligo4PY += 0.1;
+        }
+      }
+    }
     if(keyCode === 32){//Space
       if(autoMode === true){
         autoMode = false;
@@ -44,6 +68,11 @@ keyReleased = function(){
         flag = true;
       }
     }
+    if(keyCode === 86 || keyCode === 78 || keyCode === 82 || keyCode === 32 || 
+      (keyIsDown(16) && (keyCode === 87 || keyCode === 83 || keyCode === 81 || keyCode === 69 || keyCode === 65 || keyCode === 68))){
+      start = true; //UPDATE DATA
+    }
+
 //  ----------------------------------------------- PAGE 2 (STATE 1) -----------------------------------------
   }else if(page === 2){ 
     if(keyCode === 89){//R
@@ -61,37 +90,55 @@ keyReleased = function(){
         ol6End.value(+ol6End.value() - 1);
       }
     }else if(keyCode === 72){//H
-      const pairs = (rnaScene2.ArrayOfNucleos.length - (rnaScene2.ArrayOfNucleos.length - rnaScene2.endIndex) - rnaScene2.loopBases - rnaScene2.startIndex) / 2;
-      if(pairs > 1){
+      if(rnaScene2.loopBases > 3){
         rnaScene2.startIndex++;
-        rnaScene2.loopBases++;
-        ol6Start.value(+ol6Start.value() + 1);
-        ol6Loop.value(+ol6Loop.value() + 1);
-      }
-    }else if(keyCode === 70){//F
-      if(+ol6Loop.value() > 3 && +ol6Start.value() > 0){
-        rnaScene2.startIndex--;
         rnaScene2.loopBases--;
-        ol6Start.value(+ol6Start.value() - 1);
+        rnaScene2.translateX -= rnaScene2.baseSize * scaler;
+        ol6Start.value(+ol6Start.value() + 1);
         ol6Loop.value(+ol6Loop.value() - 1);
       }
+    }else if(keyCode === 70){//F
+      if(+ol6Start.value() > 0){
+        rnaScene2.startIndex--;
+        rnaScene2.loopBases++;
+        rnaScene2.translateX += rnaScene2.baseSize * scaler;
+        ol6Start.value(+ol6Start.value() - 1);
+        ol6Loop.value(+ol6Loop.value() + 1);
+      }
     }else if(keyCode === 86){//V
-      const pairs = (rnaScene2.ArrayOfNucleos.length - (rnaScene2.ArrayOfNucleos.length - rnaScene2.endIndex) - rnaScene2.loopBases - rnaScene2.startIndex) / 2;
-      if(pairs > 1){
+      let rightTail = rnaScene2.ArrayOfNucleos.length - rnaScene2.endIndex;
+      if(rightTail > 0){
         rnaScene2.endIndex++;
         rnaScene2.loopBases++;
         ol6End.value(+ol6End.value() + 1);
         ol6Loop.value(+ol6Loop.value() + 1);
       }
+      console.log(rightTail);
     }else if(keyCode === 78){//N
-      if(+ol6Loop.value() > 3 && +ol6Start.value() > 0){
+      if(+ol6Loop.value() > 3){
         rnaScene2.endIndex--;
         rnaScene2.loopBases--;
         ol6End.value(+ol6End.value() - 1);
         ol6Loop.value(+ol6Loop.value() - 1);
       }
+    }else if(keyIsDown(16)){ // Shift
+      if(keyCode === 68){//D
+        rnaScene2.translateX += rnaScene2.baseSize * scaler;
+      }else if(keyCode === 65){//A
+        rnaScene2.translateX -= rnaScene2.baseSize * scaler;
+      }else if(keyCode === 87){//W
+        rnaScene2.translateY -= rnaScene2.baseSize * scaler;
+      }else if(keyCode === 83){//S
+        rnaScene2.translateY += rnaScene2.baseSize * scaler;
+      }
+    }
+    if(keyCode === 89 || keyCode === 82 || keyCode === 72 || keyCode === 70 || keyCode === 86 || keyCode === 78 ||
+       ( keyIsDown(16)  && (keyCode === 68 || keyCode === 65 || keyCode === 87 || keyCode === 83))){
+      start = true; //UPDATE DATA
+      console.log(keyCode);
     }
   }
+
 //  ----------------------------------------------- ALWAYS -----------------------------------------
   if(keyCode === 90){//Z
     if(page > 0){
@@ -116,28 +163,9 @@ keyReleased = function(){
   }else if(keyCode === 66){//B
     scaler-=1;
   }
-  if(keyCode === 81){//Q
-    if(qwSelector === 1){
-      oligo1PY -= 0.1;
-    }else if(qwSelector === 2){
-      oligo2PY -= 0.1;
-    }else if(qwSelector === 3){
-      oligo3PY -= 0.1;
-    }else if(qwSelector === 4){
-      oligo4PY -= 0.1;
-    }
-  }else if(keyCode === 87){//W
-    if(qwSelector === 1){
-      oligo1PY += 0.1;
-    }else if(qwSelector === 2){
-      oligo2PY += 0.1;
-    }else if(qwSelector === 3){
-      oligo3PY += 0.1;
-    }else if(qwSelector === 4){
-      oligo4PY += 0.1;
-    }
+  if(keyCode === 84 || keyCode === 66 || keyCode === 27 || keyCode === 88 || keyCode === 90){
+    start = true; //UPDATE DATA
   }
-  start = true;
 }
 
 mouseReleased = function(){
@@ -178,19 +206,6 @@ mouseReleased = function(){
         }
       }
     }
-  }
-}
-function mousePressed(){
-  oldMouseX = mouseX;
-  oldMouseY = mouseY;
-}
-function mouseDragged(){
-  if(page === 2){
-    rnaScene2.translateX += (mouseX - oldMouseX) / 25;
-    rnaScene2.translateY += (mouseY - oldMouseY) / 25;
-
-    
-    start = 1;
   }
 }
 window.onresize = function(){

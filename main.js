@@ -21,16 +21,18 @@ function setup(){
   myCanvas = createCanvas(innerWidth - 10, innerHeight - domYLength);
   myCanvas.mouseWheel(changeScaler);
   myCanvas.style("margin-top","5px");
-  myCanvas.style("id","unFocusMe");
   setupMode();
 }
 
 
 function draw(){
-  if(start){
+  if(start){ //UPDATE DATA
     textSize(scaler);
+    background(12);
+//--------------------------------------------------------MANUAL PAGE (HELP MENU)---------------------------------------------
     if(page === 0){
       showHelpMenu();
+//--------------------------------------------------------PAGE 1 (STATE ALL)--------------------------------------------------
     }else if(page === 1){
       if(autoMode === false){
         ol1Position.removeAttribute("readOnly");
@@ -73,7 +75,6 @@ function draw(){
         ol1Position.value(memory[memoryPosition].ol1Position);
         ol2Position.value(memory[memoryPosition].ol2Position);
       }
-      background(12);
       createAllObjects();
       myOligo1.show();
       myOligo2.show();
@@ -82,17 +83,15 @@ function draw(){
       showMemory();
       errorsFinder();
       start = false;
+//-------------------------------------------------PAGE 2 (STATE 1)-----------------------------------------------------------
     }else if(page === 2){
-      background(12);
-      rnaScene2.calculateGivenStructure();
+      rnaScene2.calculateHairpinStemPairs();
       rnaScene2.showGivenStructure();
       start = false;
+//-------------------------------------------------PAGE 3 (STATE 2) ----------------------------------------------------------
     }else if(page === 3){
-      background(12);
-
       start = false;
     }
     showPage();
-    //console.log("bad if looping");
   }
 }

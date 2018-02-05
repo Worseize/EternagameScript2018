@@ -11,7 +11,7 @@ class Rna{
 		this.translateY = translateY;
 	}
 
-	calculateGivenStructure(){
+	calculateHairpinStemPairs(){
 		this.pairs = 0;
 		let s;
 		let f;

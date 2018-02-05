@@ -73,6 +73,8 @@ function createDomElements(){
   ol5.attribute("readOnly","true");
   //NEW LINE
   br = createElement("br");
+  //TEXT
+  stateAllInputText = createSpan('State All Inputs');
   //OLIGO1 POSITION INPUT
   ol1Position = createElement("input","text");
   ol1Position.style("width", 30 + "px");
@@ -98,28 +100,9 @@ function createDomElements(){
   sel3.option("moveOligo3 Y - axis");
   sel3.option("moveOligo4 Y - axis");
   sel3.changed(mySelect3Event);
-  //SAVE BUTTON
-  saveButton = createButton('save memory to local PC (.JSON)');
-  saveButton.mousePressed(saveMyMemorys);
-  saveButton.style("background-color","pink");
-  saveButton.style("margin-right","5px");
-  saveButton.style("margin-top","5px");
-  saveButton.style("float","left");
-  //LOAD BUTTON
-  loadButton = createFileInput(handleFile);
-  loadButton.mouseClicked(clearFileName);
-  loadButton.style("background-color","green");
-  loadButton.style("id","files");
-  loadButton.style("name","files[]");
-  loadButton.style("multiple");
-  loadButton.style("margin-right","5px");
-  loadButton.style("margin-top","5px");
-  loadButton.style("float","right");
-  //TEXT
-  mySpan = createSpan("load local (.JSON) file");
-  mySpan.style("margin-top","5px");
-  mySpan.style("float","right");
-
+  tutorialLink = createA('https://www.youtube.com/watch?v=dYDxDWK1A4U&list=PL7CHTefBrBuj3EMghG_MJ-AuV1Hwmrab6', 'Video tutorials last update 2nd Feb', '[_parent]');
+  tutorialLink.style("position", "relative");
+  tutorialLink.style("margin-top", "5px");
   //INPUT3 END POSITION
   ol6End = createElement("input","text");
   ol6End.style("width", 30 + "px");
@@ -150,6 +133,30 @@ function createDomElements(){
   ol6Start.value(0);
   ol6Start.style("float","right");
   ol6Start.input(createAllObjects);
+
+  state1InputText = createSpan("State 1 Inputs");
+  state1InputText.style("position","relative");
+  state1InputText.style("right", "120px");
+  state1InputText.style("top", "115px");
+  br = createElement("br");
+  //SAVE BUTTON
+  saveButton = createButton('save');
+  saveButton.mousePressed(saveMyMemorys);
+  saveButton.style("background-color","pink");
+  saveButton.style("margin-right","5px");
+  saveButton.style("margin-top","5px");
+  saveButton.style("float","left");
+  //LOAD BUTTON
+  loadButton = createFileInput(handleFile);
+  loadButton.mouseClicked(clearFileName);
+  loadButton.style("background-color","green");
+  loadButton.style("width","175px");
+  loadButton.style("id","files");
+  loadButton.style("name","files[]");
+  loadButton.style("multiple");
+  loadButton.style("margin-right","5px");
+  loadButton.style("margin-top","5px");
+  loadButton.style("float","right");
   //NEW LINE
   br = createElement("br");
   //OLIGO3 INPUT
@@ -209,7 +216,6 @@ function createAllObjects(){
     temp[i] = ol6.value().charAt(i);
   }
   rnaScene2 = new Rna(temp, +ol6Start.value(),+ol6Loop.value(), +ol6End.value(), 0, 1.2 , 0 , 0);
-  rnaScene2.calculateGivenStructure();
   findRna();
   start = true;
 }

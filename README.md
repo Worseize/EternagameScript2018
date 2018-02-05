@@ -13,8 +13,8 @@
 2. __On page 1 (State all)__
      - __In all modes__
         - __SPACE__ => change mode auto | manual 
-        - __Q | W__ => move oligo location ( Y - axis ) __UP | DOWN__
-            - Choose oligo that you are trying to move in oligo select box before you apply "Q" or "W".
+        - __SHIFT + W | S__ => move oligo location ( Y - axis ) __UP | DOWN__
+            - Choose oligo that you are trying to move in oligo select box before you apply "W" or "S".
             - You could save that options for future and load saved file later it will open your saved memory that stores oligo location on canvas and ofcource data.    
      - __In manual mode__
          - __Shift , Ctrl , Alt__ - have they own memory once you push that key it will remember it (push any other key to reset | forget) 
@@ -22,14 +22,16 @@
              - __Shift__ => to change oligo letter A => U => G => C => E => A
              - __Ctrl__ => to add here "E" 
              - __Alt__ => to remove letter
-         - __R | Y__ => move oligo1 to  __LEFT | RIGHT__
-         - __F | H__ => move oligo2 to __LEFT | RIGHT__
+         - __SHIFT + Q | E__ => move oligo1 to  __LEFT | RIGHT__
+         - __SHIFT + A | D__ => move oligo2 to __LEFT | RIGHT__
      - __In auto mode__
          - __V | N__ => change memory position __LOWER | HIGHER__
 3. __On page 2 (State 1)__
      - __R | Y__ => move loop to  __LEFT | RIGHT__
-     - __F | H__ => move left tail __IN | OUT__  (H - make more static steam pairs and less tail that will connect to Oligo)
-     - __V | N__ => move right tail __IN | OUT__ (V - make more static steam pairs and less tail that will connect to Oligo)
+     - __F | H__ => move left tail to loop __IN | OUT__
+     - __V | N__ => move right tail to loop __IN | OUT__
+     - __SHIFT + W | S__ => move whole RNA __UP | DOWN__
+     - __SHIFT + A | D__ => move whole RNA __LEFT | RIGHT__
 
 ## input letters that allowed : 
 - A
