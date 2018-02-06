@@ -130,9 +130,8 @@ function setupMode(){
   ol1Position.value("5");
   ol2Position.value("3");
   background(12);
-  errorsFinder();
   showMemory();
-  createAllObjects();
+  updateAll();
   myOligo1.show();
   myOligo2.show();
   myRna.show();
@@ -149,7 +148,6 @@ function saveMyMemorys(){
     memory[0].oligo4PY = oligo4PY;
     savedMemory[0] = memory[memoryPosition];
     saveJSON(savedMemory, 'EternaScript.json');
-    createAllObjects();
   }
 }
 
@@ -165,7 +163,7 @@ function handleFile(file){
   oligo2PY = memory[0].oligo2PY;
   oligo3PY = memory[0].oligo3PY;
   oligo4PY = memory[0].oligo4PY;
-  createAllObjects();
+  updatePage1();
 }
 
 function clearFileName(){

@@ -1,8 +1,8 @@
 # EternagameScript2018
 ## Video manual (playlist) :
    - https://www.youtube.com/watch?v=dYDxDWK1A4U&list=PL7CHTefBrBuj3EMghG_MJ-AuV1Hwmrab6
-
-![engine image 1D --> 2D](https://github.com/Worseize/EternagameScript2018/tree/master/img/Engine.jpg)
+   
+## ![engine image 1D --> 2D](https://github.com/Worseize/EternagameScript2018/tree/master/img/Engine.jpg)
 
 ## Options:
 1. __On all pages__
@@ -46,12 +46,11 @@
    - Made to solve hard tasks eternagame.com
 
 ## Currently working on:
-   - code optimization (too many operations are called everytime user change any value) (prediction could be 2-3 times faster)
+   - Shift + Click Events on 2D Engine
+   - Add 3rd oligo input (page1)
 
 ### Last update:
-  - controls are changed to Shift + key (WASD control position of rna)
-  - 2D Engine changed tail behavior + stops moving when user change left tail length
-  - State 1 controls added to readme
+  - show/hide DOM elements checkBoxes 
 
 ### CODE STRUCTURE:
   - Pages

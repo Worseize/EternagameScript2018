@@ -4,7 +4,7 @@ new p5();
 
 //VARIABLES
 let page = 2, qwSelector = 1, oligo1PY = 1, oligo2PY = 2, oligo3PY = 3, oligo4PY = 4, qwScaler = 1, memoryPosition = 0, scaler = 20,
-    domYLength = 200;
+    domYLength = 35, rowsInPage1Dom = 5 , rowsInPage2Dom = 2;
 //BOOLEANS
 let start = false, autoMode = false, flag = true;
 //ARRAYS
@@ -20,7 +20,7 @@ function setup(){
   createDomElements();
   myCanvas = createCanvas(innerWidth - 10, innerHeight - domYLength);
   myCanvas.mouseWheel(changeScaler);
-  myCanvas.style("margin-top","5px");
+  myCanvas.style("margin-top","25px");
   setupMode();
 }
 
@@ -37,7 +37,7 @@ function draw(){
       if(autoMode === false){
         ol1Position.removeAttribute("readOnly");
         ol2Position.removeAttribute("readOnly");
-        createAllObjects();
+        updateAll();
         memory = [];
         let newTemp = findUnitedLetters();
         memory[0] = new Memory(newTemp, +ol1Position.value(), +ol2Position.value(), ol1.value(), ol2.value(), ol3.value(), 0);
@@ -75,13 +75,12 @@ function draw(){
         ol1Position.value(memory[memoryPosition].ol1Position);
         ol2Position.value(memory[memoryPosition].ol2Position);
       }
-      createAllObjects();
+      updateAll();
       myOligo1.show();
       myOligo2.show();
       myRna.show(); // RNA variant 1
       myRna2.show(); // if more than 1 variant , that RNA shows up
       showMemory();
-      errorsFinder();
       start = false;
 //-------------------------------------------------PAGE 2 (STATE 1)-----------------------------------------------------------
     }else if(page === 2){

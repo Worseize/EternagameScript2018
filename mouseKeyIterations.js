@@ -70,7 +70,7 @@ keyReleased = function(){
     }
     if(keyCode === 86 || keyCode === 78 || keyCode === 82 || keyCode === 32 || 
       (keyIsDown(16) && (keyCode === 87 || keyCode === 83 || keyCode === 81 || keyCode === 69 || keyCode === 65 || keyCode === 68))){
-      start = true; //UPDATE DATA
+      start = true;
     }
 
 //  ----------------------------------------------- PAGE 2 (STATE 1) -----------------------------------------
@@ -134,8 +134,7 @@ keyReleased = function(){
     }
     if(keyCode === 89 || keyCode === 82 || keyCode === 72 || keyCode === 70 || keyCode === 86 || keyCode === 78 ||
        ( keyIsDown(16)  && (keyCode === 68 || keyCode === 65 || keyCode === 87 || keyCode === 83))){
-      start = true; //UPDATE DATA
-      console.log(keyCode);
+      start = true;
     }
   }
 
@@ -164,7 +163,7 @@ keyReleased = function(){
     scaler-=1;
   }
   if(keyCode === 84 || keyCode === 66 || keyCode === 27 || keyCode === 88 || keyCode === 90){
-    start = true; //UPDATE DATA
+    start = true;
   }
 }
 
@@ -175,35 +174,41 @@ mouseReleased = function(){
         if(mouseY > 50 * qwScaler * oligo1PY - scaler / 2 && mouseY < 50 * qwScaler * oligo1PY + scaler / 2){
           let temp = round((mouseX - scaler / 2) / scaler);
           changeLetter(temp , 1);
-          start = true;
+          updatePage1();
         }
         if(mouseY > 50 * qwScaler * oligo2PY - scaler / 2 && mouseY < 50 * qwScaler * oligo2PY + scaler / 2){
           let temp = round((mouseX - scaler / 2) / scaler);
           changeLetter(temp , 2);
-          start = true;
+          updatePage1();
         }
       }else if(autoMode === false && keyCode === 17){ //Ctrl
         if(mouseY > 50 * qwScaler * oligo1PY - scaler / 2 && mouseY < 50 * qwScaler * oligo1PY + scaler / 2){
           let temp = round((mouseX - scaler / 2) / scaler);
           addLetter(temp , 1);
-          start = true;
+          updatePage1();
         }
         if(mouseY > 50 * qwScaler * oligo2PY - scaler / 2 && mouseY < 50 * qwScaler * oligo2PY + scaler / 2){
           let temp = round((mouseX - scaler / 2) / scaler);
           addLetter(temp , 2);
-          start = true;
+          updatePage1();
         }
       }else if(autoMode === false && keyCode === 18){ //Alt
         if(mouseY > 50 * qwScaler * oligo1PY - scaler / 2 && mouseY < 50 * qwScaler * oligo1PY + scaler / 2){
           let temp = round((mouseX - scaler / 2) / scaler);
           removeLetter(temp , 1);
-          start = true;
+          updatePage1();
         }
         if(mouseY > 50 * qwScaler * oligo2PY - scaler / 2 && mouseY < 50 * qwScaler * oligo2PY + scaler / 2){
           let temp = round((mouseX - scaler / 2) / scaler);
           removeLetter(temp , 2);
-          start = true;
+          updatePage1();
         }
+      }
+    }
+  }else if(page === 2){
+    if(keyIsPressed && event.button === 0){
+      if(keyCode === 16){
+        
       }
     }
   }
@@ -230,8 +235,7 @@ window.onresize = function(){
   ol6.style("width", (innerWidth - 150) + "px");
   ol6.style("background-color","green");
   ol6.style("margin-top","5px");
-
-  createAllObjects();
+  setupMode();
 }
 
 function mySelect1Event() {
@@ -259,8 +263,7 @@ function mySelect1Event() {
   }else if(item1 === "R + E + B + E + A"){
     ol1.value("CAGUCUUGAAUCAGEGUUUGGUAGGUAGUGGUACCEGUCGGACAAGGACGUAGACA");
   }
-
-  createAllObjects();
+  updatePage1();
 }
 function mySelect2Event(){
   let item2 = sel2.value();
@@ -281,7 +284,7 @@ function mySelect2Event(){
   }else if(item2 === "R + E + C + E + C"){
     ol2.value("CAGUCUUGAAUCAGEGGUGGACAGAGAGAUACAUGEGGUGGACAGAGAGAUACAUG");
   }
-  createAllObjects();
+  updatePage1();
 }
 function mySelect3Event(){
   let item3 = sel3.value();
@@ -294,7 +297,7 @@ function mySelect3Event(){
   }else if(item3 === "moveOligo4 Y - axis"){
     qwSelector = 4;
   }
-  createAllObjects();
+  updatePage1();
 }
 function mySelect4Event(){
   let item4 = sel4.value();
@@ -337,8 +340,7 @@ function mySelect4Event(){
   }else if(item4 === "R + E + B + E + A"){
     ol6.value("CAGUCUUGAAUCAGEGUUUGGUAGGUAGUGGUACCEGUCGGACAAGGACGUAGACA");
   }
-  start = true;
-  createAllObjects();
+  updatePage2();
 }
 
 function changeScaler(event){
