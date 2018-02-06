@@ -2,7 +2,7 @@
 ## Video manual (playlist) :
    - https://www.youtube.com/watch?v=dYDxDWK1A4U&list=PL7CHTefBrBuj3EMghG_MJ-AuV1Hwmrab6
    
-## ![engine image 1D --> 2D](https://github.com/Worseize/EternagameScript2018/tree/master/img/Engine.jpg)
+## ![engine image 1D --> 2D](/img/Engine.jpg?raw=true)
 
 ## Options:
 1. __On all pages__
@@ -50,7 +50,7 @@
    - Add 3rd oligo input (page1)
 
 ### Last update:
-  - show/hide DOM elements checkBoxes 
+  - show/hide DOM elements checkBoxes (code improved)
 
 ### CODE STRUCTURE:
   - Pages

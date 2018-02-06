@@ -1,36 +1,42 @@
 function createDomElements(){
+  // https://youtu.be/wH3tjX2xfdg?t=58m23s selectAll tag, class , id 
   showPage1DOM = createCheckbox('show Page 1 inputs and outputs', false);
-  showPage1DOM.style('position','absolute');
-  showPage1DOM.style('top','5px');
+  showPage1DOM.addClass('staticFirstLine');
   showPage1DOM.style('right','225px');
   showPage1DOM.changed(page1DOMEvent);
+
   showPage2DOM = createCheckbox('show Page 2 inputs and outputs', false);
-  showPage2DOM.style('position','absolute');
-  showPage2DOM.style('top','5px');
+  showPage2DOM.addClass('staticFirstLine');
   showPage2DOM.style('right','5px');
   showPage2DOM.changed(page2DOMEvent);
-  tutorialLink = createA('https://www.youtube.com/watch?v=dYDxDWK1A4U&list=PL7CHTefBrBuj3EMghG_MJ-AuV1Hwmrab6', 'Video tutorials last update 5th Feb', '[_parent]');
-  tutorialLink.style("position", "absolute");
-  tutorialLink.style("margin-top", "5px");
-  tutorialLink.style("margin-left", "5px");
-  version = createSpan('Script version 1.8.0');
-  version.style('position','absolute');
-  version.style("top", "5px");
-  version.style("left", "325px");
 
+  tutorialLink = createA('https://www.youtube.com/watch?v=dYDxDWK1A4U&list=PL7CHTefBrBuj3EMghG_MJ-AuV1Hwmrab6', 'Video tutorials last update 05.02.2018', '[_parent]');
+  tutorialLink.style("left", "5px");
+  tutorialLink.addClass('staticFirstLine');
+
+  version = createSpan('Script version 1.8.1 last update 07.02.2018');
+  version.style("left", "325px");
+  version.addClass('staticFirstLine');
+
+  //CSS class
+  firstLineEls = selectAll('.staticFirstLine');
+  for(let i = 0; i < firstLineEls.length; i++){
+    firstLineEls[i].style('position','absolute');
+    firstLineEls[i].style('top','5px');
+  }
 //---------------------------------------------------PAGE 1 ---------------------------------------------------------
   specialBr1 = createElement("br");
-  specialBr1.style('display','none');
+  specialBr1.addClass('page1ShowBr');
   //TEXT
   stateAllInputText = createSpan('State All Inputs');
-  stateAllInputText.style('display','none');
+  stateAllInputText.addClass('page1Show');
   //OLIGO1 POSITION INPUT
   ol1Position = createElement("input","text");
   ol1Position.style("width", 30 + "px");
   ol1Position.style("background-color","green");
   ol1Position.style("text-align","center");
   ol1Position.style("margin-top","5px");
-  ol1Position.style('display','none');
+  ol1Position.addClass('page1Show');
   ol1Position.input(updatePage1);
   //OLIGO 2 POSITION INPUT
   ol2Position = createElement("input","text");
@@ -39,7 +45,7 @@ function createDomElements(){
   ol2Position.style("text-align","center");
   ol2Position.style("margin-left","5px");
   ol2Position.style("margin-top","5px");
-  ol2Position.style('display','none');
+  ol2Position.addClass('page1Show');
   ol2Position.input(updatePage1);
   //SELECT 3
   sel3 = createSelect();
@@ -50,7 +56,7 @@ function createDomElements(){
   sel3.option("moveOligo2 Y - axis");
   sel3.option("moveOligo3 Y - axis");
   sel3.option("moveOligo4 Y - axis");
-  sel3.style('display','none');
+  sel3.addClass('page1Show');
   sel3.changed(mySelect3Event);
 
   //INPUT1
@@ -59,7 +65,7 @@ function createDomElements(){
   ol1.style("background-color","green");
   ol1.style("font-family", "'Courier New', Courier, monospace");
   ol1.style("margin-top","5px");
-  ol1.style('display','none');
+  ol1.addClass('page1Show');
   ol1.input(updatePage1);
   //SELECT1
   sel1 = createSelect();
@@ -77,7 +83,7 @@ function createDomElements(){
   sel1.option("B + E + A + E + R");
   sel1.option("B + E + R + E + A");
   sel1.option("R + E + B + E + A");
-  sel1.style('display','none');
+  sel1.addClass('page1Show');
   sel1.changed(mySelect1Event);
   //INPUT2
   ol2 = createElement("input","text");
@@ -85,7 +91,7 @@ function createDomElements(){
   ol2.style("background-color","green");
   ol2.style("font-family", "'Courier New', Courier, monospace");
   ol2.style("margin-top","5px");
-  ol2.style('display','none');
+  ol2.addClass('page1Show');
   ol2.input(updatePage1);
   //SELECT2
   sel2 = createSelect();
@@ -100,7 +106,7 @@ function createDomElements(){
   sel2.option("C + E + C + E + R");
   sel2.option("C + E + R + E + C");
   sel2.option("R + E + C + E + C");
-  sel2.style('display','none');
+  sel2.addClass('page1Show');
   sel2.changed(mySelect2Event);
   //OUTPUT1 (INPUT1 + INPUT2 UNITED LETTERS)
   ol3 = createElement("input","text");
@@ -109,7 +115,7 @@ function createDomElements(){
   ol3.style("font-family", "'Courier New', Courier, monospace");
   ol3.style("margin-top","5px");
   ol3.attribute("readOnly","true");
-  ol3.style('display','none');
+  ol3.addClass('page1Show');
   //LOAD BUTTON
   loadButton = createFileInput(handleFile);
   loadButton.mouseClicked(clearFileName);
@@ -121,18 +127,18 @@ function createDomElements(){
   loadButton.style("margin-right","5px");
   loadButton.style("margin-top","5px");
   loadButton.style("float","right");
-  loadButton.style('display','none');
-    //SAVE BUTTON
+  loadButton.addClass('page1Show');
+  //SAVE BUTTON
   saveButton = createButton('save');
   saveButton.mousePressed(saveMyMemorys);
   saveButton.style("background-color","pink");
   saveButton.style("margin-right","5px");
   saveButton.style("margin-top","5px");
   saveButton.style("float","right");
-  saveButton.style('display','none');
+  saveButton.addClass('page1Show');
   //NEW LINE
   specialBr2 = createElement("br");
-  specialBr2.style('display','none');
+  specialBr2.addClass('page1ShowBr');
   //OUTPUT2 (REVERSE INPUT1)
   ol4 = createElement("input","text");
   ol4.style("width", (innerWidth / 2 - 10) + "px");
@@ -140,7 +146,7 @@ function createDomElements(){
   ol4.style("font-family", "'Courier New', Courier, monospace");
   ol4.style("margin-top","5px");
   ol4.attribute("readOnly","true");
-  ol4.style('display','none');
+  ol4.addClass('page1Show');
   //OUTPUT3 (REVERSE INPUT2)
   ol5 = createElement("input","text");
   ol5.style("width", (innerWidth / 2 - 10) + "px");
@@ -148,13 +154,13 @@ function createDomElements(){
   ol5.style("font-family", "'Courier New', Courier, monospace");
   ol5.style("margin-top","5px");
   ol5.attribute("readOnly","true");
-  ol5.style('display','none');
+  ol5.addClass('page1Show');
 //--------------------------------------------PAGE 2--------------------------------------------
   specialBr3 = createElement("br");
-  specialBr3.style('display','none');
+  specialBr3.addClass('page2Show');
   //NEW LINE
   state1InputText = createSpan("State 1 Inputs");
-  state1InputText.style('display','none');
+  state1InputText.addClass('page2Show');
   //INPUT3 START POSITION
   ol6Start = createElement("input","text");
   ol6Start.style("width", 30 + "px");
@@ -162,8 +168,7 @@ function createDomElements(){
   ol6Start.style("text-align","center");
   ol6Start.style("margin-top","5px");
   ol6Start.style("margin-right","5px");
-  ol6Start.value(2);
-  ol6Start.style('display','none');
+  ol6Start.addClass('page2Show');
   ol6Start.input(updatePage2);
   //INPUT3 AMOUNT OF BASES IN LOOP
   ol6Loop = createElement("input","text");
@@ -172,9 +177,7 @@ function createDomElements(){
   ol6Loop.style("text-align","center");
   ol6Loop.style("margin-top","5px");
   ol6Loop.style("margin-right","5px");
-  ol6Loop.value(15);
-  ol6Loop.style('display','none');
-
+  ol6Loop.addClass('page2Show');
   ol6Loop.input(updatePage2);
   //INPUT3 END POSITION
   ol6End = createElement("input","text");
@@ -183,8 +186,7 @@ function createDomElements(){
   ol6End.style("text-align","center");
   ol6End.style("margin-right","5px");
   ol6End.style("margin-top","5px");
-  ol6End.value(55);
-  ol6End.style('display','none');
+  ol6End.addClass('page2Show');
   ol6End.input(updatePage2);
   //OLIGO3 INPUT
   ol6 = createElement("input","text");
@@ -192,7 +194,7 @@ function createDomElements(){
   ol6.style("background-color","green");
   ol6.style("font-family", "'Courier New', Courier, monospace");
   ol6.style("margin-top","5px");
-  ol6.style('display','none');
+  ol6.addClass('page2Show');
   ol6.input(updatePage2);
   //SELECT4
   sel4 = createSelect();
@@ -217,82 +219,70 @@ function createDomElements(){
   sel4.option("R + E + A + E + B");
   sel4.option("R + E + B + E + A");
   sel4.option("R + E + C + E + C");
-  sel4.style('display','none');
+  sel4.addClass('page2Show');
   sel4.changed(mySelect4Event);
 //------------------------------------------------------PAGE 3-------------------------------------------------
-  engineImg = createImg("img/Engine.jpg");
-  engineImg.style("width" ,"500px");
-  engineImg.style("height" ,"250px");
-  engineImg.style("position" ,"absolute");
-  engineImg.style("bottom", "75px");
-  engineImg.style("right", "10px");
-  engineImg.style("z-index", "1");
-  engineImg.id("engineImg");
-  document.getElementById('engineImg').style.visibility = 'none';
+
 }
+
+//-------------------------Show || Hide page 1 checkBox Event
 function page1DOMEvent(){
   if(this.checked()){
-    specialBr1.style('display','block');
-    stateAllInputText.style('display','inline');
-    ol1Position.style('display','inline');
-    ol2Position.style('display','inline');
-    sel3.style('display','inline');
-    ol1.style('display','inline');
-    sel1.style('display','inline');
-    ol2.style('display','inline');
-    sel2.style('display','inline');
-    ol3.style('display','inline');
-    loadButton.style('display','inline');
-    saveButton.style('display','inline');
-    specialBr2.style('display','block');
-    ol4.style('display','inline');
-    ol5.style('display','inline');
+    //show
+    page1ShowEls = selectAll('.page1Show');
+    page1ShowElsBr = selectAll('.page1ShowBr');
+    for(let i = 0; i < page1ShowElsBr.length; i++){
+      page1ShowElsBr[i].style('display','block');
+    }
+    for(let i = 0; i < page1ShowEls.length; i++){
+      page1ShowEls[i].style('display','inline');
+    }
     domYLength += rowsInPage1Dom * 27;
   }else{
-    specialBr1.style('display','none');
-    stateAllInputText.style('display','none');
-    ol1Position.style('display','none');
-    ol2Position.style('display','none');
-    sel3.style('display','none');
-    ol1.style('display','none');
-    sel1.style('display','none');
-    ol2.style('display','none');
-    sel2.style('display','none');
-    ol3.style('display','none');
-    loadButton.style('display','none');
-    saveButton.style('display','none');
-    specialBr2.style('display','none');
-    ol4.style('display','none');
-    ol5.style('display','none');
+    //hide
+    page1ShowEls = selectAll('.page1Show');
+    page1ShowElsBr = selectAll('.page1ShowBr');
+    for(let i = 0; i < page1ShowElsBr.length; i++){
+      page1ShowElsBr[i].style('display','none');
+    }
+    for(let i = 0; i < page1ShowEls.length; i++){
+      page1ShowEls[i].style('display','none');
+    }
+    //change margin-bottom for canvas
     domYLength -= rowsInPage1Dom * 27; 
   }
+    //change margin-top for canvas
   if(this.checked() || showPage2DOM.checked()){
     myCanvas.style("margin-top","5px");
   }else{
     myCanvas.style("margin-top","25px");
   }
   resizeCanvas(innerWidth - 10, innerHeight - domYLength);
+  //redraw page
   start = true;
 }
+
+//-----------------------------Show || Hide page 2 checkBox Event
 function page2DOMEvent(){
   if(this.checked()){
-    specialBr3.style('display','block');
-    state1InputText.style('display','inline');
-    ol6Start.style('display','inline');
-    ol6Loop.style('display','inline');
-    ol6End.style('display','inline');
-    ol6.style('display','inline');
-    sel4.style('display','inline');
-    myCanvas.style("margin-top","5px");
+    page2ShowEls = selectAll('.page2Show');
+    page2ShowElsBr = selectAll('.page2ShowBr');
+    for(let i = 0; i < page2ShowElsBr.length; i++){
+      page2ShowElsBr[i].style('display','block');
+    }
+    for(let i = 0; i < page2ShowEls.length; i++){
+      page2ShowEls[i].style('display','inline');
+    }
     domYLength += rowsInPage2Dom * 27; 
   }else{
-    specialBr3.style('display','none');
-    state1InputText.style('display','none');
-    ol6Start.style('display','none');
-    ol6Loop.style('display','none');
-    ol6End.style('display','none');
-    ol6.style('display','none');
-    sel4.style('display','none');
+    page2ShowEls = selectAll('.page2Show');
+    page2ShowElsBr = selectAll('.page2ShowBr');
+    for(let i = 0; i < page2ShowElsBr.length; i++){
+      page2ShowElsBr[i].style('display','none');
+    }
+    for(let i = 0; i < page2ShowEls.length; i++){
+      page2ShowEls[i].style('display','none');
+    }
     domYLength -= rowsInPage2Dom * 27; 
   }
   if(this.checked() || showPage1DOM.checked()){
@@ -303,6 +293,39 @@ function page2DOMEvent(){
   resizeCanvas(innerWidth - 10, innerHeight - domYLength);
   start = true;
 }
+
+//-------------------------reCreate DOM values 
+function config(){
+  //-----Page 1 default input 
+  ol1.value("GUCGGACAAGGACGUAGACA");
+  ol2.value("GGUGGACAGAGAGAUACAUG");
+  ol1Position.value("5");
+  ol2Position.value("3");
+  //-----Page 2 default input 
+  ol6.value("GUCGGACAAGGACGUAGACAECAGUCUUGAAUCAGEGUUUGGUAGGUAGUGGUACC");
+  ol6Start.value(2);
+  ol6Loop.value(15);
+  ol6End.value(55);
+  //hide page1DOM
+  page1ShowEls = selectAll('.page1Show');
+  page1ShowElsBr = selectAll('.page1ShowBr');
+  for(let i = 0; i < page1ShowElsBr.length; i++){
+    page1ShowElsBr[i].style('display','none');
+  }
+  for(let i = 0; i < page1ShowEls.length; i++){
+    page1ShowEls[i].style('display','none');
+  }
+  //hide page2DOM
+  page2ShowEls = selectAll('.page2Show');
+  page2ShowElsBr = selectAll('.page2ShowBr');
+  for(let i = 0; i < page2ShowElsBr.length; i++){
+    page2ShowElsBr[i].style('display','none');
+  }
+  for(let i = 0; i < page2ShowEls.length; i++){
+    page2ShowEls[i].style('display','none');
+  }
+}
+//-------------------------reCreate canvas objects 
 function updateAll(){
   errorsFinder();
   //CREATE OLIGOS

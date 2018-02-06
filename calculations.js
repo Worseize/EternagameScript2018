@@ -123,22 +123,6 @@ function errorsFinder(){
   }
 }
 
-function setupMode(){
-  ol1.value("GUCGGACAAGGACGUAGACA");
-  ol2.value("GGUGGACAGAGAGAUACAUG");
-  ol6.value("GUCGGACAAGGACGUAGACAECAGUCUUGAAUCAGEGUUUGGUAGGUAGUGGUACC");
-  ol1Position.value("5");
-  ol2Position.value("3");
-  background(12);
-  showMemory();
-  updateAll();
-  myOligo1.show();
-  myOligo2.show();
-  myRna.show();
-  myRna2.show();
-  rnaScene2.showGivenStructure();
-}
-
 function saveMyMemorys(){
   if(memory.length > 0){
     let savedMemory = {}; // new  JSON Object

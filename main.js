@@ -21,7 +21,7 @@ function setup(){
   myCanvas = createCanvas(innerWidth - 10, innerHeight - domYLength);
   myCanvas.mouseWheel(changeScaler);
   myCanvas.style("margin-top","25px");
-  setupMode();
+  config();
 }
 
 
@@ -37,7 +37,7 @@ function draw(){
       if(autoMode === false){
         ol1Position.removeAttribute("readOnly");
         ol2Position.removeAttribute("readOnly");
-        updateAll();
+        updatePage1();
         memory = [];
         let newTemp = findUnitedLetters();
         memory[0] = new Memory(newTemp, +ol1Position.value(), +ol2Position.value(), ol1.value(), ol2.value(), ol3.value(), 0);
@@ -52,7 +52,7 @@ function draw(){
         //move second oligo from 0 to oligo1 length on each step calculate RNA and put it into memory array
         for(let i = 0; i < ol1.value().length; i++){
           ol2Position.value(i);
-          createAllObjects();
+          updatePage1();
           let newTemp = findUnitedLetters();
           memory.push(new Memory(newTemp, 0, +ol2Position.value(), ol1.value(), ol2.value(), ol3.value() , i));
         }
@@ -60,7 +60,7 @@ function draw(){
         ol2Position.value(0);
         for(let i = 1 ; i < ol2.value().length; i++){
           ol1Position.value(i);
-          createAllObjects();
+          updatePage1();
           let newTemp = findUnitedLetters();
           memory.push(new Memory(newTemp, +ol1Position.value(), 0, ol1.value(), ol2.value(), ol3.value(), i + ol1.value().length - 1));
         }
@@ -75,22 +75,19 @@ function draw(){
         ol1Position.value(memory[memoryPosition].ol1Position);
         ol2Position.value(memory[memoryPosition].ol2Position);
       }
-      updateAll();
-      myOligo1.show();
-      myOligo2.show();
-      myRna.show(); // RNA variant 1
-      myRna2.show(); // if more than 1 variant , that RNA shows up
+      updatePage1();
       showMemory();
       start = false;
 //-------------------------------------------------PAGE 2 (STATE 1)-----------------------------------------------------------
     }else if(page === 2){
+      updatePage2();
       rnaScene2.calculateHairpinStemPairs();
-      rnaScene2.showGivenStructure();
       start = false;
 //-------------------------------------------------PAGE 3 (STATE 2) ----------------------------------------------------------
     }else if(page === 3){
       start = false;
     }
+    showObjects();
     showPage();
   }
 }

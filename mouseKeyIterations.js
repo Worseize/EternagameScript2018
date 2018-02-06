@@ -235,7 +235,6 @@ window.onresize = function(){
   ol6.style("width", (innerWidth - 150) + "px");
   ol6.style("background-color","green");
   ol6.style("margin-top","5px");
-  setupMode();
 }
 
 function mySelect1Event() {
