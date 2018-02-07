@@ -10,16 +10,16 @@ function createDomElements(){
   showPage2DOM.style('right','5px');
   showPage2DOM.changed(page2DOMEvent);
 
-  tutorialLink = createA('https://www.youtube.com/watch?v=dYDxDWK1A4U&list=PL7CHTefBrBuj3EMghG_MJ-AuV1Hwmrab6', 'Video tutorials', '[_parent]');
+  tutorialLink = createA('https://www.youtube.com/watch?v=dYDxDWK1A4U&list=PL7CHTefBrBuj3EMghG_MJ-AuV1Hwmrab6', 'Video tutorials 05.02.2018', '[_parent]');
   tutorialLink.style("left", "5px");
   tutorialLink.addClass('staticFirstLine');
 
-  newVersion = createA('https://worseize.github.io/EternagameScript2018/', 'Link to newest version', '[_parent]');
-  newVersion.style("left", "380px");
+  newVersion = createA('https://worseize.github.io/EternaScript2018-v.1.8.2-first-release/', 'Link to stable old version 07.02.2018', '[_parent]');
+  newVersion.style("left", "450px");
   newVersion.addClass('staticFirstLine');
 
-  version = createSpan('Script version 1.8.2 last update 07.02.2018');
-  version.style("left", "100px");
+  version = createSpan('Script version 2.0.0 last update 07.02.2018');
+  version.style("left", "175px");
   version.addClass('staticFirstLine');
 
   //CSS class

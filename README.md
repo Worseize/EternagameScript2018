@@ -1,7 +1,11 @@
 # EternagameScript2018
-## Video manual (playlist) :
-   - https://www.youtube.com/watch?v=dYDxDWK1A4U&list=PL7CHTefBrBuj3EMghG_MJ-AuV1Hwmrab6
+## Releases:
+   - https://github.com/Worseize/EternaScript2018-v.1.8.2-first-release old stable version 1.8.2 (updated 07.02.2018) repository
+   - https://worseize.github.io/EternaScript2018-v.1.8.2-first-release/ old stable version 1.8.2 (updated 07.02.2018) app
    
+## Video manual (playlist) :
+   - https://www.youtube.com/watch?v=dYDxDWK1A4U&list=PL7CHTefBrBuj3EMghG_MJ-AuV1Hwmrab6 youtube playlist link
+
 ## ![engine image 1D --> 2D](/img/Engine.jpg?raw=true)
 
 ## Options:
@@ -50,7 +54,7 @@
    - Add 3rd oligo input (page1)
 
 ### Last update:
-   - first release.
+   - released
 
 ### CODE STRUCTURE:
   - Pages
