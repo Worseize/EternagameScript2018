@@ -50,7 +50,7 @@
    - Add 3rd oligo input (page1)
 
 ### Last update:
-  - show/hide DOM elements checkBoxes (code improved)
+
 
 ### CODE STRUCTURE:
   - Pages

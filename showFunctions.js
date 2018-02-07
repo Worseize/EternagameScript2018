@@ -87,12 +87,16 @@ function showPage(){
 
 function showObjects(){
   background(12);
-  if(page === 1){
+  if(page === 0){
+    showHelpMenu();
+  }else if(page === 1){
     myOligo1.show();
     myOligo2.show();
     myRna.show();
     myRna2.show();
   }else if(page === 2){
     rnaScene2.showGivenStructure();
+  }if(page === 3){
+
   }
 }

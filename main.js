@@ -22,6 +22,7 @@ function setup(){
   myCanvas.mouseWheel(changeScaler);
   myCanvas.style("margin-top","25px");
   config();
+  start = true;
 }
 
 
