@@ -214,7 +214,7 @@ mouseReleased = function(){
   }
 }
 window.onresize = function(){
-  myCanvas = createCanvas(innerWidth - 10, innerHeight - domYLength);
+  resizeCanvas(innerWidth - 10, innerHeight - domYLength);
   ol1.style("width", (innerWidth - 150) + "px");
   sel1.style("position","relative");
   sel1.style("margin-top","5px");
@@ -235,6 +235,8 @@ window.onresize = function(){
   ol6.style("width", (innerWidth - 150) + "px");
   ol6.style("background-color","green");
   ol6.style("margin-top","5px");
+
+  showObjects();
 }
 
 function mySelect1Event() {

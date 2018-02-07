@@ -18,7 +18,7 @@ function createDomElements(){
   newVersion.style("left", "450px");
   newVersion.addClass('staticFirstLine');
 
-  version = createSpan('Script version 2.0.0 last update 07.02.2018');
+  version = createSpan('Script version 2.0.1 last update 07.02.2018');
   version.style("left", "175px");
   version.addClass('staticFirstLine');
 
@@ -28,6 +28,12 @@ function createDomElements(){
     firstLineEls[i].style('position','absolute');
     firstLineEls[i].style('top','5px');
   }
+//---------------------------------------------------PAGE 0 ---------------------------------------------------------
+  readmeLink = createA('https://github.com/Worseize/EternagameScript2018/blob/master/README.md','Link to all options and shortcuts','[_parent]');
+  readmeLink.style("position", "absolute");
+  readmeLink.style("right", "50px");
+  readmeLink.style("top", (domYLength + 50) + 'px');
+  readmeLink.style('font-size','40px');
 //---------------------------------------------------PAGE 1 ---------------------------------------------------------
   specialBr1 = createElement("br");
   specialBr1.addClass('page1ShowBr');
@@ -300,6 +306,7 @@ function page2DOMEvent(){
 
 //-------------------------reCreate DOM values 
 function config(){
+  textSize(scaler);
   //-----Page 1 default input 
   ol1.value("GUCGGACAAGGACGUAGACA");
   ol2.value("GGUGGACAGAGAGAUACAUG");
@@ -310,6 +317,8 @@ function config(){
   ol6Start.value(2);
   ol6Loop.value(15);
   ol6End.value(55);
+  //hide page0DOM 
+  readmeLink.style('display','none');
   //hide page1DOM
   page1ShowEls = selectAll('.page1Show');
   page1ShowElsBr = selectAll('.page1ShowBr');

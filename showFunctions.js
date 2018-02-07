@@ -7,14 +7,14 @@ function showHelpMenu(){
   text(" B | T => scale canvas elements : DOWN | UP" , 0, scaler * 4.25);
   text(" SPACE => change mode : AUTO | MANUAL", 0, scaler * 5.25);
   push();
-  translate(0,scaler);
+  translate(0, scaler);
   fill(155, 155, 255);
   text(" In manual mode: ", 0, scaler * 6.25);
   text(" leftClick + Shift on letter to change it A => U => G => C => E => A" , scaler, scaler * 7.25);
   text(" leftClick + Ctrl on letter to add 'E'" , scaler, scaler * 8.25);
   text(" leftClick + Alt on letter to remove it" , scaler, scaler * 9.25);
-  text(" R | Y => move Oligo_1 : LEFT | RIGHT", scaler, scaler * 10.25);
-  text(" F | H => move Oligo_2 : LEFT | RIGHT", scaler, scaler * 11.25);
+  text(" SHIFT + Q | E => move oligo1 to LEFT | RIGHT", scaler, scaler * 10.25);
+  text(" SHIFT + A | D => move oligo1 to LEFT | RIGHT", scaler, scaler * 11.25);
   for(let i = 0; i < 5; i++){
     text("*", scaler / 2, scaler / 4 + 7.25 * scaler + (scaler * i));
   }
@@ -24,8 +24,17 @@ function showHelpMenu(){
   text(" V | N => change Memory position HiGHER | LOWER", scaler, scaler * 14.25);
   fill(0, 255, 0);
   text("greenArea ==> INPUT", scaler, scaler * 16.25);
-  fill(255, 255, 255);
+  fill(255);
   text("whiteArea ==> OUTPUT", scaler, scaler * 17.25);
+
+  text("*", scaler / 2, scaler / 4 + 20.25 * scaler);
+  text('SUPPORT ISSUE IN FIREFOX' , scaler, scaler * 20.25);
+  text("*", scaler / 2, scaler / 4 + 21.25 * scaler);
+  text("*", scaler / 2, scaler / 4 + 22.25 * scaler);
+  text("*", scaler / 2 + 5, scaler / 4 + 21.25 * scaler);
+  text("*", scaler / 2 + 5, scaler / 4 + 22.25 * scaler);
+  text(' At the moment supports only in google chrome browser and' , scaler, scaler * 21.25);
+  text(' CSS , DOM objects could be overfit in firefox but canvas script should work' , scaler, scaler * 22.25);
   pop();
 }
 
@@ -89,6 +98,8 @@ function showObjects(){
   background(12);
   if(page === 0){
     showHelpMenu();
+    readmeLink.style('display','inline');
+    readmeLink.style("top", (domYLength + 50) + 'px');
   }else if(page === 1){
     myOligo1.show();
     myOligo2.show();
@@ -99,6 +110,9 @@ function showObjects(){
     rnaScene2.showGivenStructure();
   }if(page === 3){
 
+  }
+  if(page !== 0){
+    readmeLink.style('display','none');
   }
   showPage();
 }

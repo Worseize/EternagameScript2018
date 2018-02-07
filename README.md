@@ -5,6 +5,7 @@
    
 ## Video manual (playlist) :
    - https://www.youtube.com/watch?v=dYDxDWK1A4U&list=PL7CHTefBrBuj3EMghG_MJ-AuV1Hwmrab6 youtube playlist link
+   - at the moment supports only in google chrome browser (CSS , DOM objects could be overfit in firefox but canvas script should work same)
 
 ## ![engine image 1D --> 2D](/img/Engine.jpg?raw=true)
 
@@ -54,7 +55,7 @@
    - Add 3rd oligo input (page1)
 
 ### Last update:
-   - released
+   - readme link added to Help Page
 
 ### CODE STRUCTURE:
   - Pages
