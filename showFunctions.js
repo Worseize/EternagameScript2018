@@ -63,7 +63,7 @@ function showPage(){
     rect(width * 0.7, height - scaler * 1.5 , scaler * 16, scaler * 1.25);
     fill(0);
     text(" Help Menu", width / 2, height - scaler * 0.5);
-    text(" 'ESQ' => go to State all showPage", width * 0.7, height - scaler * 0.5);
+    text(" 'ESC' => go to State all showPage", width * 0.7, height - scaler * 0.5);
   }else if(page === 1){
     rect(width / 2, height - scaler * 1.5 , scaler * 4.5, scaler * 1.25);
     fill(0);
@@ -81,7 +81,7 @@ function showPage(){
     fill(150, 255, 50);
     rect(width * 0.7, height - scaler * 1.5 , scaler * 15, scaler * 1.25);
     fill(0);
-    text(" 'ESQ' => go to help menu page", width * 0.7, height - scaler * 0.5);
+    text(" 'ESC' => go to help menu page", width * 0.7, height - scaler * 0.5);
   }
 }
 
@@ -94,9 +94,11 @@ function showObjects(){
     myOligo2.show();
     myRna.show();
     myRna2.show();
+    showMemory();
   }else if(page === 2){
     rnaScene2.showGivenStructure();
   }if(page === 3){
 
   }
+  showPage();
 }

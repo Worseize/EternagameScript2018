@@ -32,7 +32,6 @@ function draw(){
     background(12);
 //--------------------------------------------------------MANUAL PAGE (HELP MENU)---------------------------------------------
     if(page === 0){
-      showHelpMenu();
 //--------------------------------------------------------PAGE 1 (STATE ALL)--------------------------------------------------
     }else if(page === 1){
       if(autoMode === false){
@@ -77,7 +76,6 @@ function draw(){
         ol2Position.value(memory[memoryPosition].ol2Position);
       }
       updatePage1();
-      showMemory();
       start = false;
 //-------------------------------------------------PAGE 2 (STATE 1)-----------------------------------------------------------
     }else if(page === 2){
@@ -89,6 +87,5 @@ function draw(){
       start = false;
     }
     showObjects();
-    showPage();
   }
 }

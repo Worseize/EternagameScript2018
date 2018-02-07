@@ -11,7 +11,7 @@
      - __Z | X__ => switch page __BACKWARD | FORWARD__
      - __T | B__ => scale canvas elements __DOWN | UP__
      - __mouseWheel + | -__ => scale canvas elements __DOWN | UP__ 
-     - __ESQ__ - go to helpMenu | go to State All page
+     - __ESC__ - go to helpMenu | go to State All page
 2. __On page 1 (State all)__
      - __In all modes__
         - __SPACE__ => change mode auto | manual 
@@ -50,7 +50,7 @@
    - Add 3rd oligo input (page1)
 
 ### Last update:
-
+   - first release.
 
 ### CODE STRUCTURE:
   - Pages
