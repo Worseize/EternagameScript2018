@@ -18,7 +18,7 @@ function createDomElements(){
   newVersion.style("left", "450px");
   newVersion.addClass('staticFirstLine');
 
-  version = createSpan('Script version 2.0.1 last update 07.02.2018');
+  version = createSpan('Script version 2.0.2 last update 07.02.2018');
   version.style("left", "175px");
   version.addClass('staticFirstLine');
 
@@ -306,6 +306,7 @@ function page2DOMEvent(){
 
 //-------------------------reCreate DOM values 
 function config(){
+  resizeCanvas(innerWidth - 10, innerHeight - domYLength);
   textSize(scaler);
   //-----Page 1 default input 
   ol1.value("GUCGGACAAGGACGUAGACA");
@@ -337,9 +338,6 @@ function config(){
   for(let i = 0; i < page2ShowEls.length; i++){
     page2ShowEls[i].style('display','none');
   }
-}
-//-------------------------reCreate canvas objects 
-function updateAll(){
   errorsFinder();
   //CREATE OLIGOS
   myOligo1 = new Oligo(oligo1PY * qwScaler, oligo1);
@@ -356,6 +354,7 @@ function updateAll(){
   rnaScene2 = new Rna(temp, +ol6Start.value(),+ol6Loop.value(), +ol6End.value(), 0, 1.2 , width / 3 , 0);
   start = true;
 }
+//-------------------------reCreate canvas objects 
 function updatePage1(){
   errorsFinder();
   //CREATE OLIGOS
@@ -373,6 +372,6 @@ function updatePage2(){
   for(let i = 0; i < ol6.value().length; i++){
     temp[i] = ol6.value().charAt(i);
   }
-  rnaScene2 = new Rna(temp, +ol6Start.value(),+ol6Loop.value(), +ol6End.value(), 0, 1.2 , width / 3 , 0);
+  rnaScene2 = new Rna(temp, +ol6Start.value(),+ol6Loop.value(), +ol6End.value(), 0, 1.2 , rnaScene2.translateX , rnaScene2.translateY);
   start = true;
 }

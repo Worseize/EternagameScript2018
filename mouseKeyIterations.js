@@ -113,7 +113,6 @@ keyReleased = function(){
         ol6End.value(+ol6End.value() + 1);
         ol6Loop.value(+ol6Loop.value() + 1);
       }
-      console.log(rightTail);
     }else if(keyCode === 78){//N
       if(+ol6Loop.value() > 3){
         rnaScene2.endIndex--;

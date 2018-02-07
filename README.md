@@ -55,7 +55,8 @@
    - Add 3rd oligo input (page1)
 
 ### Last update:
-   - readme link added to Help Page
+   -libraries removed from github (now users load them from other directory)
+   -fixed bug with rna in page 2 (can`t move  Shift + WASD) 
 
 ### CODE STRUCTURE:
   - Pages

@@ -111,6 +111,7 @@ class Rna{
 					}
 				}
 				let addLetters = () => {
+					textSize(scaler);
 					fill(0, 0, 0); // Black letters
 					if(this.ArrayOfNucleos[i] === "A"){
 						text("A", x - thirdBase, y + thirdBase);

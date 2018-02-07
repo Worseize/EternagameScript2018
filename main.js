@@ -74,16 +74,15 @@ function draw(){
         ol2Position.value(memory[memoryPosition].ol2Position);
       }
       updatePage1();
-      start = false;
 //-------------------------------------------------PAGE 2 (STATE 1)-----------------------------------------------------------
     }else if(page === 2){
       updatePage2();
       rnaScene2.calculateHairpinStemPairs();
-      start = false;
 //-------------------------------------------------PAGE 3 (STATE 2) ----------------------------------------------------------
     }else if(page === 3){
-      start = false;
     }
     showObjects();
+    start = false;
+    //console.log(document.getElementsByTagName("*").length);
   }
 }
