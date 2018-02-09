@@ -130,9 +130,21 @@ keyReleased = function(){
       }else if(keyCode === 83){//S
         rnaScene2.translateY += rnaScene2.baseSize * scaler;
       }
+    }else if(keyCode === 32){//Space
+      if(autoModePage2 === true){
+        autoModePage2 = false;
+        ol6Start.style("background-color","green");
+        ol6Loop.style("background-color","green");
+        ol6End.style("background-color","green");
+      }else{
+        autoModePage2 = true;
+        ol6Start.style("background-color","white");
+        ol6Loop.style("background-color","white");
+        ol6End.style("background-color","white");
+      }
     }
     if(keyCode === 89 || keyCode === 82 || keyCode === 72 || keyCode === 70 || keyCode === 86 || keyCode === 78 ||
-       ( keyIsDown(16)  && (keyCode === 68 || keyCode === 65 || keyCode === 87 || keyCode === 83))){
+       ( keyIsDown(16)  && (keyCode === 68 || keyCode === 65 || keyCode === 87 || keyCode === 83)) || keyCode === 32){
       start = true;
     }
   }
@@ -158,10 +170,12 @@ keyReleased = function(){
     }
   }else if(keyCode === 84){//T
     scaler+=1;
+    showObjects();
   }else if(keyCode === 66){//B
     scaler-=1;
+    showObjects();
   }
-  if(keyCode === 84 || keyCode === 66 || keyCode === 27 || keyCode === 88 || keyCode === 90){
+  if(keyCode === 27 || keyCode === 88 || keyCode === 90){
     start = true;
   }
 }
@@ -346,11 +360,10 @@ function mySelect4Event(){
 function changeScaler(event){
   if(event.deltaY > 5){
     scaler -= 1;
-    start = true;
   }else if(event.deltaY < 5){
     scaler += 1;
-    start = true;
-  }
+  } 
+  showObjects();
 }
 
 function changeLetter(position, numberOfOligo){

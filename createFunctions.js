@@ -18,7 +18,7 @@ function createDomElements(){
   newVersion.style("left", "450px");
   newVersion.addClass('staticFirstLine');
 
-  version = createSpan('Script version 2.0.2 last update 07.02.2018');
+  version = createSpan('Script version 2.1.0 last update 09.02.2018');
   version.style("left", "175px");
   version.addClass('staticFirstLine');
 
@@ -314,10 +314,10 @@ function config(){
   ol1Position.value("5");
   ol2Position.value("3");
   //-----Page 2 default input 
-  ol6.value("GUCGGACAAGGACGUAGACAECAGUCUUGAAUCAGEGUUUGGUAGGUAGUGGUACC");
-  ol6Start.value(2);
-  ol6Loop.value(15);
-  ol6End.value(55);
+  ol6.value("GUCGGACAAGGACGUAGACA");
+  ol6Start.value(0);
+  ol6Loop.value(3);
+  ol6End.value(13);
   //hide page0DOM 
   readmeLink.style('display','none');
   //hide page1DOM
@@ -368,10 +368,16 @@ function updatePage1(){
 }
 function updatePage2(){
   //CREATE 2D RNA
-  let temp = [];
-  for(let i = 0; i < ol6.value().length; i++){
-    temp[i] = ol6.value().charAt(i);
+  if(autoModePage2){
+    findRnaPage2();
+    start = true;
+  }else{
+    let temp = [];
+    for(let i = 0; i < ol6.value().length; i++){
+      temp[i] = ol6.value().charAt(i);
+    }
+    rnaScene2 = new Rna(temp, +ol6Start.value(),+ol6Loop.value(), +ol6End.value(), 0, 1.2 , rnaScene2.translateX , rnaScene2.translateY);
+    rnaScene2.calculateHairpinStemPairs();
+    start = true;
   }
-  rnaScene2 = new Rna(temp, +ol6Start.value(),+ol6Loop.value(), +ol6End.value(), 0, 1.2 , rnaScene2.translateX , rnaScene2.translateY);
-  start = true;
 }

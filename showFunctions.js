@@ -39,29 +39,49 @@ function showHelpMenu(){
 }
 
 function showMemory(){
-  fill(150, 255, 50);
-  rect(scaler/4, height - scaler * 3.5 , scaler * 10 + 4 * log(memory.length), scaler * 3.25);
-  fill(0);
-  if(memory.length > 0){
-    text("Memory position : " + (memoryPosition + 1) + "/" + memory.length  , scaler / 2, height - scaler/2);
-  }else{
-    text("Memory position : 1/1", scaler / 2 , height - scaler/2);
-  }
-  if(autoMode){
-    text("United letters : " + memory[memoryPosition].unitedLetters , scaler / 2, height - scaler * 1.5);
-  }else{
-    let myNewTemp = 0;
-    for(let j = 0; j < ol3.value().length; j++){
-      if(ol3.value().charAt(j) === "A" || ol3.value().charAt(j) === "U" || ol3.value().charAt(j) === "C" || ol3.value().charAt(j) === "G"){
-        myNewTemp++;
-      }
+  if(page === 1){
+    fill(150, 255, 50);
+    rect(scaler/4, height - scaler * 3.5 , scaler * 10 + 4 * log(memory.length), scaler * 3.25);
+    fill(0);
+    if(memory.length > 0){
+      text("Memory position : " + (memoryPosition + 1) + "/" + memory.length  , scaler / 2, height - scaler/2);
+    }else{
+      text("Memory position : 1/1", scaler / 2 , height - scaler/2);
     }
-    text("United letters : " + myNewTemp , scaler / 2, height - scaler * 1.5);
-  }
-  if(autoMode){
-    text("Mode : auto", scaler / 2, height - scaler * 2.5);
-  }else{
-    text("Mode : manual", scaler / 2, height - scaler * 2.5);
+    if(autoMode){
+      text("United letters : " + memory[memoryPosition].unitedLetters , scaler / 2, height - scaler * 1.5);
+    }else{
+      let myNewTemp = 0;
+      for(let j = 0; j < ol3.value().length; j++){
+        if(ol3.value().charAt(j) === "A" || ol3.value().charAt(j) === "U" || ol3.value().charAt(j) === "C" || ol3.value().charAt(j) === "G"){
+          myNewTemp++;
+        }
+      }
+      text("United letters : " + myNewTemp , scaler / 2, height - scaler * 1.5);
+    }
+    if(autoMode){
+      text("Mode : auto", scaler / 2, height - scaler * 2.5);
+    }else{
+      text("Mode : manual", scaler / 2, height - scaler * 2.5);
+    }
+  }else if(page === 2){
+    //SHOW PAIRS
+    fill(150, 255, 50);
+    rect(5, height - scaler * 3.5 , 10 + scaler * 7,  scaler * 3.25 );
+    fill(0, 0, 0);
+    text("Pairs: " + rnaScene2.pairs, 10, height - scaler / 2 );
+    //SHOW ARRAY LENGTH
+    text("Array.length: " + rnaScene2.ArrayOfNucleos.length , 10, height - 1.5 * scaler);
+    //SHOW MODE
+    if(autoModePage2){
+      fill(255, 0, 0);
+      text("Auto", 10, height - 2.5 * scaler);
+      fill(255);
+      text('Calculated ' + memoryConsumed + ' variations', 5, height / 2);
+    }else{
+      fill(0, 255, 0);
+      text("Manual", 10, height - 2.5 * scaler);
+    }
   }
 }
 
@@ -108,7 +128,8 @@ function showObjects(){
     showMemory();
   }else if(page === 2){
     rnaScene2.showGivenStructure();
-  }if(page === 3){
+    showMemory();
+  }else if(page === 3){
 
   }
   if(page !== 0){

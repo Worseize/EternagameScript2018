@@ -55,8 +55,9 @@
    - Add 3rd oligo input (page1)
 
 ### Last update:
-   -libraries removed from github (now users load them from other directory)
-   -fixed bug with rna in page 2 (can`t move  Shift + WASD) 
+   - 2D engine added base folding
+   - [x] Fixed bug: Scaling now does not update whole calculations only redraw existing rna
+   - shows amount of calculations that was done in auto mode on page 2
 
 ### CODE STRUCTURE:
   - Pages

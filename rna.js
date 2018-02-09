@@ -71,6 +71,11 @@ class Rna{
 		const part6X = part2X + baseSize;
 		let part4Y;
 	    let part5Y;
+	    //CHECK CONNECTIONS BETWEEN BASES IF TRUE THEN NOTHInG ELSE UNCONNECT PAIRS
+	    let s;
+		let f;
+		const allPairs = (this.ArrayOfNucleos.length - (this.ArrayOfNucleos.length - this.endIndex) - this.loopBases - this.startIndex) / 2;
+		const startPart3ForConnections = allPairs + this.startIndex;
 
 		//PRELOGIC , HOW MANY BASES IN LOOP CENTER , DEPENDS ON AMOUNT OF ELEMENTS IN LOOP (ODD OR EVEN) 
 		if(this.loopBases % 2 === 0){
@@ -99,6 +104,19 @@ class Rna{
 		if(this.loopBases > 2 && (this.endIndex - this.startIndex - this.loopBases) % 2 === 0){
 			for(let i = 0; i < this.ArrayOfNucleos.length; i++){
 				// FUNCTION SHORTCUTS --> to make code more readable 
+				let checkConnections = () => {
+					s = this.ArrayOfNucleos[i]; //start++ 
+					f = this.ArrayOfNucleos[this.endIndex - i + this.startIndex - 1];//end--
+					if( (s === "A" && f === "U") ||
+					    (s === "U" && (f === "A" || f === "G")) ||
+					    (s === "G" && (f === "U" || f === "C")) || 
+					    (s === "C" && f === "G")
+					){
+						return 0;
+					}else{
+						return baseSize;
+					}
+				}
 				let addColor = () => {
 					if(this.ArrayOfNucleos[i] === "A"){
 						fill(255, 255, 0);
@@ -128,7 +146,7 @@ class Rna{
 						x = oneHalfSize + i * baseSize + this.translateX;
 						y = oneHalfSize + this.translateY;
 					}else if(i <  startPart3){// part2
-						x = part2X + this.translateX;
+						x = part2X + this.translateX - checkConnections();
 						y = twoHalf + (i - this.startIndex) * baseSize + this.translateY;
 					}else if(i < startPart6){ // parts (3,4,5)
 						if(i < startPart4){ // part3
@@ -142,7 +160,7 @@ class Rna{
 							y = part5Y + (startPart5 - i) * baseSize + this.translateY;
 						}
 					}else if(i < startPart7){ // part6
-						x = part6X + this.translateX;
+						x = part6X + this.translateX + checkConnections();
 						y = part5Y + (startPart5 - i) * baseSize + this.translateY;
 					}else{ // part7
 						x = threehalfSize + (i -this.endIndex + this.startIndex) * baseSize + this.translateX;
@@ -154,12 +172,6 @@ class Rna{
 				ellipse(x, y, baseSize, baseSize);
 				addLetters();
 			}
-			//SHOW PAIRS (OUTPUTS amount of bounded pairs)
-			fill(150, 255, 50);
-			rect(5, height - 65, 175, 60);
-			fill(0, 0, 0);
-			text("pairs: " + this.pairs, 20, height - 15);
-			text("Array.length: " + this.ArrayOfNucleos.length , 20, height - 45);
 		}else{ // if wrong input
 			fill(255);
 			if((this.endIndex - this.startIndex - this.loopBases) % 2 !== 0){
