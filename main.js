@@ -82,6 +82,10 @@ function draw(){
     }
     showObjects();
     start = false;
-    //console.log(document.getElementsByTagName("*").length);
+    if(!(document.getElementsByTagName("*").length === 89)){
+      console.log("Infinite loop or new element was inserted");
+      text("Omg you are insert new elements , how you did that ? It will slow down this script", width / 2 , height / 2 );
+    }
+    
   }
 }

@@ -85,9 +85,6 @@ class Rna{
 		    startPart7 = startPart6 + pairs;
 
 		    part4X = part2X;
-
-		    part4Y = halfSize + (startPart4 - this.startIndex + 2) * baseSize;
-		    part5Y = part4Y - baseSize;
 		}else{
 			startPart4 = (this.loopBases - 1) / 2 + startPart3; // before center loop 
 			startPart5 = startPart4 + 1; // center loop 1 element long
@@ -95,10 +92,9 @@ class Rna{
 			startPart7 = startPart6 + pairs;
 
 			part4X = part2X + halfSize;
-
-			part4Y = halfSize + (startPart4 - this.startIndex + 2) * baseSize;
-		    part5Y = part4Y - baseSize; 
 		}
+		part4Y = halfSize + (startPart4 - this.startIndex + 2) * baseSize;
+		part5Y = part4Y - baseSize;
 
 		//VISUALISATION OF 2D miRNA STRUCTURE
 		if(this.loopBases > 2 && (this.endIndex - this.startIndex - this.loopBases) % 2 === 0){

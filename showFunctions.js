@@ -1,7 +1,7 @@
 function showHelpMenu(){
   background(12); 
   fill(155, 155, 0);
-  text(" Z | X => change page : BACKWARD | FORWARD", 0, scaler * 1.25);
+  text(" Shift + (1 || 2 || 3 || 4) => SWITCH PAGE", 0, scaler * 1.25);
   text(" Q | W => move oligo location ( Y - axis ) : UP | DOWN" , 0, scaler * 2.25);
   text(" mouse wheel -/+' => scale canvas elements : DOWN | UP" , 0, scaler * 3.25);
   text(" B | T => scale canvas elements : DOWN | UP" , 0, scaler * 4.25);
@@ -41,7 +41,7 @@ function showHelpMenu(){
 function showMemory(){
   if(page === 1){
     fill(150, 255, 50);
-    rect(scaler/4, height - scaler * 3.5 , scaler * 10 + 4 * log(memory.length), scaler * 3.25);
+    rect(scaler/4, height - scaler * 3.5 , scaler * 10 + 5 * log((ol1.value().length + ol2.value().length) * (memoryPosition+1)), scaler * 3.25);
     fill(0);
     if(memory.length > 0){
       text("Memory position : " + (memoryPosition + 1) + "/" + memory.length  , scaler / 2, height - scaler/2);
@@ -77,7 +77,11 @@ function showMemory(){
       fill(255, 0, 0);
       text("Auto", 10, height - 2.5 * scaler);
       fill(255);
-      text('Calculated ' + memoryConsumed + ' variations', 5, height / 2);
+      if(memoryConsumed < 200000){
+        text('Calculated ' + memoryConsumed + ' variations', 5, height / 2);
+      }else{
+        text('CPU protection 200K+ operations passed , Solution not found because of interruption' , 5, height / 2);
+      }
     }else{
       fill(0, 255, 0);
       text("Manual", 10, height - 2.5 * scaler);

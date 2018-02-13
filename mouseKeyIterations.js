@@ -91,16 +91,12 @@ keyReleased = function(){
       }
     }else if(keyCode === 72){//H
       if(rnaScene2.loopBases > 3){
-        rnaScene2.startIndex++;
-        rnaScene2.loopBases--;
         rnaScene2.translateX -= rnaScene2.baseSize * scaler;
         ol6Start.value(+ol6Start.value() + 1);
         ol6Loop.value(+ol6Loop.value() - 1);
       }
     }else if(keyCode === 70){//F
       if(+ol6Start.value() > 0){
-        rnaScene2.startIndex--;
-        rnaScene2.loopBases++;
         rnaScene2.translateX += rnaScene2.baseSize * scaler;
         ol6Start.value(+ol6Start.value() - 1);
         ol6Loop.value(+ol6Loop.value() + 1);
@@ -108,15 +104,11 @@ keyReleased = function(){
     }else if(keyCode === 86){//V
       let rightTail = rnaScene2.ArrayOfNucleos.length - rnaScene2.endIndex;
       if(rightTail > 0){
-        rnaScene2.endIndex++;
-        rnaScene2.loopBases++;
         ol6End.value(+ol6End.value() + 1);
         ol6Loop.value(+ol6Loop.value() + 1);
       }
     }else if(keyCode === 78){//N
       if(+ol6Loop.value() > 3){
-        rnaScene2.endIndex--;
-        rnaScene2.loopBases--;
         ol6End.value(+ol6End.value() - 1);
         ol6Loop.value(+ol6Loop.value() - 1);
       }
@@ -150,19 +142,7 @@ keyReleased = function(){
   }
 
 //  ----------------------------------------------- ALWAYS -----------------------------------------
-  if(keyCode === 90){//Z
-    if(page > 0){
-      page--;
-    }else{
-      page = 3;
-    }
-  }else if(keyCode === 88){//X
-    if(page < 3){
-      page++;
-    }else{
-      page = 0;
-    }
-  }else if(keyCode === 27){//ESC
+  if(keyCode === 27){//ESC
     if(page != 0){
       page = 0;
     }else{
@@ -174,16 +154,26 @@ keyReleased = function(){
   }else if(keyCode === 66){//B
     scaler-=1;
     showObjects();
+  }else if(keyIsDown(16)){
+    if(keyCode === 49){
+      page = 0;
+    }else if(keyCode === 50){
+      page = 1;
+    }else if(keyCode === 51){
+      page = 2;
+    }else if(keyCode === 52){
+      page = 3;
+    }
   }
-  if(keyCode === 27 || keyCode === 88 || keyCode === 90){
+  if(keyCode === 27 || keyCode === 49 || keyIsDown(16)  && (keyCode === 50 || keyCode === 51 || keyCode === 52)){
     start = true;
   }
 }
 
 mouseReleased = function(){
   if(page === 1){
-    if(keyIsPressed && event.button === 0){ //LeftMouse Click on Oligo => change letter
-      if(autoMode === false && keyCode === 16){ //Shift
+    if(autoMode === false && keyIsPressed && event.button === 0){ //LeftMouse Click on Oligo => change letter
+      if(keyIsDown(16)){ //Shift
         if(mouseY > 50 * qwScaler * oligo1PY - scaler / 2 && mouseY < 50 * qwScaler * oligo1PY + scaler / 2){
           let temp = round((mouseX - scaler / 2) / scaler);
           changeLetter(temp , 1);
@@ -194,7 +184,7 @@ mouseReleased = function(){
           changeLetter(temp , 2);
           updatePage1();
         }
-      }else if(autoMode === false && keyCode === 17){ //Ctrl
+      }else if(keyCode === 17){ //Ctrl
         if(mouseY > 50 * qwScaler * oligo1PY - scaler / 2 && mouseY < 50 * qwScaler * oligo1PY + scaler / 2){
           let temp = round((mouseX - scaler / 2) / scaler);
           addLetter(temp , 1);
@@ -205,7 +195,7 @@ mouseReleased = function(){
           addLetter(temp , 2);
           updatePage1();
         }
-      }else if(autoMode === false && keyCode === 18){ //Alt
+      }else if(keyCode === 18){ //Alt
         if(mouseY > 50 * qwScaler * oligo1PY - scaler / 2 && mouseY < 50 * qwScaler * oligo1PY + scaler / 2){
           let temp = round((mouseX - scaler / 2) / scaler);
           removeLetter(temp , 1);
@@ -219,9 +209,56 @@ mouseReleased = function(){
       }
     }
   }else if(page === 2){
-    if(keyIsPressed && event.button === 0){
-      if(keyCode === 16){
-        
+//------------------------------------2D into 1D transformation engine
+    if(autoModePage2 === false && keyIsPressed && event.button === 0){
+      if(keyIsDown(16)){
+        if(mouseX > rnaScene2.translateX + rnaScene2.baseSize * scaler && mouseY > rnaScene2.translateY + rnaScene2.baseSize * scaler){ //mouse at whole rna area
+          let temp;
+          const baseTranslator = scaler * rnaScene2.baseSize * 1.5;
+          const baseSizeTemp = rnaScene2.baseSize * scaler;
+          const minY = rnaScene2.translateY + baseSizeTemp;
+          const minX = rnaScene2.translateX + baseSizeTemp;
+          const pairsTemp = (rnaScene2.endIndex - rnaScene2.loopBases - rnaScene2.startIndex) / 2;
+          const maxY = minY + ((rnaScene2.endIndex - rnaScene2.startIndex ) / 2 + 1) * baseSizeTemp;
+          const centerIsEven = rnaScene2.loopBases % 2 === 0;
+          if(mouseY > maxY){ // bottom border of rna
+          }else if( mouseY > minY && mouseY < minY + baseSizeTemp){//mouse at part1 || part6 
+            //remember ORIGIN [x, y] = [baseSize * scaler * 1.5, baseSize * scaler * 1.5]
+            if(      mouseX < minX + baseSizeTemp  + (rnaScene2.startIndex - 1) * baseSizeTemp ){ // part 1 
+              temp = round((( mouseX - (rnaScene2.translateX + baseSizeTemp * 1.5)) / baseSizeTemp));
+            }else if(mouseX > minX + baseSizeTemp * 3 + (rnaScene2.startIndex - 1) * baseSizeTemp ){ //part6
+              temp = round((( mouseX - (rnaScene2.translateX + baseSizeTemp * 3.5)) / baseSizeTemp)) + (rnaScene2.endIndex - rnaScene2.startIndex);
+            }
+
+          }else if(mouseY > minY + ((rnaScene2.endIndex - rnaScene2.startIndex) / 2) * baseSizeTemp){ // part 4
+            if(mouseX > minX + baseSizeTemp + (rnaScene2.startIndex - 1) * baseSizeTemp  && 
+               mouseX < minX + baseSizeTemp * 3 + (rnaScene2.startIndex - 1) * baseSizeTemp )  { // bottom border of rna
+              if(centerIsEven){  
+                if(mouseX < minX + baseSizeTemp * 2 + (rnaScene2.startIndex - 1) * baseSizeTemp){
+                  temp = (rnaScene2.endIndex + rnaScene2.startIndex) / 2 - 1;
+                }else{
+                  temp = (rnaScene2.endIndex + rnaScene2.startIndex) / 2;
+                }
+              }else{
+                temp = (rnaScene2.endIndex + rnaScene2.startIndex - 1) / 2;
+              }
+            }
+          }else if(mouseY > minY && mouseY < minY + (pairsTemp + round(rnaScene2.loopBases / 2)) * baseSizeTemp && 
+                   mouseX > minX + (rnaScene2.startIndex - 1) * baseSizeTemp && 
+                   mouseX < minX + (rnaScene2.startIndex + 1) * baseSizeTemp){ // part 2,3
+            temp = round((mouseY - (minY + (pairsTemp + 1.5) * baseSizeTemp)) / baseSizeTemp) + pairsTemp + rnaScene2.startIndex; 
+          }else if(mouseY > minY && mouseY < maxY && 
+                   mouseX > minX + (rnaScene2.startIndex + 1) * baseSizeTemp && 
+                   mouseX < minX + (rnaScene2.startIndex + 3) * baseSizeTemp){ // part 5,6
+            if(centerIsEven){
+              temp = round((maxY - mouseY + baseSizeTemp / 2) / baseSizeTemp) + pairsTemp + rnaScene2.startIndex + round(rnaScene2.loopBases / 2 - 1); 
+            }else{
+              temp = round((maxY - mouseY - baseSizeTemp / 2) / baseSizeTemp ) + pairsTemp + rnaScene2.startIndex + (rnaScene2.loopBases - 1) / 2; 
+            }
+          }
+          changeLetter(temp, 6);
+          updatePage2();
+        }
       }
     }
   }
@@ -412,9 +449,30 @@ function changeLetter(position, numberOfOligo){
       tempor = ol2.value().replaceAt(position - parseInt(ol2Position.value()),"A");
       ol2.value(tempor);
     }
+  }else if(numberOfOligo == 6){
+    if(rnaScene2.ArrayOfNucleos[position] == "A"){
+      rnaScene2.ArrayOfNucleos[position] = "U";
+      tempor = ol6.value().replaceAt((position),"U");
+      ol6.value(tempor);
+    }else if(rnaScene2.ArrayOfNucleos[position] == "U"){
+      rnaScene2.ArrayOfNucleos[position] = "G";
+      tempor = ol6.value().replaceAt((position),"G");
+      ol6.value(tempor);
+    }else if(rnaScene2.ArrayOfNucleos[position] == "G"){
+      rnaScene2.ArrayOfNucleos[position] = "C";
+      tempor = ol6.value().replaceAt((position),"C");
+      ol6.value(tempor);
+    }else if(rnaScene2.ArrayOfNucleos[position] == "C"){
+      rnaScene2.ArrayOfNucleos[position] = "E";
+      tempor = ol6.value().replaceAt((position),"E");
+      ol6.value(tempor);
+    }else if(rnaScene2.ArrayOfNucleos[position] == "E"){
+      rnaScene2.ArrayOfNucleos[position] = "A";
+      tempor = ol6.value().replaceAt((position),"A");
+      ol6.value(tempor);
+    }
   }
 }
-
 function addLetter(position, numberOfOligo){
   let tempor;
   if(numberOfOligo == 1){

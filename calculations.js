@@ -167,7 +167,7 @@ function findRnaPage2(){
   for(let i = iS; i < iE; i++){
     for(let j = jS; j < jE; j++){
       for(let k = kS; k < kE; k++){
-        if((k - j - i) % 2  === 0 ){
+        if((k - j - i) % 2  === 0 ){ // if loop does not consist new loops between pairing bases 
           tempRna = new Rna(temp, i, j, k, 0, 1.2 , width / 3 , 0);
           tempRna.calculateHairpinStemPairs(); // calculate pairs
           if(tempRna.pairs > 4){
@@ -175,11 +175,12 @@ function findRnaPage2(){
           }
         }
         if(k + j * kBit + i * kBit * jBit > 400000){ // if out of memory
-          console.log("CPU protection 400K+ operations passed , Returning...");
+          console.log("CPU protection 200K+ operations passed , Returning...");
+          memoryConsumed = (k + j * kBit + i * kBit * jBit) / 2;
           return memoryPage2;
         }
-        if(i === iE - 1 && j === jE - 1 && k > kE - 2 ){
-          memoryConsumed = (k + j * kBit + i * kBit * jBit);
+        if(i === iE - 1 && j === jE - 1 && k > kE - 2 ){ // if last iteration
+          memoryConsumed = (k + j * kBit + i * kBit * jBit) / 2;
         }
       }
     }

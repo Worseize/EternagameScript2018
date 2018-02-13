@@ -13,7 +13,7 @@
 1. __On all pages__
      - __Save .json File__ => (save into .json , only current state from memory at memoryPosition) __ONLY ONE STATE__ => ( memoryPosition / max ).  
      - __Load .json File__ => __ONLY ONE STATE__ (First object from .json file).
-     - __Z | X__ => switch page __BACKWARD | FORWARD__
+     - __Shift__ + __(1 || 2 || 3 || 4)__ => __SWITCH PAGE__
      - __T | B__ => scale canvas elements __DOWN | UP__
      - __mouseWheel + | -__ => scale canvas elements __DOWN | UP__ 
      - __ESC__ - go to helpMenu | go to State All page
@@ -34,11 +34,16 @@
      - __In auto mode__
          - __V | N__ => change memory position __LOWER | HIGHER__
 3. __On page 2 (State 1)__
+    - __In all modes__
+        - __SPACE__ => change mode auto | manual 
+    - __In manual mode__
      - __R | Y__ => move loop to  __LEFT | RIGHT__
      - __F | H__ => move left tail to loop __IN | OUT__
      - __V | N__ => move right tail to loop __IN | OUT__
      - __SHIFT + W | S__ => move whole RNA __UP | DOWN__
      - __SHIFT + A | D__ => move whole RNA __LEFT | RIGHT__
+     - __Shift__ + __CLICK__ ==> change nuclebase letter
+    - __In auto mode__
 
 ## input letters that allowed : 
 - A (Adenine)
@@ -54,10 +59,14 @@
    - Shift + Click Events on 2D Engine
    - Add 3rd oligo input (page1)
 
+### Known bugs:
+   - On Page2 :
+     - rna Origin not at [0, 0]  it is at: 1.5 * baseSize * scaler => need to be at [0, 0] in future
+     - if rna have odd loop then user should mouseClick 1/2 base higher to catch (parts 2,3,4,5,6)  
+
 ### Last update:
-   - 2D engine added base folding
-   - [x] Fixed bug: Scaling now does not update whole calculations only redraw existing rna
-   - shows amount of calculations that was done in auto mode on page 2
+   - On page2 :
+   - __Shift__ + __CLICK__ ==> change nuclebase letter
 
 ### CODE STRUCTURE:
   - Pages

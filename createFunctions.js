@@ -18,7 +18,7 @@ function createDomElements(){
   newVersion.style("left", "450px");
   newVersion.addClass('staticFirstLine');
 
-  version = createSpan('Script version 2.1.0 last update 09.02.2018');
+  version = createSpan('Script version 2.2.0 last update 13.02.2018');
   version.style("left", "175px");
   version.addClass('staticFirstLine');
 
@@ -356,6 +356,7 @@ function config(){
 }
 //-------------------------reCreate canvas objects 
 function updatePage1(){
+  memoryPosition = 0;
   errorsFinder();
   //CREATE OLIGOS
   myOligo1 = new Oligo(oligo1PY * qwScaler, oligo1);
