@@ -1,20 +1,21 @@
 function showHelpMenu(){
   background(12); 
   fill(155, 155, 0);
-  text(" Shift + (1 || 2 || 3 || 4) => SWITCH PAGE", 0, scaler * 1.25);
-  text(" Q | W => move oligo location ( Y - axis ) : UP | DOWN" , 0, scaler * 2.25);
-  text(" mouse wheel -/+' => scale canvas elements : DOWN | UP" , 0, scaler * 3.25);
-  text(" B | T => scale canvas elements : DOWN | UP" , 0, scaler * 4.25);
-  text(" SPACE => change mode : AUTO | MANUAL", 0, scaler * 5.25);
+  text(" Shift + (1 | 2 | 3 | 4) => SWITCH PAGE", 0, scaler * 1.25);
+  text(" Shift + W | S => move oligo location ( Y - axis ) : UP | DOWN" , 0, scaler * 2.25);
+  text(" Shift + A | D => move oligo6 on page3 ( X - axis ) : LEFT | RIGHT" , 0, scaler * 3.25);
+  text(" mouse wheel -/+' => scale canvas elements : DOWN | UP" , 0, scaler * 4.25);
+  text(" B | T => scale canvas elements : DOWN | UP" , 0, scaler * 5.25);
+  text(" SPACE => change mode : AUTO | MANUAL", 0, scaler * 6.25);
   push();
-  translate(0, scaler);
+  translate(0, scaler * 2);
   fill(155, 155, 255);
   text(" In manual mode: ", 0, scaler * 6.25);
   text(" leftClick + Shift on letter to change it A => U => G => C => E => A" , scaler, scaler * 7.25);
   text(" leftClick + Ctrl on letter to add 'E'" , scaler, scaler * 8.25);
   text(" leftClick + Alt on letter to remove it" , scaler, scaler * 9.25);
   text(" SHIFT + Q | E => move oligo1 to LEFT | RIGHT", scaler, scaler * 10.25);
-  text(" SHIFT + A | D => move oligo1 to LEFT | RIGHT", scaler, scaler * 11.25);
+  text(" SHIFT + A | D => move oligo2 to LEFT | RIGHT", scaler, scaler * 11.25);
   for(let i = 0; i < 5; i++){
     text("*", scaler / 2, scaler / 4 + 7.25 * scaler + (scaler * i));
   }
@@ -65,27 +66,32 @@ function showMemory(){
       text("Mode : manual", scaler / 2, height - scaler * 2.5);
     }
   }else if(page === 2){
-    //SHOW PAIRS
-    fill(150, 255, 50);
-    rect(5, height - scaler * 3.5 , 10 + scaler * 7,  scaler * 3.25 );
-    fill(0, 0, 0);
-    text("Pairs: " + rnaScene2.pairs, 10, height - scaler / 2 );
-    //SHOW ARRAY LENGTH
-    text("Array.length: " + rnaScene2.ArrayOfNucleos.length , 10, height - 1.5 * scaler);
     //SHOW MODE
     if(autoModePage2){
+      fill(150, 255, 50);
+      rect(5, height - scaler * 5.5 , 10 + scaler * 13.5,  scaler * 5.25 );
       fill(255, 0, 0);
-      text("Auto", 10, height - 2.5 * scaler);
-      fill(255);
-      if(memoryConsumed < 200000){
-        text('Calculated ' + memoryConsumed + ' variations', 5, height / 2);
+      text("Auto", 10, height - 4.5 * scaler);
+      fill(0);
+      if(memoryPage2.length > 0){
+        text('MemoryPosition : ' + (memoryPositionPage3 + 1) , 10, height - scaler * 2.5)
       }else{
-        text('CPU protection 200K+ operations passed , Solution not found because of interruption' , 5, height / 2);
+        text('Less than 5 pairs => not folded', 10, height - scaler * 2.5)
+      }
+      if(memoryConsumed < 200000){
+        text('Calculated : ' + memoryConsumed + ' variations', 10, height - scaler * 3.5);
+      }else{
+        text('CPU protection 200K+ operations passed , Solution not found because of interruption' , 10, height / 2);
       }
     }else{
+      fill(150, 255, 50);
+      rect(5, height - scaler * 3.5 , 10 + scaler * 7,  scaler * 3.25 );
       fill(0, 255, 0);
       text("Manual", 10, height - 2.5 * scaler);
+      fill(0);
     }
+    text("Pairs : " + rnaScene2.pairs, 10, height - scaler / 2 );
+    text("Bases : " + rnaScene2.ArrayOfNucleos.length , 10, height - 1.5 * scaler);
   }
 }
 
@@ -95,20 +101,20 @@ function showPage(){
     rect(width / 2, height - scaler * 1.5 , scaler * 5.25, scaler * 1.25);
     rect(width * 0.7, height - scaler * 1.5 , scaler * 16, scaler * 1.25);
     fill(0);
-    text(" Help Menu", width / 2, height - scaler * 0.5);
+    text(" Page 1", width / 2, height - scaler * 0.5);
     text(" 'ESC' => go to State all showPage", width * 0.7, height - scaler * 0.5);
   }else if(page === 1){
     rect(width / 2, height - scaler * 1.5 , scaler * 4.5, scaler * 1.25);
     fill(0);
-    text(" State All ", width / 2, height - scaler * 0.5);
+    text(" Page 2", width / 2, height - scaler * 0.5);
   }else if(page === 2){
     rect(width / 2, height - scaler * 1.5 , scaler * 4, scaler * 1.25);
     fill(0);
-    text(" State 1", width / 2, height - scaler * 0.5);
+    text(" Page 3", width / 2, height - scaler * 0.5);
   }else if(page === 3){
     rect(width / 2, height - scaler * 1.5 , scaler * 4, scaler * 1.25);
     fill(0);
-    text(" State 2", width / 2, height - scaler * 0.5);
+    text(" Page 4", width / 2, height - scaler * 0.5);
   }
   if(page !== 0){
     fill(150, 255, 50);

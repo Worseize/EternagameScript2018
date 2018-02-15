@@ -74,7 +74,22 @@ keyReleased = function(){
     }
 
 //  ----------------------------------------------- PAGE 2 (STATE 1) -----------------------------------------
-  }else if(page === 2){ 
+  }else if(page === 2){
+    if(autoModePage2){
+      if(keyCode === 86){//V
+        if(memoryPositionPage3 > 0){
+          memoryPositionPage3--;
+        }else{
+          memoryPositionPage3 = memoryPage2.length - 1;
+        }
+      }else if(keyCode === 78){//N
+        if(memoryPositionPage3 < memoryPage2.length - 1){
+          memoryPositionPage3++;
+        }else{
+          memoryPositionPage3 = 0;
+        }
+      }
+    }
     if(keyCode === 89){//R
       if(rnaScene2.ArrayOfNucleos.length > +ol6End.value()){
         rnaScene2.startIndex++;
@@ -130,6 +145,7 @@ keyReleased = function(){
         ol6End.style("background-color","green");
       }else{
         autoModePage2 = true;
+        memoryPositionPage3 = 0;
         ol6Start.style("background-color","white");
         ol6Loop.style("background-color","white");
         ol6End.style("background-color","white");
@@ -150,9 +166,11 @@ keyReleased = function(){
     }
   }else if(keyCode === 84){//T
     scaler+=1;
+    textSize(scaler);
     showObjects();
   }else if(keyCode === 66){//B
     scaler-=1;
+    textSize(scaler);
     showObjects();
   }else if(keyIsDown(16)){
     if(keyCode === 49){
@@ -221,7 +239,7 @@ mouseReleased = function(){
           const pairsTemp = (rnaScene2.endIndex - rnaScene2.loopBases - rnaScene2.startIndex) / 2;
           const maxY = minY + ((rnaScene2.endIndex - rnaScene2.startIndex ) / 2 + 1) * baseSizeTemp;
           const centerIsEven = rnaScene2.loopBases % 2 === 0;
-          if(mouseY > maxY){ // bottom border of rna
+          if(mouseY > maxY + baseSizeTemp / 2){ // bottom border of rna
           }else if( mouseY > minY && mouseY < minY + baseSizeTemp){//mouse at part1 || part6 
             //remember ORIGIN [x, y] = [baseSize * scaler * 1.5, baseSize * scaler * 1.5]
             if(      mouseX < minX + baseSizeTemp  + (rnaScene2.startIndex - 1) * baseSizeTemp ){ // part 1 
@@ -230,7 +248,7 @@ mouseReleased = function(){
               temp = round((( mouseX - (rnaScene2.translateX + baseSizeTemp * 3.5)) / baseSizeTemp)) + (rnaScene2.endIndex - rnaScene2.startIndex);
             }
 
-          }else if(mouseY > minY + ((rnaScene2.endIndex - rnaScene2.startIndex) / 2) * baseSizeTemp){ // part 4
+          }else if(mouseY > minY + ((rnaScene2.endIndex - rnaScene2.startIndex) / 2 + 0.5) * baseSizeTemp){ // part 4
             if(mouseX > minX + baseSizeTemp + (rnaScene2.startIndex - 1) * baseSizeTemp  && 
                mouseX < minX + baseSizeTemp * 3 + (rnaScene2.startIndex - 1) * baseSizeTemp )  { // bottom border of rna
               if(centerIsEven){  
@@ -247,18 +265,120 @@ mouseReleased = function(){
                    mouseX > minX + (rnaScene2.startIndex - 1) * baseSizeTemp && 
                    mouseX < minX + (rnaScene2.startIndex + 1) * baseSizeTemp){ // part 2,3
             temp = round((mouseY - (minY + (pairsTemp + 1.5) * baseSizeTemp)) / baseSizeTemp) + pairsTemp + rnaScene2.startIndex; 
-          }else if(mouseY > minY && mouseY < maxY && 
+          }else if(mouseY > minY && mouseY < maxY + baseSizeTemp / 2 && 
                    mouseX > minX + (rnaScene2.startIndex + 1) * baseSizeTemp && 
-                   mouseX < minX + (rnaScene2.startIndex + 3) * baseSizeTemp){ // part 5,6
-            if(centerIsEven){
+                   mouseX < minX + (rnaScene2.startIndex + 3) * baseSizeTemp && 
+                   centerIsEven){ // part 5,6
               temp = round((maxY - mouseY + baseSizeTemp / 2) / baseSizeTemp) + pairsTemp + rnaScene2.startIndex + round(rnaScene2.loopBases / 2 - 1); 
-            }else{
-              temp = round((maxY - mouseY - baseSizeTemp / 2) / baseSizeTemp ) + pairsTemp + rnaScene2.startIndex + (rnaScene2.loopBases - 1) / 2; 
-            }
+          }else if(mouseY > minY && mouseY < maxY + baseSizeTemp / 2 && 
+                   mouseX > minX + (rnaScene2.startIndex + 1) * baseSizeTemp && 
+                   mouseX < minX + (rnaScene2.startIndex + 3) * baseSizeTemp && 
+                   !centerIsEven){
+            temp = round((maxY - mouseY) / baseSizeTemp) + pairsTemp + rnaScene2.startIndex + (rnaScene2.loopBases - 1) / 2;
           }
           changeLetter(temp, 6);
-          updatePage2();
         }
+        updatePage2();
+      }else if(keyIsDown(17)){
+        if(mouseX > rnaScene2.translateX + rnaScene2.baseSize * scaler && mouseY > rnaScene2.translateY + rnaScene2.baseSize * scaler){ //mouse at whole rna area
+          let temp;
+          const baseTranslator = scaler * rnaScene2.baseSize * 1.5;
+          const baseSizeTemp = rnaScene2.baseSize * scaler;
+          const minY = rnaScene2.translateY + baseSizeTemp;
+          const minX = rnaScene2.translateX + baseSizeTemp;
+          const pairsTemp = (rnaScene2.endIndex - rnaScene2.loopBases - rnaScene2.startIndex) / 2;
+          const maxY = minY + ((rnaScene2.endIndex - rnaScene2.startIndex ) / 2 + 1) * baseSizeTemp;
+          const centerIsEven = rnaScene2.loopBases % 2 === 0;
+          if(mouseY > maxY + baseSizeTemp / 2){ // bottom border of rna
+          }else if( mouseY > minY && mouseY < minY + baseSizeTemp){//mouse at part1 || part6 
+            //remember ORIGIN [x, y] = [baseSize * scaler * 1.5, baseSize * scaler * 1.5]
+            if(      mouseX < minX + baseSizeTemp  + (rnaScene2.startIndex - 1) * baseSizeTemp ){ // part 1 
+              temp = round((( mouseX - (rnaScene2.translateX + baseSizeTemp * 1.5)) / baseSizeTemp));
+            }else if(mouseX > minX + baseSizeTemp * 3 + (rnaScene2.startIndex - 1) * baseSizeTemp ){ //part6
+              temp = round((( mouseX - (rnaScene2.translateX + baseSizeTemp * 3.5)) / baseSizeTemp)) + (rnaScene2.endIndex - rnaScene2.startIndex);
+            }
+
+          }else if(mouseY > minY + ((rnaScene2.endIndex - rnaScene2.startIndex) / 2 + 0.5) * baseSizeTemp){ // part 4
+            if(mouseX > minX + baseSizeTemp + (rnaScene2.startIndex - 1) * baseSizeTemp  && 
+               mouseX < minX + baseSizeTemp * 3 + (rnaScene2.startIndex - 1) * baseSizeTemp )  { // bottom border of rna
+              if(centerIsEven){  
+                if(mouseX < minX + baseSizeTemp * 2 + (rnaScene2.startIndex - 1) * baseSizeTemp){
+                  temp = (rnaScene2.endIndex + rnaScene2.startIndex) / 2 - 1;
+                }else{
+                  temp = (rnaScene2.endIndex + rnaScene2.startIndex) / 2;
+                }
+              }else{
+                temp = (rnaScene2.endIndex + rnaScene2.startIndex - 1) / 2;
+              }
+            }
+          }else if(mouseY > minY && mouseY < minY + (pairsTemp + round(rnaScene2.loopBases / 2)) * baseSizeTemp && 
+                   mouseX > minX + (rnaScene2.startIndex - 1) * baseSizeTemp && 
+                   mouseX < minX + (rnaScene2.startIndex + 1) * baseSizeTemp){ // part 2,3
+            temp = round((mouseY - (minY + (pairsTemp + 1.5) * baseSizeTemp)) / baseSizeTemp) + pairsTemp + rnaScene2.startIndex; 
+          }else if(mouseY > minY && mouseY < maxY + baseSizeTemp / 2 && 
+                   mouseX > minX + (rnaScene2.startIndex + 1) * baseSizeTemp && 
+                   mouseX < minX + (rnaScene2.startIndex + 3) * baseSizeTemp && 
+                   centerIsEven){ // part 5,6
+              temp = round((maxY - mouseY + baseSizeTemp / 2) / baseSizeTemp) + pairsTemp + rnaScene2.startIndex + round(rnaScene2.loopBases / 2 - 1); 
+          }else if(mouseY > minY && mouseY < maxY + baseSizeTemp / 2 && 
+                   mouseX > minX + (rnaScene2.startIndex + 1) * baseSizeTemp && 
+                   mouseX < minX + (rnaScene2.startIndex + 3) * baseSizeTemp && 
+                   !centerIsEven){
+            temp = round((maxY - mouseY) / baseSizeTemp) + pairsTemp + rnaScene2.startIndex + (rnaScene2.loopBases - 1) / 2;
+          }
+          addLetter(temp, 6);
+        }
+        updatePage2();
+      }else if(keyIsDown(18)){
+        if(mouseX > rnaScene2.translateX + rnaScene2.baseSize * scaler && mouseY > rnaScene2.translateY + rnaScene2.baseSize * scaler){ //mouse at whole rna area
+          let temp;
+          const baseTranslator = scaler * rnaScene2.baseSize * 1.5;
+          const baseSizeTemp = rnaScene2.baseSize * scaler;
+          const minY = rnaScene2.translateY + baseSizeTemp;
+          const minX = rnaScene2.translateX + baseSizeTemp;
+          const pairsTemp = (rnaScene2.endIndex - rnaScene2.loopBases - rnaScene2.startIndex) / 2;
+          const maxY = minY + ((rnaScene2.endIndex - rnaScene2.startIndex ) / 2 + 1) * baseSizeTemp;
+          const centerIsEven = rnaScene2.loopBases % 2 === 0;
+          if(mouseY > maxY + baseSizeTemp / 2){ // bottom border of rna
+          }else if( mouseY > minY && mouseY < minY + baseSizeTemp){//mouse at part1 || part6 
+            //remember ORIGIN [x, y] = [baseSize * scaler * 1.5, baseSize * scaler * 1.5]
+            if(      mouseX < minX + baseSizeTemp  + (rnaScene2.startIndex - 1) * baseSizeTemp ){ // part 1 
+              temp = round((( mouseX - (rnaScene2.translateX + baseSizeTemp * 1.5)) / baseSizeTemp));
+            }else if(mouseX > minX + baseSizeTemp * 3 + (rnaScene2.startIndex - 1) * baseSizeTemp ){ //part6
+              temp = round((( mouseX - (rnaScene2.translateX + baseSizeTemp * 3.5)) / baseSizeTemp)) + (rnaScene2.endIndex - rnaScene2.startIndex);
+            }
+
+          }else if(mouseY > minY + ((rnaScene2.endIndex - rnaScene2.startIndex) / 2 + 0.5) * baseSizeTemp){ // part 4
+            if(mouseX > minX + baseSizeTemp + (rnaScene2.startIndex - 1) * baseSizeTemp  && 
+               mouseX < minX + baseSizeTemp * 3 + (rnaScene2.startIndex - 1) * baseSizeTemp )  { // bottom border of rna
+              if(centerIsEven){  
+                if(mouseX < minX + baseSizeTemp * 2 + (rnaScene2.startIndex - 1) * baseSizeTemp){
+                  temp = (rnaScene2.endIndex + rnaScene2.startIndex) / 2 - 1;
+                }else{
+                  temp = (rnaScene2.endIndex + rnaScene2.startIndex) / 2;
+                }
+              }else{
+                temp = (rnaScene2.endIndex + rnaScene2.startIndex - 1) / 2;
+              }
+            }
+          }else if(mouseY > minY && mouseY < minY + (pairsTemp + round(rnaScene2.loopBases / 2)) * baseSizeTemp && 
+                   mouseX > minX + (rnaScene2.startIndex - 1) * baseSizeTemp && 
+                   mouseX < minX + (rnaScene2.startIndex + 1) * baseSizeTemp){ // part 2,3
+            temp = round((mouseY - (minY + (pairsTemp + 1.5) * baseSizeTemp)) / baseSizeTemp) + pairsTemp + rnaScene2.startIndex; 
+          }else if(mouseY > minY && mouseY < maxY + baseSizeTemp / 2 && 
+                   mouseX > minX + (rnaScene2.startIndex + 1) * baseSizeTemp && 
+                   mouseX < minX + (rnaScene2.startIndex + 3) * baseSizeTemp && 
+                   centerIsEven){ // part 5,6
+              temp = round((maxY - mouseY + baseSizeTemp / 2) / baseSizeTemp) + pairsTemp + rnaScene2.startIndex + round(rnaScene2.loopBases / 2 - 1); 
+          }else if(mouseY > minY && mouseY < maxY + baseSizeTemp / 2 && 
+                   mouseX > minX + (rnaScene2.startIndex + 1) * baseSizeTemp && 
+                   mouseX < minX + (rnaScene2.startIndex + 3) * baseSizeTemp && 
+                   !centerIsEven){
+            temp = round((maxY - mouseY) / baseSizeTemp) + pairsTemp + rnaScene2.startIndex + (rnaScene2.loopBases - 1) / 2;
+          }
+          removeLetter(temp, 6);
+        }
+        updatePage2();
       }
     }
   }
@@ -399,7 +519,8 @@ function changeScaler(event){
     scaler -= 1;
   }else if(event.deltaY < 5){
     scaler += 1;
-  } 
+  }
+  textSize(scaler);
   showObjects();
 }
 
@@ -481,6 +602,9 @@ function addLetter(position, numberOfOligo){
   }else if(numberOfOligo == 2){
     tempor = ol2.value().addAt(position - parseInt(+ol2Position.value()));
     ol2.value(tempor);
+  }else if(numberOfOligo === 6){
+    tempor = ol6.value().addAt(position);
+    ol6.value(tempor);
   }
 }
 
@@ -492,5 +616,8 @@ function removeLetter(position, numberOfOligo){
   }else if(numberOfOligo == 2){
     tempor = ol2.value().removeAt(position - parseInt(+ol2Position.value()));
     ol2.value(tempor);
+  }else if(numberOfOligo === 6){
+    tempor = ol6.value().removeAt(position);
+    ol6.value(tempor);
   }
 }

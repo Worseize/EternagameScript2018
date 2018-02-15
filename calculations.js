@@ -184,11 +184,11 @@ function findRnaPage2(){
         }
       }
     }
-  }
+  } 
   if(memoryPage2.length > 0){
     memoryPage2 = sortObjectsArray(memoryPage2, 'pairs');
     memoryPage2 = memoryPage2.slice(0, 99); // save only 100 best
-    rnaScene2 = memoryPage2[0];
+    rnaScene2 = memoryPage2[memoryPositionPage3];
     ol6Start.value(rnaScene2.startIndex);
     ol6Loop.value(rnaScene2.loopBases);
     ol6End.value(rnaScene2.endIndex);

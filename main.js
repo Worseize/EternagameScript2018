@@ -4,7 +4,7 @@ new p5();
 
 //VARIABLES
 let page = 2, qwSelector = 1, oligo1PY = 1, oligo2PY = 2, oligo3PY = 3, oligo4PY = 4, qwScaler = 1, memoryPosition = 0, scaler = 20,
-    domYLength = 35, rowsInPage1Dom = 5 , rowsInPage2Dom = 2;
+    domYLength = 35, rowsInPage1Dom = 5, rowsInPage2Dom = 2, memoryPositionPage3 = 0;
 //BOOLEANS
 let start = false, autoMode = false, autoModePage2 = false, flag = true , flag2 = true;
 //ARRAYS
@@ -28,6 +28,7 @@ function setup(){
 
 function draw(){
   if(start){ //UPDATE DATA
+    textSize(scaler);
 //--------------------------------------------------------MANUAL PAGE (HELP MENU)---------------------------------------------
     if(page === 0){
 //--------------------------------------------------------PAGE 1 (STATE ALL)--------------------------------------------------

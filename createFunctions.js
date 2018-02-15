@@ -18,7 +18,7 @@ function createDomElements(){
   newVersion.style("left", "450px");
   newVersion.addClass('staticFirstLine');
 
-  version = createSpan('Script version 2.2.0 last update 13.02.2018');
+  version = createSpan('Script version 2.3.0 last update 15.02.2018');
   version.style("left", "175px");
   version.addClass('staticFirstLine');
 
@@ -315,9 +315,9 @@ function config(){
   ol2Position.value("3");
   //-----Page 2 default input 
   ol6.value("GUCGGACAAGGACGUAGACA");
-  ol6Start.value(0);
-  ol6Loop.value(3);
-  ol6End.value(13);
+  ol6Start.value(2);
+  ol6Loop.value(7);
+  ol6End.value(17);
   //hide page0DOM 
   readmeLink.style('display','none');
   //hide page1DOM
