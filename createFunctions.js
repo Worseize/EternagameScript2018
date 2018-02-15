@@ -18,7 +18,7 @@ function createDomElements(){
   newVersion.style("left", "450px");
   newVersion.addClass('staticFirstLine');
 
-  version = createSpan('Script version 2.3.0 last update 15.02.2018');
+  version = createSpan('Script version 2.3.1 last update 15.02.2018');
   version.style("left", "175px");
   version.addClass('staticFirstLine');
 

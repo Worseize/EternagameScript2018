@@ -13,11 +13,11 @@
 1. __On all pages__
      - __Save .json File__ => (save into .json , only current state from memory at memoryPosition) __ONLY ONE STATE__ => ( memoryPosition / max ).  
      - __Load .json File__ => __ONLY ONE STATE__ (First object from .json file).
-     - __Shift__ + __(1 || 2 || 3 || 4)__ => __SWITCH PAGE__
+     - __Shift__ + __(1 | 2 | 3 | 4)__ => __SWITCH PAGE__
      - __T | B__ => scale canvas elements __DOWN | UP__
-     - __mouseWheel + | -__ => scale canvas elements __DOWN | UP__ 
-     - __ESC__ - go to helpMenu | go to State All page
-2. __On page 1 (State all)__
+     - __mouseWheel__ +  __+__ | __-__ => scale canvas elements __DOWN | UP__ 
+     - __ESC__ - go to __page1__ | go to __page2__
+2. __On page 2__
      - __In all modes__
         - __SPACE__ => change mode auto | manual 
         - __SHIFT + W | S__ => move oligo location ( Y - axis ) __UP | DOWN__
@@ -32,7 +32,7 @@
          - __SHIFT + A | D__ => move oligo2 to __LEFT | RIGHT__
      - __In auto mode__
          - __V | N__ => change memory position __LOWER | HIGHER__
-3. __On page 2 (State 1)__
+3. __On page 3__
     - __In all modes__
         - __SPACE__ => change mode auto | manual 
     - __In manual mode__
@@ -68,31 +68,32 @@
 
 ### Last update:
    - On page2 :
-    - Fixed bugs :
-     - mouseClick event if loop is odd fixed
-     - textSize when scale fixed
-     - pages renamed to 1, 2, 3, 4
-     - memory dislpay added
-    - Added : 
-     - All Shift + Click Events on 2D Engine [remove | add | change] letter.
-     - readme and page 1 updated
+     - Fixed bugs :
+       - mouseClick event if loop is odd fixed
+       - textSize when scale fixed
+       - pages renamed to 1, 2, 3, 4
+       - memory dislpay added
+     - Added : 
+       - All Shift + Click Events on 2D Engine [remove | add | change] letter.
+       - readme and page 1 updated
 
 ### CODE STRUCTURE:
   - Pages
-    - page0 manual page ('Help Menu')
-    - page1 1D engine page ('State All')
-    - page2 2D engine page ('State 1')
-    - page3 pictures ('State 2')
+    - page1 manual page
+    - page2 1D engine page 
+    - page3 2D engine page 
+    - page4 empty 
 
 ## Future plans:
-   - Make more functions to wrap the code and make code less in volume
-   - Change rna origin on (page3)
-   - Add 3rd oligo input (page2)
-   - Add Oligos on (page3)
-   - Improove rna step move in maual mode on (page3) (R, Y, F, H, V, N)
+   - Near future :
+     - Make more functions to wrap the code and make code less in volume
+     - Change rna origin on (page3)
+     - Add 3rd oligo input (page2)
+     - Add Oligos on (page3)
+     -Improove rna step move in maual mode on (page3) (R, Y, F, H, V, N)
    - In a distant future :
-    - Improove folding engine (page3) ==> make it better predictor than NuPack
-    - AI solving machine , get data from eternagame.org
+     - Improove folding engine (page3) ==> make it better predictor than NuPack
+     - AI solving machine , get data from eternagame.org
 
 
 ## Have an idea to make it better ? 
