@@ -4,13 +4,13 @@ new p5();
 
 //VARIABLES
 let page = 2, qwSelector = 1, oligo1PY = 1, oligo2PY = 2, oligo3PY = 3, oligo4PY = 4, qwScaler = 1, memoryPosition = 0, scaler = 20,
-    domYLength = 35, rowsInPage1Dom = 5, rowsInPage2Dom = 2, memoryPositionPage3 = 0;
+    domYLength = 35, rowsInPage1Dom = 5 , rowsInPage2Dom = 2;
 //BOOLEANS
-let start = false, autoMode = false, autoModePage2 = false, flag = true , flag2 = true;
+let start = false, autoMode = false, flag = true;
 //ARRAYS
-let memory = [], memoryPage2 = [], oligo1 = [], oligo2 = [], rna1 = [], rna2 = [], errors = [];
+let memory = [], oligo1 = [], oligo2 = [], rna1 = [], rna2 = [], errors = [];
 //Undefined
-let myOligo1, myOligo2, myRna, myRna2, rnaScene2, oldMouseX, oldMouseY, memoryConsumed;
+let myOligo1, myOligo2, myRna, myRna2, rnaScene2, oldMouseX, oldMouseY;
 
 function preload(){
   
@@ -29,6 +29,7 @@ function setup(){
 function draw(){
   if(start){ //UPDATE DATA
     textSize(scaler);
+    background(12);
 //--------------------------------------------------------MANUAL PAGE (HELP MENU)---------------------------------------------
     if(page === 0){
 //--------------------------------------------------------PAGE 1 (STATE ALL)--------------------------------------------------
@@ -75,19 +76,16 @@ function draw(){
         ol2Position.value(memory[memoryPosition].ol2Position);
       }
       updatePage1();
+      start = false;
 //-------------------------------------------------PAGE 2 (STATE 1)-----------------------------------------------------------
     }else if(page === 2){
       updatePage2();
+      rnaScene2.calculateHairpinStemPairs();
+      start = false;
 //-------------------------------------------------PAGE 3 (STATE 2) ----------------------------------------------------------
     }else if(page === 3){
+      start = false;
     }
     showObjects();
-    start = false;
-    if(!(document.getElementsByTagName("*").length === 90)){
-      console.log("Infinite loop or new element was inserted");
-      fill(255);
-      text("Omg you are insert new elements , how you did that ? It will slow down this script", 10 , height / 2 );
-    }
-    
   }
 }

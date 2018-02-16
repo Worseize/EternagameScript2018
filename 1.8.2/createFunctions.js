@@ -10,16 +10,16 @@ function createDomElements(){
   showPage2DOM.style('right','5px');
   showPage2DOM.changed(page2DOMEvent);
 
-  tutorialLink = createA('https://www.youtube.com/watch?v=dYDxDWK1A4U&list=PL7CHTefBrBuj3EMghG_MJ-AuV1Hwmrab6', 'Video tutorials 16.02.2018', '[_parent]');
+  tutorialLink = createA('https://www.youtube.com/watch?v=dYDxDWK1A4U&list=PL7CHTefBrBuj3EMghG_MJ-AuV1Hwmrab6', 'Video tutorials', '[_parent]');
   tutorialLink.style("left", "5px");
   tutorialLink.addClass('staticFirstLine');
 
-  newVersion = createA('https://worseize.github.io/EternagameScript2018/1.8.2', 'version 1.8.2 (07.02.2018)', '[_parent]');
-  newVersion.style("left", "450px");
+  newVersion = createA('https://worseize.github.io/EternagameScript2018/', 'Link to newest version', '[_parent]');
+  newVersion.style("left", "380px");
   newVersion.addClass('staticFirstLine');
 
-  version = createSpan('Script version 2.4.0 last update 16.02.2018');
-  version.style("left", "175px");
+  version = createSpan('Script version 1.8.2 last update 07.02.2018');
+  version.style("left", "100px");
   version.addClass('staticFirstLine');
 
   //CSS class
@@ -28,12 +28,6 @@ function createDomElements(){
     firstLineEls[i].style('position','absolute');
     firstLineEls[i].style('top','5px');
   }
-//---------------------------------------------------PAGE 0 ---------------------------------------------------------
-  readmeLink = createA('https://github.com/Worseize/EternagameScript2018/blob/master/README.md','Link to all options and shortcuts','[_parent]');
-  readmeLink.style("position", "absolute");
-  readmeLink.style("right", "50px");
-  readmeLink.style("top", (domYLength + 50) + 'px');
-  readmeLink.style('font-size','40px');
 //---------------------------------------------------PAGE 1 ---------------------------------------------------------
   specialBr1 = createElement("br");
   specialBr1.addClass('page1ShowBr');
@@ -198,15 +192,6 @@ function createDomElements(){
   ol6End.style("margin-top","5px");
   ol6End.addClass('page2Show');
   ol6End.input(updatePage2);
-  //OUTPUT pairs
-  ol6Pairs = createElement("input","text");
-  ol6Pairs.style("width", 30 + "px");
-  ol6Pairs.style("background-color","white");
-  ol6Pairs.style("text-align","center");
-  ol6Pairs.style("margin-right","5px");
-  ol6Pairs.style("margin-top","5px");
-  ol6Pairs.addClass('page2Show');
-  ol6Pairs.input(updatePage2);
   //OLIGO3 INPUT
   ol6 = createElement("input","text");
   ol6.style("width", (innerWidth - 150) + "px");
@@ -315,21 +300,16 @@ function page2DOMEvent(){
 
 //-------------------------reCreate DOM values 
 function config(){
-  resizeCanvas(innerWidth - 10, innerHeight - domYLength);
-  textSize(scaler);
   //-----Page 1 default input 
   ol1.value("GUCGGACAAGGACGUAGACA");
   ol2.value("GGUGGACAGAGAGAUACAUG");
   ol1Position.value("5");
   ol2Position.value("3");
   //-----Page 2 default input 
-  ol6.value("AAAAAAAACCCUUUUUUUU");
+  ol6.value("GUCGGACAAGGACGUAGACAECAGUCUUGAAUCAGEGUUUGGUAGGUAGUGGUACC");
   ol6Start.value(2);
-  ol6Loop.value(7);
-  ol6End.value(17);
-  ol6Pairs.value(4);
-  //hide page0DOM 
-  readmeLink.style('display','none');
+  ol6Loop.value(15);
+  ol6End.value(55);
   //hide page1DOM
   page1ShowEls = selectAll('.page1Show');
   page1ShowElsBr = selectAll('.page1ShowBr');
@@ -348,6 +328,9 @@ function config(){
   for(let i = 0; i < page2ShowEls.length; i++){
     page2ShowEls[i].style('display','none');
   }
+}
+//-------------------------reCreate canvas objects 
+function updateAll(){
   errorsFinder();
   //CREATE OLIGOS
   myOligo1 = new Oligo(oligo1PY * qwScaler, oligo1);
@@ -361,12 +344,10 @@ function config(){
   for(let i = 0; i < ol6.value().length; i++){
     temp[i] = ol6.value().charAt(i);
   }
-  rnaScene2 = new Rna(temp, +ol6Start.value(),+ol6Loop.value(), +ol6End.value(), +ol6Pairs.value(), 1.2 , width / 3 , 0);
+  rnaScene2 = new Rna(temp, +ol6Start.value(),+ol6Loop.value(), +ol6End.value(), 0, 1.2 , width / 3 , 0);
   start = true;
 }
-//-------------------------reCreate canvas objects 
 function updatePage1(){
-  memoryPosition = 0;
   errorsFinder();
   //CREATE OLIGOS
   myOligo1 = new Oligo(oligo1PY * qwScaler, oligo1);
@@ -379,16 +360,10 @@ function updatePage1(){
 }
 function updatePage2(){
   //CREATE 2D RNA
-  if(autoModePage2){
-    findRnaPage2();
-    start = true;
-  }else{
-    let temp = [];
-    for(let i = 0; i < ol6.value().length; i++){
-      temp[i] = ol6.value().charAt(i);
-    }
-    rnaScene2 = new Rna(temp, +ol6Start.value(),+ol6Loop.value(), +ol6End.value(), 0, 1.2 , rnaScene2.translateX , rnaScene2.translateY);
-    rnaScene2.calculateHairpinStemPairs();
-    start = true;
+  let temp = [];
+  for(let i = 0; i < ol6.value().length; i++){
+    temp[i] = ol6.value().charAt(i);
   }
+  rnaScene2 = new Rna(temp, +ol6Start.value(),+ol6Loop.value(), +ol6End.value(), 0, 1.2 , width / 3 , 0);
+  start = true;
 }

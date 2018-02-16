@@ -1,13 +1,13 @@
 # EternagameScript2018
 ## Releases:
-   - https://github.com/Worseize/EternaScript2018-v.1.8.2-first-release old stable version 1.8.2 (updated 07.02.2018) repository
-   - https://worseize.github.io/EternaScript2018-v.1.8.2-first-release/ old stable version 1.8.2 (updated 07.02.2018) app
+   - https://github.com/Worseize/EternagameScript2018/1.8.2 old stable version 1.8.2 (updated 07.02.2018) repository
+   - https://worseize.github.io/EternagameScript2018/1.8.2 old stable version 1.8.2 (updated 07.02.2018) app
    
 ## Video manual (playlist) :
    - https://www.youtube.com/watch?v=dYDxDWK1A4U&list=PL7CHTefBrBuj3EMghG_MJ-AuV1Hwmrab6 youtube playlist link
    - at the moment supports only in google chrome browser (CSS , DOM objects could be overfit in firefox but canvas script should work same)
 
-## ![engine image 1D --> 2D](/img/Engine.jpg?raw=true)
+## ![engine image 1D --> 2D](https://sun9-5.userapi.com/c840629/v840629734/5761c/fOVmcxWBupY.jpg?raw=true)
 
 ## Options:
 1. __On all pages__
@@ -40,12 +40,15 @@
             - __Shift__ => to change oligo letter A => U => G => C => E => A
             - __Ctrl__ => to add here "E" 
             - __Alt__ => to remove letter
-        - __R | Y__ => move loop to  __LEFT | RIGHT__
-        - __F | H__ => move left tail to loop __IN | OUT__
-        - __V | N__ => move right tail to loop __IN | OUT__
-        - __SHIFT + W | S__ => move whole RNA __UP | DOWN__
-        - __SHIFT + A | D__ => move whole RNA __LEFT | RIGHT__
-        - __Shift__ + __CLICK__ ==> change nuclebase letter
+        - __Shift__ +
+            - __Q | Z__ => move left tail to loop __IN | OUT__
+            - __E | C__ => move right tail to loop __IN | OUT__
+            - __V | N__ => move loop to  __LEFT | RIGHT__
+            - __J | M__ => move pairs to loop __IN | OUT__
+            - __R | F__ => move pairs to tail __IN | OUT__
+
+            - __W | S__ => move whole RNA __UP | DOWN__
+            - __A | D__ => move whole RNA __LEFT | RIGHT__
     - __In auto mode__
         - __V | N__ => change memory position __LOWER | HIGHER__
 
@@ -67,15 +70,10 @@
      - ~~if rna have odd loop then user should mouseClick 1/2 base higher to catch (parts 2, 3, 4, 5, 6)~~  
 
 ### Last update:
-   - On page2 :
-     - Fixed bugs :
-       - mouseClick event if loop is odd fixed
-       - textSize when scale fixed
-       - pages renamed to 1, 2, 3, 4
-       - memory dislpay added
+   - Release 1.8.2 replaced to same repo as this project to 1.8.2 folder
+   - On page3 :
      - Added : 
-       - All Shift + Click Events on 2D Engine [remove | add | change] letter.
-       - readme and page 1 updated
+       - Improove rna step move in maual mode on (page3)
 
 ### CODE STRUCTURE:
   - Pages
@@ -90,7 +88,7 @@
      - Change rna origin on (page3)
      - Add 3rd oligo input (page2)
      - Add Oligos on (page3)
-     -Improove rna step move in maual mode on (page3) (R, Y, F, H, V, N)
+     - ~~Improove rna step move in maual mode on (page3) (R, Y, F, H, V, N)~~
    - In a distant future :
      - Improove folding engine (page3) ==> make it better predictor than NuPack
      - AI solving machine , get data from eternagame.org

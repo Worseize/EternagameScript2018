@@ -69,7 +69,7 @@ function showMemory(){
     //SHOW MODE
     if(autoModePage2){
       fill(150, 255, 50);
-      rect(5, height - scaler * 5.5 , 10 + scaler * 13.5,  scaler * 5.25 );
+      rect(5, height - scaler * 5.5 , 10 + scaler * 14,  scaler * 5.25 );
       fill(255, 0, 0);
       text("Auto", 10, height - 4.5 * scaler);
       fill(0);
@@ -85,42 +85,39 @@ function showMemory(){
       }
     }else{
       fill(150, 255, 50);
-      rect(5, height - scaler * 3.5 , 10 + scaler * 7,  scaler * 3.25 );
+      rect(5, height - scaler * 3.5 , 10 + scaler * 9,  scaler * 3.25 );
       fill(0, 255, 0);
       text("Manual", 10, height - 2.5 * scaler);
       fill(0);
     }
-    text("Pairs : " + rnaScene2.pairs, 10, height - scaler / 2 );
+    text("Connected pairs : " + rnaScene2.pairs, 10, height - scaler / 2 );
     text("Bases : " + rnaScene2.ArrayOfNucleos.length , 10, height - 1.5 * scaler);
   }
 }
 
 function showPage(){
   fill(150, 255, 50);
+  rect(width / 2, height - scaler * 1.5 , scaler * 4, scaler * 1.25);
   if(page === 0){
-    rect(width / 2, height - scaler * 1.5 , scaler * 5.25, scaler * 1.25);
-    rect(width * 0.7, height - scaler * 1.5 , scaler * 16, scaler * 1.25);
+    rect(width * 0.7, height - scaler * 1.5 , scaler * 10.5, scaler * 1.25);
     fill(0);
     text(" Page 1", width / 2, height - scaler * 0.5);
-    text(" 'ESC' => go to State all showPage", width * 0.7, height - scaler * 0.5);
+    text(" 'ESC' => go to page 2", width * 0.7, height - scaler * 0.5);
   }else if(page === 1){
-    rect(width / 2, height - scaler * 1.5 , scaler * 4.5, scaler * 1.25);
     fill(0);
     text(" Page 2", width / 2, height - scaler * 0.5);
   }else if(page === 2){
-    rect(width / 2, height - scaler * 1.5 , scaler * 4, scaler * 1.25);
     fill(0);
     text(" Page 3", width / 2, height - scaler * 0.5);
   }else if(page === 3){
-    rect(width / 2, height - scaler * 1.5 , scaler * 4, scaler * 1.25);
     fill(0);
     text(" Page 4", width / 2, height - scaler * 0.5);
   }
   if(page !== 0){
     fill(150, 255, 50);
-    rect(width * 0.7, height - scaler * 1.5 , scaler * 15, scaler * 1.25);
+    rect(width * 0.7, height - scaler * 1.5 , scaler * 13.5, scaler * 1.25);
     fill(0);
-    text(" 'ESC' => go to help menu page", width * 0.7, height - scaler * 0.5);
+    text(" 'ESC' => go to page 1 (help)", width * 0.7, height - scaler * 0.5);
   }
 }
 

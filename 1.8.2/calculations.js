@@ -62,6 +62,8 @@ function findRna(){
   }
 }
 
+
+
 function errorsFinder(){
   //Show current Errors 
   for(let i = 0; i < errors.length; i++){
@@ -152,52 +154,6 @@ function clearFileName(){
   loadButton.value("");
 }
 
-function findRnaPage2(){
-  memoryPage2 = [];
-  let tempRna;
-  let iS = 0 , iE = ol6.value().length - 13,
-    jS = 3, jE = ol6.value().length - 10,
-    kS = 13, kE = ol6.value().length,
-    kBit = kE - kS;
-    jBit = jE - jS;
-  let temp = [];
-  for(let s = 0; s < ol6.value().length; s++){
-    temp[s] = ol6.value().charAt(s);
-  }
-  for(let i = iS; i <= iE; i++){
-    for(let j = jS; j <= jE; j++){
-      for(let k = kS; k <= kE; k++){
-        if((k - j - i) % 2  === 0 ){ // if loop does not consist new loops between pairing bases 
-          tempRna = new Rna(temp, i, j, k, 0, 1.2 , width / 3 , 0);
-          tempRna.calculateHairpinStemPairs(); // calculate pairs
-          if(tempRna.pairs > 4){
-            memoryPage2.push(tempRna);
-          }
-        }
-        if(k + j * kBit + i * kBit * jBit > 400000){ // if out of memory
-          console.log("CPU protection 200K+ operations passed , Returning...");
-          memoryConsumed = (k + j * kBit + i * kBit * jBit) / 2;
-          return memoryPage2;
-        }
-        if(i === iE && j === jE && k > kE - 2 ){ // if last iteration
-          memoryConsumed = round((k + j * kBit + i * kBit * jBit) / 2);
-        }
-      }
-    }
-  } 
-  if(memoryPage2.length > 0){
-    memoryPage2 = sortObjectsArray(memoryPage2, 'pairs');
-    memoryPage2 = memoryPage2.slice(0, 99); // save only 100 best
-    rnaScene2 = memoryPage2[memoryPositionPage3];
-    ol6Start.value(rnaScene2.startIndex);
-    ol6Loop.value(rnaScene2.loopBases);
-    ol6End.value(rnaScene2.endIndex);
-    ol6Pairs.value(rnaScene2.pairs);
-  }else{
-    console.log("Less than 5 pairs");
-  }
-}
-
 // https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value-in-javascript
 function sortObjectsArray(objectsArray, sortKey){
   // Quick Sort:
@@ -212,7 +168,7 @@ function sortObjectsArray(objectsArray, sortKey){
       objectsArray.splice(pivotIndex, 1);                          // remove the item in the pivot position
       objectsArray.forEach(function(value, index, array)
       {
-          value[sortKey] <= pivotItem[sortKey] ?                   // compare the 'sortKey' property
+          value[sortKey] <= pivotItem[sortKey] ?                   // compare the 'sortKey' proiperty
               more.push(value) :
               less.push(value) ;
       });

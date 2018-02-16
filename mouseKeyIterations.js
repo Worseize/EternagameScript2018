@@ -90,44 +90,8 @@ keyReleased = function(){
         }
       }
     }
-    if(keyCode === 89){//R
-      if(rnaScene2.ArrayOfNucleos.length > +ol6End.value()){
-        rnaScene2.startIndex++;
-        rnaScene2.endIndex++;
-        ol6Start.value(+ol6Start.value() + 1);
-        ol6End.value(+ol6End.value() + 1);
-      }
-    }else if(keyCode === 82){//Y
-      if(+ol6Start.value() > 0){
-        rnaScene2.startIndex--;
-        rnaScene2.endIndex--;
-        ol6Start.value(+ol6Start.value() - 1);
-        ol6End.value(+ol6End.value() - 1);
-      }
-    }else if(keyCode === 72){//H
-      if(rnaScene2.loopBases > 3){
-        rnaScene2.translateX -= rnaScene2.baseSize * scaler;
-        ol6Start.value(+ol6Start.value() + 1);
-        ol6Loop.value(+ol6Loop.value() - 1);
-      }
-    }else if(keyCode === 70){//F
-      if(+ol6Start.value() > 0){
-        rnaScene2.translateX += rnaScene2.baseSize * scaler;
-        ol6Start.value(+ol6Start.value() - 1);
-        ol6Loop.value(+ol6Loop.value() + 1);
-      }
-    }else if(keyCode === 86){//V
-      let rightTail = rnaScene2.ArrayOfNucleos.length - rnaScene2.endIndex;
-      if(rightTail > 0){
-        ol6End.value(+ol6End.value() + 1);
-        ol6Loop.value(+ol6Loop.value() + 1);
-      }
-    }else if(keyCode === 78){//N
-      if(+ol6Loop.value() > 3){
-        ol6End.value(+ol6End.value() - 1);
-        ol6Loop.value(+ol6Loop.value() - 1);
-      }
-    }else if(keyIsDown(16)){ // Shift
+    
+    if(keyIsDown(16)){ // Shift
       if(keyCode === 68){//D
         rnaScene2.translateX += rnaScene2.baseSize * scaler;
       }else if(keyCode === 65){//A
@@ -136,8 +100,68 @@ keyReleased = function(){
         rnaScene2.translateY -= rnaScene2.baseSize * scaler;
       }else if(keyCode === 83){//S
         rnaScene2.translateY += rnaScene2.baseSize * scaler;
+      }else if(keyCode === 78){//N
+        if(rnaScene2.ArrayOfNucleos.length > +ol6End.value()){
+          rnaScene2.startIndex++;
+          rnaScene2.endIndex++;
+          ol6Start.value(+ol6Start.value() + 1);
+          ol6End.value(+ol6End.value() + 1);
+        }
+      }else if(keyCode === 86){//V
+        if(+ol6Start.value() > 0){
+          rnaScene2.startIndex--;
+          rnaScene2.endIndex--;
+          ol6Start.value(+ol6Start.value() - 1);
+          ol6End.value(+ol6End.value() - 1);
+        }
+      }else if(keyCode === 81){//Q-----------------------------
+        if(rnaScene2.loopBases > 3){
+          rnaScene2.translateX -= rnaScene2.baseSize * scaler;
+          ol6Start.value(+ol6Start.value() + 1);
+          ol6Loop.value(+ol6Loop.value() - 1);
+        }
+      }else if(keyCode === 90){//Z
+        if(+ol6Start.value() > 0){
+          rnaScene2.translateX += rnaScene2.baseSize * scaler;
+          ol6Start.value(+ol6Start.value() - 1);
+          ol6Loop.value(+ol6Loop.value() + 1);
+        }
+      }else if(keyCode === 67){//C
+        let rightTail = rnaScene2.ArrayOfNucleos.length - rnaScene2.endIndex;
+        if(rightTail > 0){
+          ol6End.value(+ol6End.value() + 1);
+          ol6Loop.value(+ol6Loop.value() + 1);
+        }
+      }else if(keyCode === 69){//E
+        if(+ol6Loop.value() > 3){
+          ol6End.value(+ol6End.value() - 1);
+          ol6Loop.value(+ol6Loop.value() - 1);
+        }
+      }else if(keyCode === 70){//F
+        if(+ol6Start.value() > 0 && (rnaScene2.ArrayOfNucleos.length - +ol6End.value()) > 0){
+          ol6Pairs.value(+ol6Pairs.value() + 1);
+          ol6Start.value(+ol6Start.value() - 1);
+          ol6End.value(+ol6End.value() + 1);
+        }
+      }else if(keyCode === 82){//R
+        if(+ol6Pairs.value() > 0){
+          ol6Pairs.value(+ol6Pairs.value() - 1);
+          ol6Start.value(+ol6Start.value() + 1);
+          ol6End.value(+ol6End.value() - 1);
+        }
+      }else if(keyCode === 74){//J---------------------------------
+        if(+ol6Loop.value() > 4){
+          ol6Loop.value(+ol6Loop.value() - 2);
+          ol6Pairs.value(+ol6Pairs.value() + 1);
+        }
+      }else if(keyCode === 77){//M
+        if(+ol6Pairs.value() > 0){
+          ol6Loop.value(+ol6Loop.value() + 2);
+          ol6Pairs.value(+ol6Pairs.value() - 1);
+        }
       }
-    }else if(keyCode === 32){//Space
+    }
+    if(keyCode === 32){//Space
       if(autoModePage2 === true){
         autoModePage2 = false;
         ol6Start.style("background-color","green");
@@ -151,8 +175,9 @@ keyReleased = function(){
         ol6End.style("background-color","white");
       }
     }
-    if(keyCode === 89 || keyCode === 82 || keyCode === 72 || keyCode === 70 || keyCode === 86 || keyCode === 78 ||
-       ( keyIsDown(16)  && (keyCode === 68 || keyCode === 65 || keyCode === 87 || keyCode === 83)) || keyCode === 32){
+    if(keyCode === 32 || ( keyIsDown(16)  && ( keyCode === 68 || keyCode === 65 || keyCode === 87 || keyCode === 83 || keyCode === 78 ||
+       keyCode === 86 || keyCode === 81 || keyCode === 90 || keyCode === 67 || keyCode === 69 || keyCode === 82 || keyCode === 70 ||
+       keyCode === 74 || keyCode === 77))){
       start = true;
     }
   }
@@ -240,11 +265,11 @@ mouseReleased = function(){
           const maxY = minY + ((rnaScene2.endIndex - rnaScene2.startIndex ) / 2 + 1) * baseSizeTemp;
           const centerIsEven = rnaScene2.loopBases % 2 === 0;
           if(mouseY > maxY + baseSizeTemp / 2){ // bottom border of rna
-          }else if( mouseY > minY && mouseY < minY + baseSizeTemp){//mouse at part1 || part6 
+          }else if( mouseY > minY && mouseY < minY + baseSizeTemp){//mouse at part1 || part7 
             //remember ORIGIN [x, y] = [baseSize * scaler * 1.5, baseSize * scaler * 1.5]
             if(      mouseX < minX + baseSizeTemp  + (rnaScene2.startIndex - 1) * baseSizeTemp ){ // part 1 
               temp = round((( mouseX - (rnaScene2.translateX + baseSizeTemp * 1.5)) / baseSizeTemp));
-            }else if(mouseX > minX + baseSizeTemp * 3 + (rnaScene2.startIndex - 1) * baseSizeTemp ){ //part6
+            }else if(mouseX > minX + baseSizeTemp * 3 + (rnaScene2.startIndex - 1) * baseSizeTemp ){ //part7
               temp = round((( mouseX - (rnaScene2.translateX + baseSizeTemp * 3.5)) / baseSizeTemp)) + (rnaScene2.endIndex - rnaScene2.startIndex);
             }
 
@@ -273,7 +298,7 @@ mouseReleased = function(){
           }else if(mouseY > minY && mouseY < maxY + baseSizeTemp / 2 && 
                    mouseX > minX + (rnaScene2.startIndex + 1) * baseSizeTemp && 
                    mouseX < minX + (rnaScene2.startIndex + 3) * baseSizeTemp && 
-                   !centerIsEven){
+                   !centerIsEven){ // part 5,6
             temp = round((maxY - mouseY) / baseSizeTemp) + pairsTemp + rnaScene2.startIndex + (rnaScene2.loopBases - 1) / 2;
           }
           changeLetter(temp, 6);
@@ -290,11 +315,11 @@ mouseReleased = function(){
           const maxY = minY + ((rnaScene2.endIndex - rnaScene2.startIndex ) / 2 + 1) * baseSizeTemp;
           const centerIsEven = rnaScene2.loopBases % 2 === 0;
           if(mouseY > maxY + baseSizeTemp / 2){ // bottom border of rna
-          }else if( mouseY > minY && mouseY < minY + baseSizeTemp){//mouse at part1 || part6 
+          }else if( mouseY > minY && mouseY < minY + baseSizeTemp){//mouse at part1 || part7 
             //remember ORIGIN [x, y] = [baseSize * scaler * 1.5, baseSize * scaler * 1.5]
             if(      mouseX < minX + baseSizeTemp  + (rnaScene2.startIndex - 1) * baseSizeTemp ){ // part 1 
               temp = round((( mouseX - (rnaScene2.translateX + baseSizeTemp * 1.5)) / baseSizeTemp));
-            }else if(mouseX > minX + baseSizeTemp * 3 + (rnaScene2.startIndex - 1) * baseSizeTemp ){ //part6
+            }else if(mouseX > minX + baseSizeTemp * 3 + (rnaScene2.startIndex - 1) * baseSizeTemp ){ //part7
               temp = round((( mouseX - (rnaScene2.translateX + baseSizeTemp * 3.5)) / baseSizeTemp)) + (rnaScene2.endIndex - rnaScene2.startIndex);
             }
 
@@ -323,7 +348,7 @@ mouseReleased = function(){
           }else if(mouseY > minY && mouseY < maxY + baseSizeTemp / 2 && 
                    mouseX > minX + (rnaScene2.startIndex + 1) * baseSizeTemp && 
                    mouseX < minX + (rnaScene2.startIndex + 3) * baseSizeTemp && 
-                   !centerIsEven){
+                   !centerIsEven){ // part 5,6
             temp = round((maxY - mouseY) / baseSizeTemp) + pairsTemp + rnaScene2.startIndex + (rnaScene2.loopBases - 1) / 2;
           }
           addLetter(temp, 6);
@@ -340,11 +365,11 @@ mouseReleased = function(){
           const maxY = minY + ((rnaScene2.endIndex - rnaScene2.startIndex ) / 2 + 1) * baseSizeTemp;
           const centerIsEven = rnaScene2.loopBases % 2 === 0;
           if(mouseY > maxY + baseSizeTemp / 2){ // bottom border of rna
-          }else if( mouseY > minY && mouseY < minY + baseSizeTemp){//mouse at part1 || part6 
+          }else if( mouseY > minY && mouseY < minY + baseSizeTemp){//mouse at part1 || part7
             //remember ORIGIN [x, y] = [baseSize * scaler * 1.5, baseSize * scaler * 1.5]
             if(      mouseX < minX + baseSizeTemp  + (rnaScene2.startIndex - 1) * baseSizeTemp ){ // part 1 
               temp = round((( mouseX - (rnaScene2.translateX + baseSizeTemp * 1.5)) / baseSizeTemp));
-            }else if(mouseX > minX + baseSizeTemp * 3 + (rnaScene2.startIndex - 1) * baseSizeTemp ){ //part6
+            }else if(mouseX > minX + baseSizeTemp * 3 + (rnaScene2.startIndex - 1) * baseSizeTemp ){ //part7
               temp = round((( mouseX - (rnaScene2.translateX + baseSizeTemp * 3.5)) / baseSizeTemp)) + (rnaScene2.endIndex - rnaScene2.startIndex);
             }
 
@@ -373,7 +398,7 @@ mouseReleased = function(){
           }else if(mouseY > minY && mouseY < maxY + baseSizeTemp / 2 && 
                    mouseX > minX + (rnaScene2.startIndex + 1) * baseSizeTemp && 
                    mouseX < minX + (rnaScene2.startIndex + 3) * baseSizeTemp && 
-                   !centerIsEven){
+                   !centerIsEven){ // part 5,6
             temp = round((maxY - mouseY) / baseSizeTemp) + pairsTemp + rnaScene2.startIndex + (rnaScene2.loopBases - 1) / 2;
           }
           removeLetter(temp, 6);
